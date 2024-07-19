@@ -1,0 +1,15 @@
+//
+//  urban.xcconfig
+//  UrbanParis
+//
+//  Created by Yassin El Mouden on 18/07/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Common.xcconfig"
+
+AppIcon = AppUrbanIcon
+LaunchScreen = LaunchScreenUrban.storyboard
+IS_VALID = 1
