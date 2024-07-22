@@ -17,6 +17,10 @@ let package = Package(
             targets: ["LoginFeature"]
         ),
         .library(
+            name: "ProfileFeature",
+            targets: ["ProfileFeature"]
+        ),
+        .library(
             name: "Database",
             targets: ["Database"]
         ),
@@ -37,7 +41,8 @@ let package = Package(
         .package(url: "https://github.com/EmergeTools/Pow", from: Version(1, 0, 0)),
         .package(url: "https://github.com/CSolanaM/SkeletonUI", branch: "master"),
         .package(url: "https://github.com/supabase-community/supabase-swift.git", branch: "main"),
-        .package(url: "https://github.com/jasudev/AnimateText", branch: "main")
+        .package(url: "https://github.com/jasudev/AnimateText", branch: "main"),
+        .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.5.0")
     ],
     targets: [
         .target(
@@ -48,6 +53,23 @@ let package = Package(
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "Pow", package: "Pow"),
                 .product(name: "AnimateText", package: "AnimateText"),
+                "DesignSystem",
+                "SharedResources"
+            ],
+            resources: [
+                .process("Resources")
+            ],
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
+        ),
+        .target(
+            name: "ProfileFeature",
+            dependencies: [
+                .product(name: "FlowStacks", package: "FlowStacks"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "Pow", package: "Pow"),
+                .product(name: "Lottie", package: "lottie-spm"),
                 "DesignSystem",
                 "SharedResources"
             ],

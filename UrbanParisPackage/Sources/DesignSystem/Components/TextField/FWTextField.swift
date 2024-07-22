@@ -48,7 +48,7 @@ public struct FWTextField: View {
                     .animation(.easeOut(duration: 0.3), value: pathProgress)
 
                 Text(title)
-                    .font(DSFont.headline)
+                    .font(DSFont.grafHeadline)
                     .foregroundStyle(isFocus ? DSColors.red.swiftUIColor : DSColors.white.swiftUIColor)
                     .font(.footnote)
                     .offset(x: isFocus ? 30 : 0, y: isFocus ? -(sizeText.height / 2) : 0)

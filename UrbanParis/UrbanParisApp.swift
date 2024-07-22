@@ -7,16 +7,19 @@
 
 import DesignSystem
 import SwiftUI
+import UIKit
 
 @main
 struct UrbanParisApp: App {
     init() {
         FontFamily.registerAllCustomFonts()
+        UINavigationBar.setupStyle()
     }
 
     var body: some Scene {
         WindowGroup {
             AppView()
         }
+
     }
 }

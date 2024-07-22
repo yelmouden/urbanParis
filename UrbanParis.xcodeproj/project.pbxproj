@@ -12,6 +12,8 @@
 		DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */ = {isa = PBXBuildFile; productRef = DC4E65812C49839E00B08F1A /* SharedResources */; };
 		DC4E65922C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */; };
 		DC760BE22C4B222C0008990B /* UrbanParisPackage in Resources */ = {isa = PBXBuildFile; fileRef = DC760BE12C4B222C0008990B /* UrbanParisPackage */; };
+		DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7914FB2C4EB012005A3244 /* ProfileFeature */; };
+		DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8975B2C4EDECE00788FC6 /* HomeView.swift */; };
 		DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8AE9E2C47E91C0070B0D1 /* UrbanParisApp.swift */; };
 		DCD8AEA32C47E91E0070B0D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD8AEA22C47E91E0070B0D1 /* Assets.xcassets */; };
 		DCD8AEA62C47E91E0070B0D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD8AEA52C47E91E0070B0D1 /* Preview Assets.xcassets */; };
@@ -27,6 +29,7 @@
 		DC4E65902C49C6B500B08F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenNonUrban.storyboard; sourceTree = "<group>"; };
 		DC760BE12C4B222C0008990B /* UrbanParisPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UrbanParisPackage; sourceTree = "<group>"; };
+		DCA8975B2C4EDECE00788FC6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urban Paris.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD8AE9E2C47E91C0070B0D1 /* UrbanParisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbanParisApp.swift; sourceTree = "<group>"; };
 		DCD8AEA22C47E91E0070B0D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 				DCD8AEB12C4962480070B0D1 /* LoginFeature in Frameworks */,
 				DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */,
 				DC025F002C4972310050B457 /* DesignSystem in Frameworks */,
+				DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +91,7 @@
 				DCD8AEA42C47E91E0070B0D1 /* Preview Content */,
 				DC4E657F2C49834300B08F1A /* LaunchScreenUrban.storyboard */,
 				DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */,
+				DCA8975B2C4EDECE00788FC6 /* HomeView.swift */,
 			);
 			path = UrbanParis;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 				DCD8AEB02C4962480070B0D1 /* LoginFeature */,
 				DC025EFF2C4972310050B457 /* DesignSystem */,
 				DC4E65812C49839E00B08F1A /* SharedResources */,
+				DC7914FB2C4EB012005A3244 /* ProfileFeature */,
 			);
 			productName = UrbanParis;
 			productReference = DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */;
@@ -184,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */,
 				DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */,
 				DCD8AEAE2C49610B0070B0D1 /* AppView.swift in Sources */,
 			);
@@ -396,6 +403,108 @@
 			};
 			name = nonUrban;
 		};
+		DCD22FA02C4C0978004A17D6 /* nonUrbanDebug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC4E658A2C49BC8F00B08F1A /* nonUrban.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = nonUrbanDebug;
+		};
+		DCD22FA12C4C0978004A17D6 /* nonUrbanDebug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC4E658A2C49BC8F00B08F1A /* nonUrban.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(AppIcon)";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UrbanParis/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 69XGLNEF48;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UrbanParis/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "$(LaunchScreen)";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.debug.up;
+				PRODUCT_NAME = "Urban Paris";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile urban paris";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = nonUrbanDebug;
+		};
 		DCD8AEA72C47E91E0070B0D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC4E65892C49BC8200B08F1A /* urban.xcconfig */;
@@ -595,6 +704,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCD8AEA72C47E91E0070B0D1 /* Debug */,
+				DCD22FA02C4C0978004A17D6 /* nonUrbanDebug */,
 				DC4E65832C49BBBB00B08F1A /* urban */,
 				DC4E65852C49BC1C00B08F1A /* nonUrban */,
 				DCD8AEA82C47E91E0070B0D1 /* Release */,
@@ -606,6 +716,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCD8AEAA2C47E91E0070B0D1 /* Debug */,
+				DCD22FA12C4C0978004A17D6 /* nonUrbanDebug */,
 				DC4E65842C49BBBB00B08F1A /* urban */,
 				DC4E65862C49BC1C00B08F1A /* nonUrban */,
 				DCD8AEAB2C47E91E0070B0D1 /* Release */,
@@ -623,6 +734,10 @@
 		DC4E65812C49839E00B08F1A /* SharedResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedResources;
+		};
+		DC7914FB2C4EB012005A3244 /* ProfileFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ProfileFeature;
 		};
 		DCD8AEB02C4962480070B0D1 /* LoginFeature */ = {
 			isa = XCSwiftPackageProductDependency;

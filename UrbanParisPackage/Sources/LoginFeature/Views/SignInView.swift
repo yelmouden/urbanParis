@@ -10,62 +10,28 @@ import FlowStacks
 import SwiftUI
 import Utils
 
-public struct SignInView: View {
+public struct SignInView: View, KeyboardReadable {
     @EnvironmentObject var navigator: FlowNavigator<LoginScreen>
 
     @State var password: String = ""
     @State var isValidPassword = false
     @State var fakeState: FWButtonState = .idle
+    @State var hideSocialSigin = false
 
     public init() {}
 
     public var body: some View {
-        ZStack(alignment: .top) {
-            let bgImage = ConfigurationReader.isUrbanApp ? Assets.telesco.swiftUIImage : Assets.fumiTribune.swiftUIImage
+        let bgImage = ConfigurationReader.isUrbanApp ? Assets.telesco.swiftUIImage : Assets.coursive.swiftUIImage
 
-            bgImage
-                .resizable()
-                .scaledToFill()
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .clipped()
-                .ignoresSafeArea(.all)
-
-            LinearGradient(
-                gradient: Gradient(
-                    colors: [
-                        DSColors.background.swiftUIColor.opacity(0.3),
-                        DSColors.background.swiftUIColor
-                    ]
-                ),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea(.all)
-
+        BackgroundImageContainerView(images: [/*bgImage*/]) {
             VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        BackButton(isPresented: false) {
-                            navigator.pop()
-                        }
-                        .padding(.bottom)
-
-                        Text("Connection")
-                            .font(DSFont.largeTitle)
-                            .foregroundStyle(DSColors.white.swiftUIColor)
-                    }
-
-                    Spacer()
-                }
-
-                Spacer()
 
                 FWScrollView {
                     VStack {
 
                         FWTextField(
                             title: "Ton email",
-                            placeholder: "Saissis ton email",
+                            placeholder: "Saisis ton email",
                             text: .constant("")
                         )
                         .keyboardType(.emailAddress)
@@ -74,81 +40,92 @@ public struct SignInView: View {
                         .padding(.top, Margins.medium)
                         .padding(.bottom, Margins.mediumSmall)
 
+
                         FWTextField(
                             title: "Ton mot de passe",
-                            placeholder: "Saissis ton mot de passe",
+                            placeholder: "Saisis ton mot de passe",
                             isSecure: true,
                             text: $password
                         )
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
+                        .padding(.bottom, Margins.extraLarge)
 
-                        Spacer()
-
-                        VStack {
-
-                            FWButton(
-                                title: "Se connecter",
-                                state: fakeState,
-                                action: {
-                                    Task {
-                                        fakeState = .loading
-                                        try await Task.sleep(for: .seconds(2))
-                                        fakeState = .success
-                                        try await Task.sleep(for: .seconds(1))
-                                        fakeState = .idle
-
-                                    }
-
-                                    /*task?.cancel()
-
-                                    task = Task {
-                                        await viewModel.signUp(email: email, password: password)
-                                    }*/
-                                })
-                            //.enabled(email.isValidEmail() && isValidPassword)
-                            .fwButtonStyle(.primary)
-                            .addSensoryFeedback()
-                            .padding(.bottom, Margins.small)
-
-                            HStack {
-                                Rectangle()
-                                    .fill(DSColors.white.swiftUIColor)
-                                    .frame(height: 1)
-
-                                Text("ou")
-                                    .font(DSFont.body)
-
-                                Rectangle()
-                                    .fill(DSColors.white.swiftUIColor)
-                                    .frame(height: 1)
-                            }
-                            .foregroundStyle(DSColors.white.swiftUIColor)
-                            .padding(.bottom, Margins.medium)
-
-                            LoginButton(loginButtonType: .apple, state: .idle/*viewModel.signWithAppleState*/) {
-                                /*task?.cancel()
-
-                                task = Task {
-                                    await viewModel.signInWithApple()
-                                }*/
-                            }
-
-                            LoginButton(loginButtonType: .google, state: .idle /*viewModel.signWithGoogleState*/) {
-                                /*task?.cancel()
-
-                                task = Task {
-                                    await viewModel.signInWithGoogle()
-                                }*/
-                            }
-                        }
                     }
                 }
+
+                Spacer()
+                
+                VStack {
+
+                    FWButton(
+                        title: "Se connecter",
+                        state: fakeState,
+                        action: {
+                            Task {
+                                fakeState = .loading
+                                try await Task.sleep(for: .seconds(2))
+                                fakeState = .success
+                                try await Task.sleep(for: .seconds(1))
+                                fakeState = .idle
+
+                            }
+
+                            /*task?.cancel()
+
+                            task = Task {
+                                await viewModel.signUp(email: email, password: password)
+                            }*/
+                        })
+                    //.enabled(email.isValidEmail() && isValidPassword)
+                    .fwButtonStyle(.primary)
+                    .addSensoryFeedback()
+                    .padding(.bottom, Margins.small)
+
+                    if !hideSocialSigin {
+                        HStack {
+                            Rectangle()
+                                .fill(DSColors.white.swiftUIColor)
+                                .frame(height: 1)
+
+                            Text("ou")
+                                .font(DSFont.grafBody)
+
+                            Rectangle()
+                                .fill(DSColors.white.swiftUIColor)
+                                .frame(height: 1)
+                        }
+                        .foregroundStyle(DSColors.white.swiftUIColor)
+                        .padding(.bottom, Margins.medium)
+
+                        LoginButton(loginButtonType: .apple, state: .idle/*viewModel.signWithAppleState*/) {
+                            /*task?.cancel()
+
+                            task = Task {
+                                await viewModel.signInWithApple()
+                            }*/
+                        }
+
+                        LoginButton(loginButtonType: .google, state: .idle /*viewModel.signWithGoogleState*/) {
+                            /*task?.cancel()
+
+                            task = Task {
+                                await viewModel.signInWithGoogle()
+                            }*/
+                        }
+                    }
+
+                }
             }
-            .padding([.top, .leading, .trailing])
         }
-        .background(DSColors.background.swiftUIColor)
-        .navigationBarHidden(true)
+        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+            hideSocialSigin = newIsKeyboardVisible
+        }
+        .addBackButton {
+            navigator.pop()
+        }
+        .navigationTitle("Se connecter")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

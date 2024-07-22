@@ -6,12 +6,13 @@
 //
 
 import LoginFeature
+import ProfileFeature
 import SwiftUI
 
 
 struct AppView: View {
     var body: some View {
-        LoginCoordinator()
+        ProfileCoordinator()
     }
 }
 

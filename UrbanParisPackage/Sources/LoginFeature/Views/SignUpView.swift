@@ -10,107 +10,79 @@ import FlowStacks
 import SwiftUI
 import Utils
 
-public struct SignUpView: View {
+public struct SignUpView: View, KeyboardReadable {
     @EnvironmentObject var navigator: FlowNavigator<LoginScreen>
 
     @State var password: String = ""
     @State var isValidPassword = false
     @State var fakeState: FWButtonState = .idle
+    @State var hideSocialSigin = false
 
     public init() {}
 
     public var body: some View {
+        
         ZStack(alignment: .top) {
-            let bgImage = ConfigurationReader.isUrbanApp ? Assets.graphUP.swiftUIImage : Assets.coursive.swiftUIImage
-
-            bgImage
-                .resizable()
-                .scaledToFill()
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .clipped()
-                .ignoresSafeArea(.all)
-
-            LinearGradient(
-                gradient: Gradient(
-                    colors: [
-                        DSColors.background.swiftUIColor.opacity(0.8),
-                        DSColors.background.swiftUIColor
-                    ]
-                ),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea(.all)
-
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        BackButton(isPresented: false) {
-                            navigator.pop()
-                        }
-                        .padding(.bottom)
-
-                        Text("S'inscrire")
-                            .font(DSFont.largeTitle)
-                            .foregroundStyle(DSColors.white.swiftUIColor)
-                    }
-
-                    Spacer()
-                }
-
-                Spacer()
-                
-                FWScrollView {
-                    VStack {
-
-                        FWTextField(
-                            title: "Ton email",
-                            placeholder: "Saissis ton email",
-                            text: .constant("")
-                        )
-                        .keyboardType(.emailAddress)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .padding(.top, Margins.medium)
-                        .padding(.bottom, Margins.mediumSmall)
-
-                        PasswordFieldView(password: $password, isValidPassword: $isValidPassword)
-
-                        Spacer()
-
+            let bgImage = ConfigurationReader.isUrbanApp ? Assets.graphUP.swiftUIImage : Assets.fumiTribune.swiftUIImage
+            BackgroundImageContainerView(images: [/*bgImage*/]) {
+                VStack {
+                    FWScrollView {
                         VStack {
 
-                            FWButton(
-                                title: "Rejoindre maintenant",
-                                state: fakeState,
-                                action: {
-                                    Task {
-                                        fakeState = .loading
-                                        try await Task.sleep(for: .seconds(2))
-                                        fakeState = .success
-                                        try await Task.sleep(for: .seconds(1))
-                                        fakeState = .idle
+                            FWTextField(
+                                title: "Ton email",
+                                placeholder: "Saisis ton email",
+                                text: .constant("")
+                            )
+                            .keyboardType(.emailAddress)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                            .padding(.top, Margins.medium)
+                            .padding(.bottom, Margins.mediumSmall)
 
-                                    }
+                            PasswordFieldView(password: $password, isValidPassword: $isValidPassword)
+                                .padding(.bottom, Margins.extraLarge)
+                        }
+                        
+                    }
 
-                                    /*task?.cancel()
 
-                                    task = Task {
-                                        await viewModel.signUp(email: email, password: password)
-                                    }*/
-                                })
-                            //.enabled(email.isValidEmail() && isValidPassword)
-                            .fwButtonStyle(.primary)
-                            .addSensoryFeedback()
-                            .padding(.bottom, Margins.small)
+                    Spacer()
 
+                    VStack {
+
+                        FWButton(
+                            title: "Rejoindre maintenant",
+                            state: fakeState,
+                            action: {
+                                Task {
+                                   fakeState = .loading
+                                    try await Task.sleep(for: .seconds(1))
+                                    fakeState = .success
+                                    try await Task.sleep(for: .seconds(1))
+                                    fakeState = .idle
+
+                                }
+
+                                /*task?.cancel()
+
+                                task = Task {
+                                    await viewModel.signUp(email: email, password: password)
+                                }*/
+                            })
+                        //.enabled(email.isValidEmail() && isValidPassword)
+                        .fwButtonStyle(.primary)
+                        .addSensoryFeedback()
+                        .padding(.bottom, Margins.small)
+
+                        if !hideSocialSigin {
                             HStack {
                                 Rectangle()
                                     .fill(DSColors.white.swiftUIColor)
                                     .frame(height: 1)
 
                                 Text("ou")
-                                    .font(DSFont.body)
+                                    .font(DSFont.grafBody)
 
                                 Rectangle()
                                     .fill(DSColors.white.swiftUIColor)
@@ -135,13 +107,20 @@ public struct SignUpView: View {
                                 }*/
                             }
                         }
+
                     }
                 }
+
             }
-            .padding([.top, .leading, .trailing])
         }
-        .background(DSColors.background.swiftUIColor)
-        .navigationBarHidden(true)
+        .addBackButton {
+            navigator.pop()
+        }
+        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+            hideSocialSigin = newIsKeyboardVisible
+        }
+        .navigationBarTitleDisplayMode(.large)
+        .navigationTitle("Créer un compte")
     }
 }
 

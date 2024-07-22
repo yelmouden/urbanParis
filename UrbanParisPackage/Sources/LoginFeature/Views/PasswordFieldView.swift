@@ -17,7 +17,7 @@ struct PasswordFieldView: View {
         VStack {
             FWTextField(
                 title: "Ton mot de passe",
-                placeholder: "Saissis ton mot de passe",
+                placeholder: "Saisis ton mot de passe",
                 isSecure: true,
                 text: $password
             )
@@ -29,18 +29,18 @@ struct PasswordFieldView: View {
                 HStack {
                     if passwordValidations.contains(item) {
                         Image(systemName: "checkmark.circle.fill")
-                            .font(DSFont.caption1)
+                            .font(DSFont.robotoCaption1)
                             .foregroundStyle(DSColors.success.swiftUIColor)
                             .transition(.movingParts.flip)
                     } else {
                         Image(systemName: "checkmark.circle")
-                            .font(DSFont.caption1)
+                            .font(DSFont.robotoCaption1)
                             .foregroundStyle(DSColors.white.swiftUIColor)
                             .transition(.movingParts.flip)
                     }
 
                     Text(item.title)
-                        .font(DSFont.caption1)
+                        .font(DSFont.robotoCaption1)
                         .foregroundStyle(passwordValidations.contains(item) ? DSColors.success.swiftUIColor : DSColors.white.swiftUIColor)
                     Spacer()
                 }

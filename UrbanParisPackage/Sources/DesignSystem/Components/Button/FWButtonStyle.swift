@@ -88,7 +88,7 @@ public struct FWButtonDefaultStyle: FWButtonStyle {
             configuration.action()
         } label: {
             Text(configuration.title)
-                .font(DSFont.body)
+                .font(DSFont.robotoBody)
                 .foregroundStyle(DSColors.red.swiftUIColor)
         }
         .tint(DSColors.white.swiftUIColor)
@@ -144,7 +144,7 @@ public struct FWButtonPrimaryStyle: FWButtonStyle {
                 } else {
                     Spacer()
                     Text(configuration.title)
-                        .font(DSFont.title2)
+                        .font(DSFont.robotoBody)
                         .foregroundStyle(DSColors.white.swiftUIColor)
                     Spacer()
                 }
@@ -198,7 +198,7 @@ public struct FWButtonSecondaryStyle: FWButtonStyle {
                     } else {
                         Spacer()
                         Text(configuration.title)
-                            .font(DSFont.title2)
+                            .font(DSFont.robotoBody)
                             .foregroundStyle(DSColors.red.swiftUIColor)
                             .opacity(configuration.enabled ? 1 : 0.5)
 
@@ -237,7 +237,7 @@ public struct FWButtonTertiaryStyle: FWButtonStyle {
                 HStack {
                     configuration.leftView
                     Text(configuration.title)
-                        .font(DSFont.title2)
+                        .font(DSFont.robotoBody)
                         .foregroundStyle(DSColors.red.swiftUIColor)
                         .opacity(configuration.enabled ? 1 : 0.5)
                 }
