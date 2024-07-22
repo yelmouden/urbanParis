@@ -13,10 +13,16 @@ public struct BackgroundImageContainerView<Content: View>: View {
     @State var currentIndex = 0
 
     let images: [UIImage]
+    let colors: [Color]
     @ViewBuilder var content: () -> Content
 
-    public init(images: [UIImage], @ViewBuilder content: @escaping () -> Content) {
+    public init(
+        images: [UIImage],
+        colors: [Color] = [DSColors.black.swiftUIColor.opacity(0.85), DSColors.background.swiftUIColor],
+        @ViewBuilder content: @escaping () -> Content
+    ) {
         self.images = images
+        self.colors = colors
         self.content = content
     }
 
@@ -33,10 +39,7 @@ public struct BackgroundImageContainerView<Content: View>: View {
 
             LinearGradient(
                 gradient: Gradient(
-                    colors: [
-                        Color.black.opacity(0.5),
-                        DSColors.background.swiftUIColor.opacity(0.9)
-                    ]
+                    colors: colors
                 ),
                 startPoint: .top,
                 endPoint: .bottom

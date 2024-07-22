@@ -114,7 +114,7 @@ public struct WelcomeView: View {
                                     height: ConfigurationReader.isUrbanApp ? 300: 250)
 
                             AnimateText<ATChimeBellEffect>($text, type: .words)
-                                .font(DSFont.grafTitle)
+                                .font(DSFont.grafTitle3)
                                 .foregroundStyle(DSColors.white.swiftUIColor)
                                 .offset(CGSize(width: 0, height: ConfigurationReader.isUrbanApp ? -50 : -15))
 

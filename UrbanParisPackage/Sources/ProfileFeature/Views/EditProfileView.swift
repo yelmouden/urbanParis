@@ -23,14 +23,12 @@ public struct EditProfileView: View, KeyboardReadable {
     public init() {}
 
     public var body: some View {
-        let _ = print("heee ", Bundle.module.path(forResource: "susic", ofType: "pdf"))
         BackgroundImageContainerView(
             images: [
-                //UIImage(named:  Assets.susic.name, in: Bundle.module, with: nil)!,
-                imageFromPDF(named: "susic")!,
-                imageFromPDF(named: "rai")!,
-                imageFromPDF(named: "pauleta")!,
-                imageFromPDF(named: "sakho")!,
+                imageFromPDF(named: "susic", bundle: .module),
+                imageFromPDF(named: "rai", bundle: .module),
+                imageFromPDF(named: "pauleta", bundle: .module),
+                imageFromPDF(named: "sakho", bundle: .module),
 
                 /*Assets.susic.name
                 Assets.susic.swiftUIImage,
@@ -161,7 +159,7 @@ public struct EditProfileView: View, KeyboardReadable {
             withAnimation {
                 appearMen = !newIsKeyboardVisible
             }
-                    }
+        }
         .interactiveDismissDisabled()
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Créer ton profil")
@@ -173,44 +171,4 @@ public struct EditProfileView: View, KeyboardReadable {
             }
         }
     }
-}
-
-
-func imageFromPDF(named pdfName: String, pageNumber: Int = 1) -> UIImage? {
-    // Obtenir l'URL du PDF dans le bundle
-    guard let url = Bundle.module.url(forResource: pdfName, withExtension: "pdf"),
-          let pdfDocument = CGPDFDocument(url as CFURL) else {
-        print("PDF not found")
-        return nil
-    }
-
-    // Vérifier si la page demandée existe
-    guard let pdfPage = pdfDocument.page(at: pageNumber) else {
-        print("Could not get PDF page")
-        return nil
-    }
-
-    // Obtenir le rectangle de la page
-    let pageRect = pdfPage.getBoxRect(.mediaBox)
-
-    // Créer un renderer pour dessiner le PDF dans une image
-    let renderer = UIGraphicsImageRenderer(size: pageRect.size)
-
-    // Rendre la page PDF en UIImage
-    let image = renderer.image { context in
-        // Préparer le contexte pour Quartz
-        context.cgContext.saveGState()
-
-        // Flip le contexte pour les coordonnées Quartz
-        context.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
-        context.cgContext.scaleBy(x: 1.0, y: -1.0)
-
-        // Dessiner la page PDF dans le contexte
-        context.cgContext.drawPDFPage(pdfPage)
-
-        // Restaurer l'état du contexte
-        context.cgContext.restoreGState()
-    }
-
-    return image
 }

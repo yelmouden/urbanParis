@@ -12,8 +12,6 @@ public extension UINavigationBar {
     static func setupStyle() {
         let appearance = UINavigationBar.appearance()
 
-        appearance.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        appearance.shadowImage = UIImage()
         appearance.backgroundColor = UIColor.clear
         appearance.tintColor = .clear
 

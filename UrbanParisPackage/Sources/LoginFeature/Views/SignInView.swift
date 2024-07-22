@@ -21,9 +21,10 @@ public struct SignInView: View, KeyboardReadable {
     public init() {}
 
     public var body: some View {
-        let bgImage = ConfigurationReader.isUrbanApp ? Assets.telesco.swiftUIImage : Assets.coursive.swiftUIImage
+        let bgImage = ConfigurationReader.isUrbanApp ? "telesco" : "coursive"
+        let colors = [DSColors.black.swiftUIColor.opacity(ConfigurationReader.isUrbanApp ? 0.4 : 0.7), DSColors.background.swiftUIColor]
 
-        BackgroundImageContainerView(images: [/*bgImage*/]) {
+        BackgroundImageContainerView(images: [imageFromPDF(named: bgImage, bundle: .module)], colors: colors) {
             VStack {
 
                 FWScrollView {
@@ -119,7 +120,16 @@ public struct SignInView: View, KeyboardReadable {
             }
         }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-            hideSocialSigin = newIsKeyboardVisible
+            if newIsKeyboardVisible {
+                hideSocialSigin = true
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    withAnimation {
+                        hideSocialSigin = newIsKeyboardVisible
+                    }
+                }
+            }
+
         }
         .addBackButton {
             navigator.pop()

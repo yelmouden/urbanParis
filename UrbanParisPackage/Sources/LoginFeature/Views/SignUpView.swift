@@ -23,8 +23,9 @@ public struct SignUpView: View, KeyboardReadable {
     public var body: some View {
         
         ZStack(alignment: .top) {
-            let bgImage = ConfigurationReader.isUrbanApp ? Assets.graphUP.swiftUIImage : Assets.fumiTribune.swiftUIImage
-            BackgroundImageContainerView(images: [/*bgImage*/]) {
+            let bgImage = ConfigurationReader.isUrbanApp ? "graphUP" : "fumiTribune"
+
+            BackgroundImageContainerView(images: [imageFromPDF(named: bgImage, bundle: .module)]) {
                 VStack {
                     FWScrollView {
                         VStack {
@@ -117,7 +118,16 @@ public struct SignUpView: View, KeyboardReadable {
             navigator.pop()
         }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-            hideSocialSigin = newIsKeyboardVisible
+            if newIsKeyboardVisible {
+                hideSocialSigin = true
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    withAnimation {
+                        hideSocialSigin = newIsKeyboardVisible
+                    }
+                }
+            }
+
         }
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Créer un compte")
