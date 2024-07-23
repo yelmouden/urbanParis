@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "devicekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/devicekit/DeviceKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "5757447e9f92c476ee2ca41ead7eb6db07936430"
+      }
+    },
+    {
       "identity" : "flowstacks",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/johnpatrickmorgan/FlowStacks",
@@ -160,6 +169,15 @@
       "state" : {
         "revision" : "879b85a470cacd70c19e22eb7e11a3aed66f4068",
         "version" : "6.6.2"
+      }
+    },
+    {
+      "identity" : "swiftyemail",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MarcosAtMorais/SwiftyEmail",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d822316761803230f4236076b2fcebcc433e9fca"
       }
     },
     {

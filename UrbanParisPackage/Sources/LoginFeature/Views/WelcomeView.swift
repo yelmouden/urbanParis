@@ -85,7 +85,7 @@ public struct WelcomeView: View {
 
                             Text("Urban Paris 2017")
                                 .font(DSFont.grafTitle3)
-                                .foregroundStyle(DSColors.white.swiftUIColor)
+                                .foregroundStyle(ConfigurationReader.isUrbanApp ? DSColors.or.swiftUIColor : DSColors.white.swiftUIColor)
                                 .offset(CGSize(width: 0, height: ConfigurationReader.isUrbanApp ? -50 : -15))
 
                             Spacer()

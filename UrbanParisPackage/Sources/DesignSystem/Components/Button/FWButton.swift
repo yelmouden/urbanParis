@@ -21,13 +21,13 @@ public struct FWButton<LeftView: View>: View {
 
     @State var size: CGSize = .zero
 
-    private let title: LocalizedStringResource
+    private let title: String
     private let state: FWButtonState
     private let action: (() -> Void)
     private let leftView: () -> LeftView
 
     public init(
-        title: LocalizedStringResource,
+        title: String,
         state: FWButtonState = .idle,
         action: @escaping (() -> Void),
         @ViewBuilder leftView: @escaping () -> LeftView = { EmptyView() }

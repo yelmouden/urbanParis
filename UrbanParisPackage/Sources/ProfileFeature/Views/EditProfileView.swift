@@ -42,7 +42,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                         FWTextField(
                             title: "Ton nom",
-                            placeholder: "Saisi ton nom",
+                            placeholder: "Saisis ton nom",
                             text: .constant("")
                         )
                         .autocorrectionDisabled()
@@ -50,7 +50,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                         FWTextField(
                             title: "Ton surnom",
-                            placeholder: "Saisi ton surnom",
+                            placeholder: "Saisis ton surnom",
                             text: .constant("")
                         )
                         .autocorrectionDisabled()

@@ -17,7 +17,7 @@ public enum FWButtonState {
 }
 
 public struct FWButtonConfiguration {
-    let title: LocalizedStringResource
+    let title: String
     let state: FWButtonState
     let size: CGSize
     let enabled: Bool

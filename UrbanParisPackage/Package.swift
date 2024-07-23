@@ -33,8 +33,8 @@ let package = Package(
             targets: ["Utils"]
         ),
         .library(
-            name: "CharteFeature",
-            targets: ["CharteFeature"]
+            name: "PDFFeature",
+            targets: ["PDFFeature"]
         ),
         .library(
             name: "AuthenticationManager",
@@ -44,6 +44,11 @@ let package = Package(
             name: "DeepLinkManager",
             targets: ["DeepLinkManager"]
         ),
+        .library(
+            name: "SettingsFeature",
+            targets: ["SettingsFeature"]
+        ),
+        
     ],
     dependencies: [
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
@@ -54,6 +59,8 @@ let package = Package(
         .package(url: "https://github.com/CSolanaM/SkeletonUI", branch: "master"),
         .package(url: "https://github.com/supabase-community/supabase-swift.git", branch: "main"),
         .package(url: "https://github.com/jasudev/AnimateText", branch: "main"),
+        .package(url: "https://github.com/MarcosAtMorais/SwiftyEmail", branch: "main"),
+        .package(url: "https://github.com/devicekit/DeviceKit", branch: "master")
     ],
     targets: [
         .target(
@@ -92,7 +99,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "CharteFeature",
+            name: "PDFFeature",
             dependencies: [
                 .product(name: "FlowStacks", package: "FlowStacks"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
@@ -148,5 +155,24 @@ let package = Package(
                 .product(name: "DependenciesMacros", package: "swift-dependencies")
             ]
         ),
+        .target(
+            name: "SettingsFeature",
+            dependencies: [
+                "DesignSystem",
+                .product(name: "SwiftyEmail", package: "SwiftyEmail"),
+                .product(name: "DeviceKit", package: "DeviceKit"),
+                .product(name: "FlowStacks", package: "FlowStacks"),
+
+                "AuthenticationManager",
+                "SharedResources",
+                //"ProfileManager",
+            ],
+            resources: [
+                .process("Resources")
+            ],
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin"),
+            ]
+        )
     ]
 )

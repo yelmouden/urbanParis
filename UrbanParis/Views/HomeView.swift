@@ -1,6 +1,7 @@
-import CharteFeature
 import ProfileFeature
 import DesignSystem
+import PDFFeature
+import SettingsFeature
 import SwiftUI
 import Utils
 
@@ -44,7 +45,7 @@ struct HomeView : View {
                                 index = 0
                                 show = false
                             } label: {
-                                Text("Mon Profil")
+                                Text("Cotisations")
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 0 ?  1 : 0.3)
                             }
@@ -54,19 +55,30 @@ struct HomeView : View {
                                 index = 1
                                 show = false
                             } label: {
-                                Text("Charte Urban Paris")
+                                Text(DocType.chart.title)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 1 ?  1 : 0.3)
                             }
                             .buttonStyle(.plain)
 
+
                             Button {
                                 index = 2
                                 show = false
                             } label: {
-                                Text("Paramètres")
+                                Text(DocType.organigrame.title)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 2 ?  1 : 0.3)
+                            }
+                            .buttonStyle(.plain)
+
+                            Button {
+                                index = 3
+                                show = false
+                            } label: {
+                                Text("Paramètres")
+                                    .font(DSFont.grafTitle3)
+                                    .opacity(index == 3 ?  1 : 0.3)
                             }
                             .buttonStyle(.plain)
 
@@ -85,9 +97,6 @@ struct HomeView : View {
                         SmokeManView(orientation: .left)
                             .offset(.init(width: 80, height: 0))
                     }
-
-                    //.offset(.init(width: 0, height: 21))
-                    //.transition(.move(edge: .bottom).combined(with: .opacity))
                 }
                 .frame(maxWidth: (UIScreen.main.bounds.width / 2) - 20, alignment: .leading)
 
@@ -101,11 +110,26 @@ struct HomeView : View {
             // MainView...
             ZStack {
                 if index == 0 {
-                    ProfileCoordinator(showMenu: $show)
+                    NavigationStack {
+                        BackgroundImageContainerView(nameImages: [], bundle: .main) {
+                            VStack {
+                                Text("Ecran en construction")
+                                    .font(DSFont.robotoTitle3)
+                            }
+                        }
+                        .navigationTitle("Cotisations")
+                        .addShowMenuButton(showMenu: $show)
+                    }
+
                 } else if index == 1 {
-                    CharteCoordinator(showMenu: $show)
+                    PDFCoordinator(showMenu: $show, docType: .chart)
+                        .transition(.opacity)
                 } else if index == 2 {
-                    CharteCoordinator(showMenu: $show)
+                    PDFCoordinator(showMenu: $show, docType: .organigrame)
+                        .transition(.opacity)
+                } else if index == 3 {
+                    SettingsCoordinator(showMenu: $show)
+                        .transition(.opacity)
                 }
             }
             .cornerRadius(self.show ? 8 : 0)
@@ -115,6 +139,7 @@ struct HomeView : View {
             .ignoresSafeArea()
         }
         .animation(.spring(duration: 0.4, bounce: show ? 0.3 : 0), value: show)
+        .animation(.default, value: index)
         .background(DSColors.red.swiftUIColor)
     }
 }

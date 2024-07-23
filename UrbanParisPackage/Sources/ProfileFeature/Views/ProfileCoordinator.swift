@@ -27,26 +27,7 @@ public struct ProfileCoordinator: View {
     public var body: some View {
         FlowStack($routes, withNavigation: true) {
             EditProfileView()
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button(action: {
-
-                            withAnimation(.spring) {
-
-                                self.showMenu.toggle()
-                            }
-
-                        }) {
-
-                            // close Button...
-
-                            Image(systemName: self.showMenu ? "xmark" : "line.horizontal.3")
-                                .resizable()
-                                .frame(width: self.showMenu ? 18 : 22, height: 18)
-                                .foregroundColor(DSColors.white.swiftUIColor)
-                        }
-                    }
-                }
+                .addShowMenuButton(showMenu: $showMenu)
         }
     }
 }

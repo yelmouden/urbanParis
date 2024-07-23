@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Yassin El Mouden on 22/07/2024.
 //
@@ -17,10 +17,10 @@ public extension View {
 
     func applyRowStyle() -> some View {
         listRowSeparatorTint(DSColors.red.swiftUIColor)
-        .listRowBackground(DSColors.background.swiftUIColor)
-        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-        .alignmentGuide(.listRowSeparatorLeading) { _ in
-            return 0
-        }
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .alignmentGuide(.listRowSeparatorLeading) { _ in
+                return 0
+            }
     }
 }

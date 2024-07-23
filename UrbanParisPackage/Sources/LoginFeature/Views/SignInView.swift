@@ -32,7 +32,7 @@ public struct SignInView: View, KeyboardReadable {
 
                         FWTextField(
                             title: "Ton email",
-                            placeholder: "Saisi ton email",
+                            placeholder: "Saisis ton email",
                             text: $email
                         )
                         .keyboardType(.emailAddress)
@@ -44,7 +44,7 @@ public struct SignInView: View, KeyboardReadable {
 
                         FWTextField(
                             title: "Ton mot de passe",
-                            placeholder: "Saisi ton mot de passe",
+                            placeholder: "Saisis ton mot de passe",
                             isSecure: true,
                             text: $password
                         )

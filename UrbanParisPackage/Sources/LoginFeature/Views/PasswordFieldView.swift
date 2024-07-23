@@ -17,7 +17,7 @@ struct PasswordFieldView: View {
         VStack {
             FWTextField(
                 title: "Ton mot de passe",
-                placeholder: "Saisi ton mot de passe",
+                placeholder: "Saisis ton mot de passe",
                 isSecure: true,
                 text: $password
             )

@@ -30,7 +30,7 @@ struct SplashcreenView: View, Animatable {
 
                 AnimateText<ATChimeBellEffect>($text, type: .words)
                     .font(DSFont.grafTitle3)
-                    .foregroundStyle(DSColors.white.swiftUIColor)
+                    .foregroundStyle(ConfigurationReader.isUrbanApp ? DSColors.or.swiftUIColor : DSColors.white.swiftUIColor)
                     .offset(CGSize(width: 0, height: ConfigurationReader.isUrbanApp ? -50 : -15))
 
                 Spacer()

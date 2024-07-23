@@ -43,7 +43,7 @@ struct ForgetPasswordView: View {
     func getForgottenPasswordView() -> some View {
         VStack {
             VStack(alignment: .leading, spacing: Margins.extraLarge) {
-                Text("Saisi l'adresse email utilisée lors de la création de ton compte ")
+                Text("Saisis l'adresse email utilisée lors de la création de ton compte ")
                     .fixedSize(horizontal: false, vertical: true)
                     .font(DSFont.robotoHeadline)
                     .foregroundStyle(DSColors.gray.swiftUIColor)
@@ -51,7 +51,7 @@ struct ForgetPasswordView: View {
 
                 FWTextField(
                     title: "Ton email",
-                    placeholder: "Saisi ton email",
+                    placeholder: "Saisis ton email",
                     text: $email
                 )
                 .autocorrectionDisabled()

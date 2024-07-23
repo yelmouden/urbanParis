@@ -46,7 +46,7 @@ enum LoginButtonButtonType {
         }
     }
 
-    var title: LocalizedStringResource {
+    var title: String {
         switch self {
         case .apple:
             return  "Continuer avec Apple"
