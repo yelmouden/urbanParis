@@ -13,19 +13,24 @@ import Utils
 public struct SignUpView: View, KeyboardReadable {
     @EnvironmentObject var navigator: FlowNavigator<LoginScreen>
 
+    @State private var email = ""
     @State var password: String = ""
     @State var isValidPassword = false
-    @State var fakeState: FWButtonState = .idle
-    @State var hideSocialSigin = false
 
-    public init() {}
+    @State private var task: Task<Void, Never>?
+
+    @Bindable private var  viewModel: SignUpViewModel
+
+    public init(viewModel: SignUpViewModel) {
+        self.viewModel = viewModel
+    }
 
     public var body: some View {
         
         ZStack(alignment: .top) {
             let bgImage = ConfigurationReader.isUrbanApp ? "graphUP" : "fumiTribune"
 
-            BackgroundImageContainerView(images: [imageFromPDF(named: bgImage, bundle: .module)]) {
+            BackgroundImageContainerView(nameImages: [bgImage], bundle: Bundle.module) {
                 VStack {
                     FWScrollView {
                         VStack {
@@ -33,7 +38,7 @@ public struct SignUpView: View, KeyboardReadable {
                             FWTextField(
                                 title: "Ton email",
                                 placeholder: "Saisis ton email",
-                                text: .constant("")
+                                text: $email
                             )
                             .keyboardType(.emailAddress)
                             .autocorrectionDisabled()
@@ -54,81 +59,34 @@ public struct SignUpView: View, KeyboardReadable {
 
                         FWButton(
                             title: "Rejoindre maintenant",
-                            state: fakeState,
+                            state: viewModel.signUpState.toFWButtonState(),
                             action: {
-                                Task {
-                                   fakeState = .loading
-                                    try await Task.sleep(for: .seconds(1))
-                                    fakeState = .success
-                                    try await Task.sleep(for: .seconds(1))
-                                    fakeState = .idle
-
-                                }
-
-                                /*task?.cancel()
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
                                 task = Task {
-                                    await viewModel.signUp(email: email, password: password)
-                                }*/
+                                    do {
+                                        try await Task.sleep(for: .seconds(0.4))
+                                        await viewModel.signUp(email: email, password: password)
+                                    } catch {}
+
+                                }
+                                
                             })
-                        //.enabled(email.isValidEmail() && isValidPassword)
+                        .enabled(email.isValidEmail() && isValidPassword)
                         .fwButtonStyle(.primary)
                         .addSensoryFeedback()
                         .padding(.bottom, Margins.small)
-
-                        if !hideSocialSigin {
-                            HStack {
-                                Rectangle()
-                                    .fill(DSColors.white.swiftUIColor)
-                                    .frame(height: 1)
-
-                                Text("ou")
-                                    .font(DSFont.grafBody)
-
-                                Rectangle()
-                                    .fill(DSColors.white.swiftUIColor)
-                                    .frame(height: 1)
-                            }
-                            .foregroundStyle(DSColors.white.swiftUIColor)
-                            .padding(.bottom, Margins.medium)
-
-                            LoginButton(loginButtonType: .apple, state: .idle/*viewModel.signWithAppleState*/) {
-                                /*task?.cancel()
-
-                                task = Task {
-                                    await viewModel.signInWithApple()
-                                }*/
-                            }
-
-                            LoginButton(loginButtonType: .google, state: .idle /*viewModel.signWithGoogleState*/) {
-                                /*task?.cancel()
-
-                                task = Task {
-                                    await viewModel.signInWithGoogle()
-                                }*/
-                            }
-                        }
-
                     }
                 }
 
             }
         }
         .addBackButton {
+            task?.cancel()
+
             navigator.pop()
         }
-        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-            if newIsKeyboardVisible {
-                hideSocialSigin = true
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    withAnimation {
-                        hideSocialSigin = newIsKeyboardVisible
-                    }
-                }
-            }
-
-        }
+        .showBanner($viewModel.showError, text: viewModel.errorText, type: .error)
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Créer un compte")
     }

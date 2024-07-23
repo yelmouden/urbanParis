@@ -18,29 +18,29 @@ struct SmokeManView: View {
     let orientation: Orientation
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             if orientation == .left {
-                LottieView(animation: .named("fumiBlueAnimation", bundle: Bundle.module))
+                LottieView(animation: .named("fumiBlueAnimation"))
                     .playing(loopMode: .loop)
                     .frame(width: 150, height: 150)
                     .rotationEffect(.degrees(-45))
-                    .offset(.init(width: -14, height: -100))
+                    .offset(.init(width: -25, height: -45))
 
-                Assets.manFumiRight.swiftUIImage
+                Image("manFumiRight")
                      .resizable()
-                     .scaledToFit()
-                     .frame(width: 125)
+                     .scaledToFill()
+                     .frame(width: 80, height: 78)
             } else {
-                LottieView(animation: .named("fumiRedAnimation", bundle: Bundle.module))
+                LottieView(animation: .named("fumiRedAnimation"))
                     .playing(loopMode: .loop)
                     .frame(width: 150, height: 150)
                     .rotationEffect(.degrees(45))
-                    .offset(.init(width: 16, height: -100))
+                    .offset(.init(width: 30, height: -45))
 
-                Assets.manFumiLeft.swiftUIImage
+                Image("manFumiLeft")
                      .resizable()
-                     .scaledToFit()
-                     .frame(width: 125)
+                     .scaledToFill()
+                     .frame(width: 80, height: 78)
             }
 
         }

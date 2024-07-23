@@ -9,34 +9,43 @@ import FlowStacks
 import SwiftUI
 import Utils
 
-public enum LoginScreen: Equatable {
-    case signIn/*(SignInViewModel)*/
-    case signUp/*(SignUpViewModel)*/
-    //case forgotPassword(ForgetPasswordViewModel)
+public enum LoginScreen: Equatable, Hashable {
+    case signIn(SignInViewModel)
+    case signUp(SignUpViewModel)
+    case forgotPassword(ForgetPasswordViewModel)
     //case resetPassword(ResetPasswordViewModel, InterModuleAction<EmptyResource>)
 
-    /*public static func == (lhs: LoginScreen, rhs: LoginScreen) -> Bool {
+    public static func == (lhs: LoginScreen, rhs: LoginScreen) -> Bool {
         switch (lhs, rhs) {
-        case (.welcome, .welcome):
-            return true
+        /*case (.welcome, .welcome):
+            return true*/
         case (.signIn(let lhsViewModel), .signIn(let rhsViewModel)):
             return lhsViewModel === rhsViewModel
         case (.signUp(let lhsViewModel), .signUp(let rhsViewModel)):
             return lhsViewModel === rhsViewModel
-        case (.forgotPassword, .forgotPassword):
+       case (.forgotPassword, .forgotPassword):
             return true
-        case (.resetPassword, .resetPassword):
-            return true
+        /*case (.resetPassword, .resetPassword):
+            return true*/
         default:
             return false
         }
-    }*/
+    }
+
+    public func hash(into hasher: inout Hasher) {
+            switch self {
+            case .signIn:
+                hasher.combine(1)
+            case .signUp:
+                hasher.combine(2)
+            case .forgotPassword:
+                hasher.combine(3)
+            }
+        }
 }
 
 public struct LoginCoordinator: View {
     @State var routes: Routes<LoginScreen>
-
-    let welcomeViewModel = WelcomeViewModel()
 
     public init(routes: Routes<LoginScreen> = []) {
         self.routes = routes
@@ -47,10 +56,12 @@ public struct LoginCoordinator: View {
             WelcomeView()
                 .flowDestination(for: LoginScreen.self) { screen in
                     switch screen {
-                    case .signIn:
-                        SignInView()
-                    case .signUp:
-                        SignUpView()
+                    case .signIn(let viewModel):
+                        SignInView(viewModel: viewModel)
+                    case .signUp(let viewModel):
+                        SignUpView(viewModel: viewModel)
+                    case .forgotPassword(let viewModel):
+                        ForgetPasswordView(viewModel: viewModel)
                     }
                 }
         }

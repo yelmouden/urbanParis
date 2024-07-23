@@ -11,9 +11,11 @@ public struct MainContainer<Content: View>: View {
     @Environment(\.colorScheme)
     var colorScheme
 
+    let padding: CGFloat
     @ViewBuilder var content: () -> Content
 
-    public init( @ViewBuilder content: @escaping () -> Content) {
+    public init(padding: CGFloat = Margins.medium, @ViewBuilder content: @escaping () -> Content) {
+        self.padding = padding
         self.content = content
     }
 
@@ -23,8 +25,8 @@ public struct MainContainer<Content: View>: View {
                 .ignoresSafeArea()
 
             content()
-                .padding([.leading, .trailing], Margins.medium)
-                //.paddingBottomScreen()
+                .padding([.leading, .trailing], padding)
+                .paddingBottomScreen()
 
 
         }

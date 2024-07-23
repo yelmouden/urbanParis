@@ -11,5 +11,7 @@
 #include "Common.xcconfig"
 
 AppIcon = AppNonUrbanIcon
-LaunchScreen = LaunchScreenNonUrban.storyboard
+LAUNCH_SCREEN = LaunchScreenNonUrban.storyboard
 IS_VALID = 0
+PROJECT_URL = fsrmcdkxntytiuhjdabo.supabase.co
+API_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzcm1jZGt4bnR5dGl1aGpkYWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3MzQyOTAsImV4cCI6MjAzNzMxMDI5MH0.ngbjIAwhXdWP_C7sXse0Kzy73UuYmPgzfK8LGZQPUy4

@@ -1,0 +1,14 @@
+//
+//  nonurban-debug.xcconfig
+//  UrbanParis
+//
+//  Created by Yassin El Mouden on 23/07/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "nonUrban.xcconfig"
+
+PROJECT_URL = btrjynsqmpvqmtstrpwa.supabase.co
+API_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0cmp5bnNxbXB2cW10c3RycHdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3MzQzNzcsImV4cCI6MjAzNzMxMDM3N30.t2ACuQD-RTqSOgtA2V8fORiYVGmKLxvqUnV_erXqKx8

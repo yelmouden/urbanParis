@@ -13,27 +13,27 @@ import Utils
 public struct SignInView: View, KeyboardReadable {
     @EnvironmentObject var navigator: FlowNavigator<LoginScreen>
 
+    @State var email: String = ""
     @State var password: String = ""
     @State var isValidPassword = false
-    @State var fakeState: FWButtonState = .idle
-    @State var hideSocialSigin = false
 
-    public init() {}
+    @State var task: Task<Void, Never>?
+
+    @Bindable var viewModel: SignInViewModel
 
     public var body: some View {
         let bgImage = ConfigurationReader.isUrbanApp ? "telesco" : "coursive"
         let colors = [DSColors.black.swiftUIColor.opacity(ConfigurationReader.isUrbanApp ? 0.4 : 0.7), DSColors.background.swiftUIColor]
 
-        BackgroundImageContainerView(images: [imageFromPDF(named: bgImage, bundle: .module)], colors: colors) {
+        BackgroundImageContainerView(nameImages: [bgImage], bundle: Bundle.module, colors: colors) {
             VStack {
-
                 FWScrollView {
                     VStack {
 
                         FWTextField(
                             title: "Ton email",
-                            placeholder: "Saisis ton email",
-                            text: .constant("")
+                            placeholder: "Saisi ton email",
+                            text: $email
                         )
                         .keyboardType(.emailAddress)
                         .autocorrectionDisabled()
@@ -44,7 +44,7 @@ public struct SignInView: View, KeyboardReadable {
 
                         FWTextField(
                             title: "Ton mot de passe",
-                            placeholder: "Saisis ton mot de passe",
+                            placeholder: "Saisi ton mot de passe",
                             isSecure: true,
                             text: $password
                         )
@@ -52,8 +52,22 @@ public struct SignInView: View, KeyboardReadable {
                         .textInputAutocapitalization(.never)
                         .padding(.bottom, Margins.extraLarge)
 
+                        HStack {
+                            Spacer()
+
+                            FWButton(
+                                title: "J'ai oublié mon mot de passe",
+                                action: {
+                                    navigator.push(.forgotPassword(.init()))
+                                })
+                            .addSensoryFeedback()
+                        }
+                        .padding(.bottom, Margins.small)
+
                     }
                 }
+
+
 
                 Spacer()
                 
@@ -61,79 +75,31 @@ public struct SignInView: View, KeyboardReadable {
 
                     FWButton(
                         title: "Se connecter",
-                        state: fakeState,
+                        state: viewModel.state.toFWButtonState(),
                         action: {
-                            Task {
-                                fakeState = .loading
-                                try await Task.sleep(for: .seconds(2))
-                                fakeState = .success
-                                try await Task.sleep(for: .seconds(1))
-                                fakeState = .idle
-
-                            }
-
-                            /*task?.cancel()
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
                             task = Task {
-                                await viewModel.signUp(email: email, password: password)
-                            }*/
+                                do {
+                                    try await Task.sleep(for: .seconds(0.4))
+                                    await viewModel.signIn(email: email, password: password)
+                                } catch {}
+
+                            }
                         })
-                    //.enabled(email.isValidEmail() && isValidPassword)
+                    .enabled(email.isValidEmail() && !password.isEmpty)
                     .fwButtonStyle(.primary)
                     .addSensoryFeedback()
                     .padding(.bottom, Margins.small)
 
-                    if !hideSocialSigin {
-                        HStack {
-                            Rectangle()
-                                .fill(DSColors.white.swiftUIColor)
-                                .frame(height: 1)
-
-                            Text("ou")
-                                .font(DSFont.grafBody)
-
-                            Rectangle()
-                                .fill(DSColors.white.swiftUIColor)
-                                .frame(height: 1)
-                        }
-                        .foregroundStyle(DSColors.white.swiftUIColor)
-                        .padding(.bottom, Margins.medium)
-
-                        LoginButton(loginButtonType: .apple, state: .idle/*viewModel.signWithAppleState*/) {
-                            /*task?.cancel()
-
-                            task = Task {
-                                await viewModel.signInWithApple()
-                            }*/
-                        }
-
-                        LoginButton(loginButtonType: .google, state: .idle /*viewModel.signWithGoogleState*/) {
-                            /*task?.cancel()
-
-                            task = Task {
-                                await viewModel.signInWithGoogle()
-                            }*/
-                        }
-                    }
-
                 }
             }
-        }
-        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-            if newIsKeyboardVisible {
-                hideSocialSigin = true
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    withAnimation {
-                        hideSocialSigin = newIsKeyboardVisible
-                    }
-                }
-            }
-
         }
         .addBackButton {
+            task?.cancel()
             navigator.pop()
         }
+        .showBanner($viewModel.showError, text: viewModel.errorText, type: .error)
         .navigationTitle("Se connecter")
         .navigationBarTitleDisplayMode(.large)
     }

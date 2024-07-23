@@ -8,17 +8,15 @@
 import DesignSystem
 import FlowStacks
 import SwiftUI
-import Utils
 
-public enum ProfileScreen: Equatable {
+public enum CharteScreen: Equatable {
     case none
 }
 
-public struct ProfileCoordinator: View {
-    @State var routes: Routes<ProfileScreen> = []
+public struct CharteCoordinator: View {
+    @State var routes: Routes<CharteScreen> = []
 
     @Binding var showMenu: Bool
-
 
     public init(showMenu: Binding<Bool>) {
         self._showMenu = showMenu
@@ -26,7 +24,7 @@ public struct ProfileCoordinator: View {
 
     public var body: some View {
         FlowStack($routes, withNavigation: true) {
-            EditProfileView()
+            CharteView()
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(action: {

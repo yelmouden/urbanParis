@@ -1,3 +1,4 @@
+
 //
 //  SwiftUIView.swift
 //
@@ -13,7 +14,6 @@ import Utils
 public struct EditProfileView: View, KeyboardReadable {
     @EnvironmentObject var navigator: FlowNavigator<ProfileScreen>
 
-    @State var appearMen = false
     @State var fakeState: FWButtonState = .idle
 
     @State var year: Int = Date.currentYear
@@ -24,26 +24,16 @@ public struct EditProfileView: View, KeyboardReadable {
 
     public var body: some View {
         BackgroundImageContainerView(
-            images: [
-                imageFromPDF(named: "susic", bundle: .module),
-                imageFromPDF(named: "rai", bundle: .module),
-                imageFromPDF(named: "pauleta", bundle: .module),
-                imageFromPDF(named: "sakho", bundle: .module),
-
-                /*Assets.susic.name
-                Assets.susic.swiftUIImage,
-                Assets.rai.swiftUIImage,
-                Assets.pauleta.swiftUIImage,
-                //Assets.pastore.swiftUIImage,
-                Assets.sakho.swiftUIImage*/
-            ])
+            nameImages: ["susic", "rai", "pauleta", "sakho"],
+            bundle: Bundle.module
+        )
         {
             VStack {
                 FWScrollView {
                     VStack(spacing: Margins.medium) {
                         FWTextField(
                             title: "Ton prénom",
-                            placeholder: "Saissis ton prénom",
+                            placeholder: "Saissi ton prénom",
                             text: .constant("")
                         )
                         .keyboardType(.emailAddress)
@@ -52,7 +42,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                         FWTextField(
                             title: "Ton nom",
-                            placeholder: "Saisis ton nom",
+                            placeholder: "Saisi ton nom",
                             text: .constant("")
                         )
                         .autocorrectionDisabled()
@@ -60,7 +50,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                         FWTextField(
                             title: "Ton surnom",
-                            placeholder: "Saisis ton surnom",
+                            placeholder: "Saisi ton surnom",
                             text: .constant("")
                         )
                         .autocorrectionDisabled()
@@ -115,19 +105,6 @@ public struct EditProfileView: View, KeyboardReadable {
                 Spacer()
 
                 VStack {
-                    if appearMen {
-                        HStack() {
-                            SmokeManView(orientation: .right)
-
-                            Spacer()
-
-                            SmokeManView(orientation: .left)
-                        }
-                        .offset(.init(width: 0, height: 21))
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                    }
-
-
                     FWButton(
                         title: "Valider",
                         state: fakeState,
@@ -155,20 +132,8 @@ public struct EditProfileView: View, KeyboardReadable {
             }
 
         }
-        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-            withAnimation {
-                appearMen = !newIsKeyboardVisible
-            }
-        }
         .interactiveDismissDisabled()
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Créer ton profil")
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                withAnimation(.bouncy(duration: 0.6)) {
-                    appearMen = true
-                }
-            }
-        }
     }
 }

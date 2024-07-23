@@ -14,18 +14,13 @@ import SwiftUI
 import Utils
 
 public struct WelcomeView: View {
-    //@State var animateDisappear = false
     @EnvironmentObject var navigator: FlowNavigator<LoginScreen>
 
-    let viewModel: WelcomeViewModel
 
     @State var animate = false
     @State var buttonAppear = false
 
-    @State var text: String = ""
-
-    public init(/*viewModel: WelcomeViewModel*/) {
-        self.viewModel = .init()
+    public init() {
     }
 
     public var body: some View {
@@ -42,9 +37,9 @@ public struct WelcomeView: View {
                                 .offset(CGSize(width: -120, height: -50))
                                 .rotationEffect(.degrees(-40))
                                 .transition(.movingParts.wipe(
-                                            angle: .degrees(-30),
-                                            blurRadius: 50
-                                          ))
+                                    angle: .degrees(-30),
+                                    blurRadius: 50
+                                ))
                         }
                         Spacer()
                     }
@@ -61,36 +56,11 @@ public struct WelcomeView: View {
                                 .offset(CGSize(width: 125, height: 50))
                                 .rotationEffect(.degrees(-100))
                                 .transition(.movingParts.wipe(
-                                            angle: .degrees(-30),
-                                            blurRadius: 50
-                                          ))
+                                    angle: .degrees(-30),
+                                    blurRadius: 50
+                                ))
                         }
                     }
-
-
-                    Spacer()
-
-                   /* HStack {
-                        if animate {
-                            Assets.stickFumi.swiftUIImage
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(
-                                    width: 300)
-                                .offset(CGSize(width: -100, height: 70))
-                                .rotationEffect(.degrees(45))
-                                .transition(.movingParts.wipe(
-                                            angle: .degrees(-50),
-                                            blurRadius: 50
-                                          ))
-
-                        }
-
-                        Spacer()
-
-                    }*/
-
-
 
                     Spacer()
                 }
@@ -113,7 +83,7 @@ public struct WelcomeView: View {
                                     width: ConfigurationReader.isUrbanApp ? 300 : 250,
                                     height: ConfigurationReader.isUrbanApp ? 300: 250)
 
-                            AnimateText<ATChimeBellEffect>($text, type: .words)
+                            Text("Urban Paris 2017")
                                 .font(DSFont.grafTitle3)
                                 .foregroundStyle(DSColors.white.swiftUIColor)
                                 .offset(CGSize(width: 0, height: ConfigurationReader.isUrbanApp ? -50 : -15))
@@ -130,22 +100,22 @@ public struct WelcomeView: View {
                                 .offset(CGSize(width: 20, height: 200))
                                 .rotationEffect(.degrees(10))
                                 .transition(.movingParts.wipe(
-                                            angle: .degrees(-35),
-                                            blurRadius: 50
-                                          ))
-
+                                    angle: .degrees(-35),
+                                    blurRadius: 50
+                                ))
                         }
+
                     }
 
 
-                    Spacer()
-
                     if buttonAppear {
+                        Spacer()
+
                         VStack {
                             FWButton(
                                 title: "Se connecter",
                                 action: {
-                                    navigator.push(.signIn)
+                                    navigator.push(.signIn(.init()))
                                 })
                             .fwButtonStyle(.primary)
                             .addSensoryFeedback()
@@ -153,7 +123,7 @@ public struct WelcomeView: View {
                             FWButton(
                                 title: "Créer un compte",
                                 action: {
-                                    navigator.push(.signUp)
+                                    navigator.push(.signUp(.init()))
                                 })
                             .fwButtonStyle(.secondary)
                             .addSensoryFeedback()
@@ -164,20 +134,13 @@ public struct WelcomeView: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation(.smooth) {
-                    text = "Urban Paris 2017"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.default.delay(0.4)) {
+                    buttonAppear = true
                 } completion: {
-                    withAnimation(.default.delay(0.4)) {
-                        buttonAppear = true
-                    } completion: {
-                        withAnimation(.smooth(duration: 1.5)) {
-                            animate = true
-                        }
+                    withAnimation(.smooth(duration: 1.5)) {
+                        animate = true
                     }
-                }
-
-                withAnimation {
                 }
             }
         }

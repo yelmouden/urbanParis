@@ -10,7 +10,10 @@ import SwiftUI
 import UIKit
 
 @main
+@MainActor
 struct UrbanParisApp: App {
+    @State var viewModel = AppViewModel()
+
     init() {
         FontFamily.registerAllCustomFonts()
         UINavigationBar.setupStyle()
@@ -18,7 +21,7 @@ struct UrbanParisApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppView()
+            AppView(appViewModel: viewModel)
         }
 
     }

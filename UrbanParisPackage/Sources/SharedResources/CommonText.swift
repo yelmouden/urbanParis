@@ -6,3 +6,6 @@
 //
 
 import Foundation
+
+public let commonErrorText = "Une erreur s'est produite"
+

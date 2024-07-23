@@ -32,6 +32,18 @@ let package = Package(
             name: "Utils",
             targets: ["Utils"]
         ),
+        .library(
+            name: "CharteFeature",
+            targets: ["CharteFeature"]
+        ),
+        .library(
+            name: "AuthenticationManager",
+            targets: ["AuthenticationManager"]
+        ),
+        .library(
+            name: "DeepLinkManager",
+            targets: ["DeepLinkManager"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
@@ -42,7 +54,6 @@ let package = Package(
         .package(url: "https://github.com/CSolanaM/SkeletonUI", branch: "master"),
         .package(url: "https://github.com/supabase-community/supabase-swift.git", branch: "main"),
         .package(url: "https://github.com/jasudev/AnimateText", branch: "main"),
-        .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.5.0")
     ],
     targets: [
         .target(
@@ -54,7 +65,8 @@ let package = Package(
                 .product(name: "Pow", package: "Pow"),
                 .product(name: "AnimateText", package: "AnimateText"),
                 "DesignSystem",
-                "SharedResources"
+                "SharedResources",
+                "AuthenticationManager"
             ],
             resources: [
                 .process("Resources")
@@ -69,7 +81,6 @@ let package = Package(
                 .product(name: "FlowStacks", package: "FlowStacks"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "Pow", package: "Pow"),
-                .product(name: "Lottie", package: "lottie-spm"),
                 "DesignSystem",
                 "SharedResources"
             ],
@@ -78,6 +89,17 @@ let package = Package(
             ],
             plugins: [
                 .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
+        ),
+        .target(
+            name: "CharteFeature",
+            dependencies: [
+                .product(name: "FlowStacks", package: "FlowStacks"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                "DesignSystem",
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .target(
@@ -109,6 +131,22 @@ let package = Package(
         ),
         .target(
             name: "Utils"
-        )
+        ),
+        .target(
+            name: "AuthenticationManager",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "DependenciesMacros", package: "swift-dependencies"),
+                .product(name: "Auth", package: "supabase-swift"),
+                "Database"
+            ]
+        ),
+        .target(
+            name: "DeepLinkManager",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "DependenciesMacros", package: "swift-dependencies")
+            ]
+        ),
     ]
 )
