@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "combineext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CombineCommunity/CombineExt",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d7b896fa9ca8b47fa7bcde6b43ef9b70bf8c1f56"
+      }
+    },
+    {
       "identity" : "devicekit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/devicekit/DeviceKit",
@@ -122,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-concurrency-extras",
       "state" : {
-        "revision" : "bb5059bde9022d69ac516803f4f227d8ac967f71",
-        "version" : "1.1.0"
+        "branch" : "main",
+        "revision" : "bc7b8fc4112e32d192bec9b35b20cd7762071f1d"
       }
     },
     {

@@ -20,14 +20,18 @@
 		DC025F002C4972310050B457 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = DC025EFF2C4972310050B457 /* DesignSystem */; };
 		DC12B89C2C50627100F3FF93 /* PDFFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC12B89B2C50627100F3FF93 /* PDFFeature */; };
 		DC12B8A02C506B4500F3FF93 /* fumiRedAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = DC12B89F2C506B4500F3FF93 /* fumiRedAnimation.json */; };
+		DC12B8A22C513DFC00F3FF93 /* ProfileManager in Frameworks */ = {isa = PBXBuildFile; productRef = DC12B8A12C513DFC00F3FF93 /* ProfileManager */; };
+		DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15EE5B2C514E0500BD4D4B /* MenuViewModel.swift */; };
 		DC4E65802C49834300B08F1A /* LaunchScreenUrban.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4E657F2C49834300B08F1A /* LaunchScreenUrban.storyboard */; };
 		DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */ = {isa = PBXBuildFile; productRef = DC4E65812C49839E00B08F1A /* SharedResources */; };
 		DC4E65922C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */; };
+		DC54131A2C53041400BF0010 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5413192C53041400BF0010 /* MenuView.swift */; };
 		DC61D1EB2C5023C40047136F /* SplashscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC61D1EA2C5023C40047136F /* SplashscreenView.swift */; };
 		DC61D1EE2C50248F0047136F /* AnimateText in Frameworks */ = {isa = PBXBuildFile; productRef = DC61D1ED2C50248F0047136F /* AnimateText */; };
 		DC61D1F02C50583D0047136F /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC61D1EF2C50583D0047136F /* SettingsFeature */; };
 		DC760BE22C4B222C0008990B /* UrbanParisPackage in Resources */ = {isa = PBXBuildFile; fileRef = DC760BE12C4B222C0008990B /* UrbanParisPackage */; };
 		DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7914FB2C4EB012005A3244 /* ProfileFeature */; };
+		DC7F514C2C52ABA600C6D4BE /* CotisationsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */; };
 		DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8975B2C4EDECE00788FC6 /* HomeView.swift */; };
 		DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8AE9E2C47E91C0070B0D1 /* UrbanParisApp.swift */; };
 		DCD8AEA32C47E91E0070B0D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD8AEA22C47E91E0070B0D1 /* Assets.xcassets */; };
@@ -43,12 +47,14 @@
 		DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "nonUrban-debug.xcconfig"; sourceTree = "<group>"; };
 		DC0015FC2C5021B100416056 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		DC12B89F2C506B4500F3FF93 /* fumiRedAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fumiRedAnimation.json; sourceTree = "<group>"; };
+		DC15EE5B2C514E0500BD4D4B /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		DC4E657F2C49834300B08F1A /* LaunchScreenUrban.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenUrban.storyboard; sourceTree = "<group>"; };
 		DC4E65882C49BC7800B08F1A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		DC4E65892C49BC8200B08F1A /* urban.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = urban.xcconfig; sourceTree = "<group>"; };
 		DC4E658A2C49BC8F00B08F1A /* nonUrban.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = nonUrban.xcconfig; sourceTree = "<group>"; };
 		DC4E65902C49C6B500B08F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenNonUrban.storyboard; sourceTree = "<group>"; };
+		DC5413192C53041400BF0010 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		DC61D1EA2C5023C40047136F /* SplashscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenView.swift; sourceTree = "<group>"; };
 		DC760BE12C4B222C0008990B /* UrbanParisPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UrbanParisPackage; sourceTree = "<group>"; };
 		DCA8975B2C4EDECE00788FC6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -68,6 +74,8 @@
 				DCD8AEB12C4962480070B0D1 /* LoginFeature in Frameworks */,
 				DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */,
 				DC61D1F02C50583D0047136F /* SettingsFeature in Frameworks */,
+				DC12B8A22C513DFC00F3FF93 /* ProfileManager in Frameworks */,
+				DC7F514C2C52ABA600C6D4BE /* CotisationsFeature in Frameworks */,
 				DC025F002C4972310050B457 /* DesignSystem in Frameworks */,
 				DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */,
 				DC12B89C2C50627100F3FF93 /* PDFFeature in Frameworks */,
@@ -94,6 +102,7 @@
 		DC0015E32C4FD3F400416056 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				DC5413182C53040700BF0010 /* Menu */,
 				DC0015E92C4FD42500416056 /* SmokeManView.swift */,
 				DC0015E42C4FD3FB00416056 /* Resources */,
 			);
@@ -112,9 +121,18 @@
 		DC0015FB2C50217600416056 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DC15EE5D2C514E0E00BD4D4B /* Menu */,
 				DC0015FC2C5021B100416056 /* AppViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC15EE5D2C514E0E00BD4D4B /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DC15EE5B2C514E0500BD4D4B /* MenuViewModel.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		DC4E65872C49BC4500B08F1A /* Configurations */ = {
@@ -127,6 +145,14 @@
 				DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */,
 			);
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		DC5413182C53040700BF0010 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DC5413192C53041400BF0010 /* MenuView.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		DCD8AE922C47E91C0070B0D1 = {
@@ -203,6 +229,8 @@
 				DC61D1ED2C50248F0047136F /* AnimateText */,
 				DC61D1EF2C50583D0047136F /* SettingsFeature */,
 				DC12B89B2C50627100F3FF93 /* PDFFeature */,
+				DC12B8A12C513DFC00F3FF93 /* ProfileManager */,
+				DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */,
 			);
 			productName = UrbanParis;
 			productReference = DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */;
@@ -273,6 +301,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */,
+				DC54131A2C53041400BF0010 /* MenuView.swift in Sources */,
+				DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */,
 				DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */,
 				DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */,
 				DC61D1EB2C5023C40047136F /* SplashscreenView.swift in Sources */,
@@ -848,6 +878,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = PDFFeature;
 		};
+		DC12B8A12C513DFC00F3FF93 /* ProfileManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ProfileManager;
+		};
 		DC4E65812C49839E00B08F1A /* SharedResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedResources;
@@ -864,6 +898,10 @@
 		DC7914FB2C4EB012005A3244 /* ProfileFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProfileFeature;
+		};
+		DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CotisationsFeature;
 		};
 		DCD8AEB02C4962480070B0D1 /* LoginFeature */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -16,7 +16,6 @@ import Utils
 public struct WelcomeView: View {
     @EnvironmentObject var navigator: FlowNavigator<LoginScreen>
 
-
     @State var animate = false
     @State var buttonAppear = false
 

@@ -28,7 +28,7 @@ struct MenuButtonModifier: ViewModifier {
                         Image(systemName: self.showMenu ? "xmark" : "line.horizontal.3")
                             .resizable()
                             .frame(width: self.showMenu ? 18 : 22, height: 18)
-                            .foregroundColor(DSColors.white.swiftUIColor)
+                            .foregroundColor(DSColors.red.swiftUIColor)
                     }
                 }
             }

@@ -13,6 +13,8 @@ import Utils
 struct SplashcreenView: View, Animatable {
     @State var text: String = ""
 
+    var onFisnishAnimation: () -> Void
+
     var body: some View {
         MainContainer {
             VStack {
@@ -38,10 +40,14 @@ struct SplashcreenView: View, Animatable {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 withAnimation(.smooth) {
                     text = "Urban Paris 2017"
                 }
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+                onFisnishAnimation()
             }
         }
     }

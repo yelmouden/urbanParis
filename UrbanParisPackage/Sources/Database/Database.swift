@@ -33,6 +33,7 @@ public extension Database {
     // swiftlint:disable identifier_name
     enum Table: String {
         case profiles
+        case cotisations
     }
 }
 

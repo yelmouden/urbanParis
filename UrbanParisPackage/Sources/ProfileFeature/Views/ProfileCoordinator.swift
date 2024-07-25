@@ -14,20 +14,26 @@ public enum ProfileScreen: Equatable {
     case none
 }
 
+@MainActor
 public struct ProfileCoordinator: View {
     @State var routes: Routes<ProfileScreen> = []
 
-    @Binding var showMenu: Bool
+    @State var viewModel: EditProfileViewModel
+    var showMenu: Binding<Bool>?
 
-
-    public init(showMenu: Binding<Bool>) {
-        self._showMenu = showMenu
+    public init(showMenu: Binding<Bool>? = nil) {
+        self.showMenu = showMenu
+        viewModel = EditProfileViewModel()
     }
 
     public var body: some View {
         FlowStack($routes, withNavigation: true) {
-            EditProfileView()
-                .addShowMenuButton(showMenu: $showMenu)
+            if let showMenu {
+                EditProfileView(viewModel: viewModel)
+                    .addShowMenuButton(showMenu: showMenu)
+            } else {
+                EditProfileView(viewModel: viewModel)
+            }
         }
     }
 }

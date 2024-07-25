@@ -11,11 +11,18 @@ import Database
 import DeepLinkManager
 import Dependencies
 import Foundation
+import ProfileManager
 import Observation
 import UserNotifications
 
 enum AppState: Equatable {
     case loading
+    case signedIn
+    case missingProfile
+    case logout
+}
+
+enum SessionState: Equatable {
     case signedIn
     case logout
 }
@@ -23,8 +30,8 @@ enum AppState: Equatable {
 @Observable
 @MainActor
 class AppViewModel {
-    /*@ObservationIgnored
-    @Dependency(\.profileManager) var profileManager*/
+    @ObservationIgnored
+    @Dependency(\.profileManager) var profileManager
 
     @ObservationIgnored
     @Dependency(\.deepLinkManager) var deepLinkManager
@@ -34,30 +41,46 @@ class AppViewModel {
 
     var state: AppState = .loading
 
-    private let appStateChangeSubject = PassthroughSubject<AppState, Never>()
+    private let sessionStateChangeSubject = PassthroughSubject<SessionState, Never>()
     private let deeplinkSubject = PassthroughSubject<DeepLink?, Never>()
     private let splashScreenAnimationSubject = PassthroughSubject<Bool, Never>()
 
     private var cancellables = Set<AnyCancellable>()
 
     init() {
+        startListenDeepLink()
+
         Task {
             await startListeninAuthStateChanges()
         }
 
-        startListenDeepLink()
     }
 
     func startListenDeepLink() {
         Publishers.CombineLatest3(
-            appStateChangeSubject.removeDuplicates(),
-            deeplinkSubject,
-            splashScreenAnimationSubject.filter { $0 }.prefix(1)
+            sessionStateChangeSubject.removeDuplicates(),
+            //deeplinkSubject,
+            splashScreenAnimationSubject.filter { $0 }.prefix(1),
+            ProfileUpdateNotifier.shared.publisher
+                .removeDuplicates(by: { (previous: Profile?, new: Profile?) in
+                    previous?.id == new?.id
+                })
         )
-        .sink { appState, deepLink, _ in
-            guard appState == .signedIn, let deepLink else { return }
+        .sink { appState, _, profile in
+            guard appState == .signedIn else {
+                self.state = .logout
+                return
+            }
 
-            DeepLinkNotifier.shared.send(deepLinkType: deepLink)
+            if profile == nil {
+                self.state = .missingProfile
+            } else {
+                self.state = .signedIn
+            }
+
+            //guard appState == .signedIn, let deepLink else { return }
+
+            //DeepLinkNotifier.shared.send(deepLinkType: deepLink)
         }
         .store(in: &cancellables)
     }
@@ -70,14 +93,19 @@ class AppViewModel {
         for await (event, session) in Database.shared.client.auth.authStateChanges {
             if (event == .initialSession && session == nil) || event == .signedOut {
                 deeplinkSubject.send(nil)
-                state = .logout
+                sessionStateChangeSubject.send(.logout)
+                ProfileUpdateNotifier.shared.send(profile: nil)
             } else {
                 // Get preferred currency and signature
-                //try? await profileManager.retrieveSignature()
-                state = .signedIn
+                do {
+                    try await profileManager.retrieveProfile()
+                    sessionStateChangeSubject.send(.signedIn)
+                } catch {
+                    print("error ", error)
+                }
+
             }
 
-            appStateChangeSubject.send(state)
         }
     }
 

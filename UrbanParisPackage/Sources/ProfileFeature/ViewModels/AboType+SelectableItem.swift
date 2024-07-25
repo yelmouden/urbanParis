@@ -7,23 +7,20 @@
 
 import Foundation
 import DesignSystem
+import ProfileManager
 
-enum AboType: SelectableItem {
-    case aboPSG
-    case aboCUP
-    case none
-
-    var title: String {
+extension AboType: SelectableItem {
+    public var title: String {
         switch self {
         case .aboPSG:
             "Abo PSG"
         case .aboCUP:
             "Abo CUP"
         case .none:
-            "Aucun"
+            "Pad d'abo"
         }
     }
 
-    var description: String? { nil }
+    public var description: String? { nil }
 }
 

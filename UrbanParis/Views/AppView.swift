@@ -10,6 +10,7 @@ import DesignSystem
 import FlowStacks
 import LoginFeature
 import Pow
+import ProfileFeature
 import SwiftUI
 import Utils
 
@@ -19,44 +20,69 @@ struct AppView: View {
 
     @State private var shouldDisplayResetPassword = false
     @State private var isLogged: Bool? = nil
+    @State private var shouldDisplayCreation: Bool = false
 
     @Bindable var appViewModel: AppViewModel
 
     var body: some View {
         ZStack {
             if isLogged == nil {
-                SplashcreenView()
+                SplashcreenView() {
+                    appViewModel.notifyFinishSplashscreenAnimation()
+                }
             } else if isLogged == true {
                 HomeView()
                     .transition(.asymmetric(insertion: .movingParts.filmExposure, removal: .movingParts.blur))
             } else {
                 LoginCoordinator()
-                    //.transition(.asymmetric(insertion: .opacity, removal: .movingParts.blur))
             }
         }
         .onChange(of: appViewModel.state, { oldValue, newValue in
-            if oldValue == .loading {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-
-                    if newValue == .logout {
-                        isLogged = false
-                        appViewModel.notifyFinishSplashscreenAnimation()
-                    } else {
-                        withAnimation(.smooth(duration: 1)) {
-                            isLogged = true
-                        } completion: {
-                            appViewModel.notifyFinishSplashscreenAnimation()
-                        }
-                    }
-
-                }
+            guard newValue != .missingProfile else {
+                return
             }
 
-            if oldValue == .logout && newValue == .signedIn || oldValue == .signedIn && newValue == .logout {
+            if oldValue == .loading {
+                if newValue == .logout {
+                    isLogged = false
+                } else {
+                    withAnimation(.default) {
+                        isLogged = true
+                    }
+                }
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (newValue == .logout ? 1 : 0)) {
+                    withAnimation(.smooth(duration: 1)) {
+                        isLogged = newValue == .signedIn
+                    }
+                }
+
+            }
+            /*if oldValue == .loading {
+                withAnimation(.smooth) {
+                    if newValue == .createProfile {
+                        shouldDisplayCreation = true
+                    } else {
+                        shouldDisplayCreation = false
+                    }
+                }
+               
+            }
+
+            if newValue == .createProfile {
+                withAnimation(.smooth) {
+                    shouldDisplayCreation = true
+                }
+            } else if oldValue == .createProfile && newValue == .signedIn ||
+                        oldValue == .logout && newValue == .signedIn ||
+                        oldValue == .signedIn && newValue == .logout
+            {
+                shouldDisplayCreation = false
+
                 withAnimation(.smooth(duration: 1).delay(newValue == .logout ? 1 : 0)) {
                     isLogged = newValue == .signedIn
                 }
-            }
+            }*/
 
             if newValue == .signedIn {
                 //delegate.requestAuthorizationForNotifications()
@@ -69,6 +95,9 @@ struct AppView: View {
             if $0 is ResetPasswordDeepLink {
                 shouldDisplayResetPassword = true
             }
+        }
+        .sheet(isPresented: .init(get: { appViewModel.state == .missingProfile }, set: { _ in })) {
+            ProfileCoordinator()
         }
         /*.sheet(isPresented: $shouldDisplayResetPassword,
                content: {

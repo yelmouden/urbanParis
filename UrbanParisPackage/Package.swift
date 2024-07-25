@@ -48,7 +48,14 @@ let package = Package(
             name: "SettingsFeature",
             targets: ["SettingsFeature"]
         ),
-        
+        .library(
+            name: "ProfileManager",
+            targets: ["ProfileManager"]
+        ),
+        .library(
+            name: "CotisationsFeature",
+            targets: ["CotisationsFeature"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
@@ -60,7 +67,10 @@ let package = Package(
         .package(url: "https://github.com/supabase-community/supabase-swift.git", branch: "main"),
         .package(url: "https://github.com/jasudev/AnimateText", branch: "main"),
         .package(url: "https://github.com/MarcosAtMorais/SwiftyEmail", branch: "main"),
-        .package(url: "https://github.com/devicekit/DeviceKit", branch: "master")
+        .package(url: "https://github.com/devicekit/DeviceKit", branch: "master"),
+        .package(url: "https://github.com/pointfreeco/swift-concurrency-extras", branch: "main"),
+        .package(url: "https://github.com/CombineCommunity/CombineExt", branch: "main")
+
     ],
     targets: [
         .target(
@@ -88,6 +98,7 @@ let package = Package(
                 .product(name: "FlowStacks", package: "FlowStacks"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "Pow", package: "Pow"),
+                "ProfileManager",
                 "DesignSystem",
                 "SharedResources"
             ],
@@ -96,6 +107,20 @@ let package = Package(
             ],
             plugins: [
                 .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
+        ),
+        .target(
+            name: "CotisationsFeature",
+            dependencies: [
+                .product(name: "FlowStacks", package: "FlowStacks"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "Pow", package: "Pow"),
+                "ProfileManager",
+                "DesignSystem",
+                "SharedResources"
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .target(
@@ -172,6 +197,16 @@ let package = Package(
             ],
             plugins: [
                 .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin"),
+            ]
+        ),
+        .target(
+            name: "ProfileManager",
+            dependencies: [
+                "Database",
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "DependenciesMacros", package: "swift-dependencies"),
+                .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras"),
+                .product(name: "CombineExt", package: "CombineExt"),
             ]
         )
     ]
