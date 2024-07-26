@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Cotisation: Equatable, Identifiable, Decodable {
-    let id: Int
-    let month: Int
-    let amount: Float
+public struct Cotisation: Equatable, Identifiable, Decodable {
+    public let id: Int
+    public let month: Int
+    public let amount: Float
 }
 
-extension Cotisation {
+public extension Cotisation {
     var titleMonth: String {
         switch month {
         case 1: return "janvier"
@@ -37,7 +37,7 @@ extension Cotisation {
     }
 }
 
-extension Array where Element == Cotisation {
+public extension Array where Element == Cotisation {
     var totalAmount: Float {
         reduce(0) { $0 + $1.amount }
     }

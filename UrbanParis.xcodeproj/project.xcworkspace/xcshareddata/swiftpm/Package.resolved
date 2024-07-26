@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "acarousel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JWAutumn/ACarousel",
+      "state" : {
+        "branch" : "main",
+        "revision" : "807d859fb39ccaae2caf8ff60fb2ee1a5048f4ca"
+      }
+    },
+    {
       "identity" : "animatetext",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jasudev/AnimateText",

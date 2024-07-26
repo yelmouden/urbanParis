@@ -56,6 +56,14 @@ let package = Package(
             name: "CotisationsFeature",
             targets: ["CotisationsFeature"]
         ),
+        .library(
+            name: "TravelMatchesFeature",
+            targets: ["TravelMatchesFeature"]
+        ),
+        .library(
+            name: "SharedRepository",
+            targets: ["SharedRepository"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
@@ -69,8 +77,8 @@ let package = Package(
         .package(url: "https://github.com/MarcosAtMorais/SwiftyEmail", branch: "main"),
         .package(url: "https://github.com/devicekit/DeviceKit", branch: "master"),
         .package(url: "https://github.com/pointfreeco/swift-concurrency-extras", branch: "main"),
-        .package(url: "https://github.com/CombineCommunity/CombineExt", branch: "main")
-
+        .package(url: "https://github.com/CombineCommunity/CombineExt", branch: "main"),
+        .package(url: "https://github.com/JWAutumn/ACarousel", branch: "main")
     ],
     targets: [
         .target(
@@ -117,7 +125,24 @@ let package = Package(
                 .product(name: "Pow", package: "Pow"),
                 "ProfileManager",
                 "DesignSystem",
-                "SharedResources"
+                "SharedResources",
+                "SharedRepository"
+            ],
+            resources: [
+                .process("Resources")
+            ]
+        ),
+        .target(
+            name: "TravelMatchesFeature",
+            dependencies: [
+                .product(name: "FlowStacks", package: "FlowStacks"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "Pow", package: "Pow"),
+                .product(name: "ACarousel", package: "ACarousel"),
+                "ProfileManager",
+                "DesignSystem",
+                "SharedResources",
+                "SharedRepository"
             ],
             resources: [
                 .process("Resources")
@@ -207,6 +232,13 @@ let package = Package(
                 .product(name: "DependenciesMacros", package: "swift-dependencies"),
                 .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras"),
                 .product(name: "CombineExt", package: "CombineExt"),
+            ]
+        ),
+        .target(
+            name: "SharedRepository",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "DependenciesMacros", package: "swift-dependencies")
             ]
         )
     ]

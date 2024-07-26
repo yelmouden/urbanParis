@@ -34,6 +34,13 @@ public extension Database {
     enum Table: String {
         case profiles
         case cotisations
+        case seasons
+        case travels
+    }
+
+    enum Storage: String {
+        // swiftlint:disable identifier_name
+        case logos
     }
 }
 

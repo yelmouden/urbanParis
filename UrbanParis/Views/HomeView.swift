@@ -4,6 +4,7 @@ import ProfileFeature
 import PDFFeature
 import SettingsFeature
 import SwiftUI
+import TravelMatchesFeature
 import Utils
 
 @MainActor
@@ -23,15 +24,18 @@ struct HomeView : View {
                     CotisationsCoordinator(showMenu: $show)
                         .transition(.opacity)
                 } else if index == 1 {
-                    ProfileCoordinator(showMenu: $show)
+                    TravelMatchesCoordinator(showMenu: $show)
                         .transition(.opacity)
                 } else if index == 2 {
-                    PDFCoordinator(showMenu: $show, docType: .chart)
+                    ProfileCoordinator(showMenu: $show)
                         .transition(.opacity)
                 } else if index == 3 {
-                    PDFCoordinator(showMenu: $show, docType: .organigrame)
+                    PDFCoordinator(showMenu: $show, docType: .chart)
                         .transition(.opacity)
                 } else if index == 4 {
+                    PDFCoordinator(showMenu: $show, docType: .organigrame)
+                        .transition(.opacity)
+                } else if index == 5 {
                     SettingsCoordinator(showMenu: $show)
                         .transition(.opacity)
                 }

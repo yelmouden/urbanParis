@@ -17,7 +17,7 @@ extension AboType: SelectableItem {
         case .aboCUP:
             "Abo CUP"
         case .none:
-            "Pad d'abo"
+            "Pas d'abo"
         }
     }
 

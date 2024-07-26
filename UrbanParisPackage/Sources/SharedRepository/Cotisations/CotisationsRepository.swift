@@ -14,7 +14,7 @@ import Utils
 
 @DependencyClient
 public struct CotisationsRepository: Sendable {
-    var retrieveCotisations: @Sendable() async throws -> [Cotisation]
+    public var retrieveCotisations: @Sendable() async throws -> [Cotisation]
 }
 
 extension CotisationsRepository: DependencyKey {

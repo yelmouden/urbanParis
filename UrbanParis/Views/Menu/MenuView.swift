@@ -59,18 +59,17 @@ struct MenuView: View {
                             index = 1
                             showMenu = false
                         } label: {
-                            Text("Mon profil")
+                            Text("Déplacements")
                                 .font(DSFont.grafTitle3)
                                 .opacity(index == 1 ?  1 : 0.3)
                         }
                         .buttonStyle(.plain)
 
-
                         Button {
                             index = 2
                             showMenu = false
                         } label: {
-                            Text(DocType.chart.title)
+                            Text("Mon profil")
                                 .font(DSFont.grafTitle3)
                                 .opacity(index == 2 ?  1 : 0.3)
                         }
@@ -81,19 +80,30 @@ struct MenuView: View {
                             index = 3
                             showMenu = false
                         } label: {
-                            Text(DocType.organigrame.title)
+                            Text(DocType.chart.title)
                                 .font(DSFont.grafTitle3)
                                 .opacity(index == 3 ?  1 : 0.3)
                         }
                         .buttonStyle(.plain)
 
+
                         Button {
                             index = 4
                             showMenu = false
                         } label: {
-                            Text("Paramètres")
+                            Text(DocType.organigrame.title)
                                 .font(DSFont.grafTitle3)
                                 .opacity(index == 4 ?  1 : 0.3)
+                        }
+                        .buttonStyle(.plain)
+
+                        Button {
+                            index = 5
+                            showMenu = false
+                        } label: {
+                            Text("Paramètres")
+                                .font(DSFont.grafTitle3)
+                                .opacity(index == 5 ?  1 : 0.3)
                         }
                         .buttonStyle(.plain)
 

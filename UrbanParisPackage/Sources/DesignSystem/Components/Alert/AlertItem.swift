@@ -12,13 +12,13 @@ public struct AlertItem {
     public let title: LocalizedStringResource
     public let description: LocalizedStringResource
     public let primaryButtonItem: AlertItemButton
-    public let secondaryButtonItem: AlertItemButton
+    public let secondaryButtonItem: AlertItemButton?
 
     public init(
         title: LocalizedStringResource,
         description: LocalizedStringResource,
         primaryButtonItem: AlertItemButton,
-        secondaryButtonItem: AlertItemButton
+        secondaryButtonItem: AlertItemButton?
     ) {
         self.title = title
         self.description = description
