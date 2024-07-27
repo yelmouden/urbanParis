@@ -20,6 +20,7 @@ struct Travel: Identifiable, Equatable, Codable {
     let googleDoc: String?
     let telegram: String?
     let team: Team
+    let pool: Pool?
 
     init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -35,6 +36,7 @@ struct Travel: Identifiable, Equatable, Codable {
             team = try container.decode(Team.self, forKey: .team)
             googleDoc = try container.decodeIfPresent(String.self, forKey: .googleDoc)
             telegram = try container.decodeIfPresent(String.self, forKey: .telegram)
+            pool = try container.decodeIfPresent(Pool.self, forKey: .pool)
 
             // Transformer la chaîne de caractères en Date
             let dateString = try container.decodeIfPresent(String.self, forKey: .date)

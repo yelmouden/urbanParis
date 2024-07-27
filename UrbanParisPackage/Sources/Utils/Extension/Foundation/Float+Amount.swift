@@ -15,6 +15,14 @@ private let amountformatter: NumberFormatter = {
     return formatter
 }()
 
+private let percentageformatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 1
+    formatter.usesGroupingSeparator = false
+    return formatter
+}()
+
 
 public extension Float {
     var amountText: String {
@@ -22,4 +30,8 @@ public extension Float {
         return "\(amountText) €"
     }
 
+    var percentageText: String {
+        let percentageText = percentageformatter.string(from: NSNumber(value: self * 100)) ?? "\(self * 100)"
+        return "\(percentageText) %"
+    }
 }

@@ -63,7 +63,7 @@ let package = Package(
         .library(
             name: "SharedRepository",
             targets: ["SharedRepository"]
-        ),
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
@@ -238,7 +238,8 @@ let package = Package(
             name: "SharedRepository",
             dependencies: [
                 .product(name: "Dependencies", package: "swift-dependencies"),
-                .product(name: "DependenciesMacros", package: "swift-dependencies")
+                .product(name: "DependenciesMacros", package: "swift-dependencies"),
+                "Database"
             ]
         )
     ]

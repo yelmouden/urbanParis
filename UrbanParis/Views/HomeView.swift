@@ -11,6 +11,7 @@ import Utils
 struct HomeView : View {
 
     @State var menuViewModel = MenuViewModel()
+    @State var homeViewModel = HomeViewModel()
 
     @State var index = 0
     @State var show = false

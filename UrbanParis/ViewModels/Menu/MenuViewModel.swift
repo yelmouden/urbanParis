@@ -9,6 +9,7 @@ import Combine
 import Foundation
 import Observation
 import ProfileManager
+import Utils
 
 @MainActor
 final class MenuViewModel {

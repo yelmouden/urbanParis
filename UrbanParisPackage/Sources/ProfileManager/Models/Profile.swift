@@ -15,6 +15,7 @@ public struct Profile: Codable {
     public var year: Int
     public var typeAbo: AboType?
     public var isLocked: Bool
+    public var isAdmin: Bool
 
     public init() {
         id = nil
@@ -24,5 +25,6 @@ public struct Profile: Codable {
         year = Date.currentYear
         typeAbo = nil
         isLocked = false
+        isAdmin = false
     }
 }

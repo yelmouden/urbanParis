@@ -326,6 +326,10 @@ struct TravelMatchView: View {
                 }
                 .padding(.bottom, Margins.mediumSmall)
             }
+
+            if let pool = travelVM.travel.pool {
+                PoolView(pool: pool)
+            }
         }
     }
 

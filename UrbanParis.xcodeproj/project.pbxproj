@@ -34,6 +34,7 @@
 		DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7914FB2C4EB012005A3244 /* ProfileFeature */; };
 		DC7F514C2C52ABA600C6D4BE /* CotisationsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */; };
 		DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8975B2C4EDECE00788FC6 /* HomeView.swift */; };
+		DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB21A332C552CA900B0D58B /* HomeViewModel.swift */; };
 		DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8AE9E2C47E91C0070B0D1 /* UrbanParisApp.swift */; };
 		DCD8AEA32C47E91E0070B0D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD8AEA22C47E91E0070B0D1 /* Assets.xcassets */; };
 		DCD8AEA62C47E91E0070B0D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD8AEA52C47E91E0070B0D1 /* Preview Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		DC61D1EA2C5023C40047136F /* SplashscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenView.swift; sourceTree = "<group>"; };
 		DC760BE12C4B222C0008990B /* UrbanParisPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UrbanParisPackage; sourceTree = "<group>"; };
 		DCA8975B2C4EDECE00788FC6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DCB21A332C552CA900B0D58B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urban Paris.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD8AE9E2C47E91C0070B0D1 /* UrbanParisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrbanParisApp.swift; sourceTree = "<group>"; };
 		DCD8AEA22C47E91E0070B0D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		DC0015FB2C50217600416056 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DCB21A322C552C8F00B0D58B /* HomeView */,
 				DC15EE5D2C514E0E00BD4D4B /* Menu */,
 				DC0015FC2C5021B100416056 /* AppViewModel.swift */,
 			);
@@ -147,6 +150,14 @@
 				DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */,
 			);
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		DCB21A322C552C8F00B0D58B /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				DCB21A332C552CA900B0D58B /* HomeViewModel.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 		DCD8AE922C47E91C0070B0D1 = {
@@ -296,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */,
+				DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */,
 				DC54131A2C53041400BF0010 /* MenuView.swift in Sources */,
 				DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */,
 				DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */,

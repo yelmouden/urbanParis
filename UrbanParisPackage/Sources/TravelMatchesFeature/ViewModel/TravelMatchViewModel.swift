@@ -44,7 +44,6 @@ final class TravelMatchViewModel {
                 state = .loaded(isUpToDate)
             }
 
-            print("cotisaion ", cotisations.map(\.month))
 
             if !isUpToDate {
                 await MainActor.run { [self] in
