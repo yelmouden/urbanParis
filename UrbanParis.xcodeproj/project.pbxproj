@@ -844,7 +844,7 @@
 				DC4E65852C49BC1C00B08F1A /* nonUrban */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = UrbanDebug;
+			defaultConfigurationName = UrbanParisTests;
 		};
 		DCD8AEA92C47E91E0070B0D1 /* Build configuration list for PBXNativeTarget "UrbanParis" */ = {
 			isa = XCConfigurationList;
@@ -856,7 +856,7 @@
 				DC4E65862C49BC1C00B08F1A /* nonUrban */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = UrbanDebug;
+			defaultConfigurationName = UrbanParisTests;
 		};
 /* End XCConfigurationList section */
 
