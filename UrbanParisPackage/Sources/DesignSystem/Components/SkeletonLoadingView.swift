@@ -23,7 +23,7 @@ public struct SkeletonLoadingView: View {
                 with: true,
                 appearance: .gradient(
                     color: DSColors.red.swiftUIColor.opacity(0.2),
-                    background: DSColors.gray.swiftUIColor.opacity(0.1)
+                    background: DSColors.white.swiftUIColor.opacity(0.1)
                 ),
                 spacing: 16)
         .frame(height: height)

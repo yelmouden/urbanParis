@@ -11,7 +11,11 @@ import SharedRepository
 import Utils
 
 @Observable
-final class TravelMatchViewModel {
+final class TravelMatchViewModel: Equatable {
+    
+    static func == (lhs: TravelMatchViewModel, rhs: TravelMatchViewModel) -> Bool {
+        lhs.travel == rhs.travel
+    }
 
     @ObservationIgnored
     @Dependency(\.cotisationsRepository) var repository
@@ -19,6 +23,8 @@ final class TravelMatchViewModel {
     var state: StateView<Bool> = .idle
 
     var travel: Travel
+
+    var showError = false
 
     init(travel: Travel) {
         self.travel = travel
@@ -32,12 +38,19 @@ final class TravelMatchViewModel {
 
             guard let date = travel.date else { return }
 
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+
+            guard let date = dateFormatter.date(from: date) else { return }
+
             let calendar = Calendar.current
             let components = calendar.dateComponents([.month], from: date)
             let month = components.month
 
             let cotisations = try await repository.retrieveCotisations()
-            
+
+            try Task.checkCancellation()
+
             let isUpToDate = cotisations.first?.amount == 0
 
             await MainActor.run { [self] in
@@ -50,10 +63,13 @@ final class TravelMatchViewModel {
                     state = .idle
                 }
             }
-
-
         } catch {
-            print("Error ", error)
+            if !(error is CancellationError) {
+                await MainActor.run { [self] in
+                    showError = true
+                    state = .idle
+                }
+            }
         }
     }
 }

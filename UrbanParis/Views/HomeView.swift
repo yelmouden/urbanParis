@@ -20,7 +20,7 @@ struct HomeView : View {
         ZStack{
             MenuView(index: $index, showMenu: $show)
 
-            ZStack {
+            VStack {
                 if index == 0 {
                     CotisationsCoordinator(showMenu: $show)
                         .transition(.opacity)
@@ -42,8 +42,8 @@ struct HomeView : View {
                 }
             }
             .cornerRadius(self.show ? 8 : 0)
-            .scaleEffect(self.show ? 0.9 : 1)
-            .offset(x: self.show ? UIScreen.main.bounds.width / 2 : 0, y: self.show ? 15 : 0)
+            .scaleEffect(self.show ? 1 : 1)
+            .offset(x: self.show ? (UIScreen.main.bounds.width / 2) + 20 : 0, y: self.show ? 10 : 0)
             .rotationEffect(.init(degrees: self.show ? -5 : 0))
             .ignoresSafeArea()
         }

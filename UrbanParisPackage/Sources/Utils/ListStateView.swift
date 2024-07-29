@@ -38,10 +38,10 @@ public struct ListStateView<IdleView: View, LoadingView: View, LoadedView: View,
                     .transition(.opacity)
             case .loading:
                 loadingView()
-                    .transition(.blurReplace)
+                    .transition(.opacity)
             case .loaded(let t):
                 loadedView(t)
-                    .transition(.blurReplace)
+                    .transition(.opacity)
             case .empty:
                 emptyView()
                     .transition(.opacity)

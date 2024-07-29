@@ -58,31 +58,6 @@ struct AppView: View {
                 }
 
             }
-            /*if oldValue == .loading {
-                withAnimation(.smooth) {
-                    if newValue == .createProfile {
-                        shouldDisplayCreation = true
-                    } else {
-                        shouldDisplayCreation = false
-                    }
-                }
-               
-            }
-
-            if newValue == .createProfile {
-                withAnimation(.smooth) {
-                    shouldDisplayCreation = true
-                }
-            } else if oldValue == .createProfile && newValue == .signedIn ||
-                        oldValue == .logout && newValue == .signedIn ||
-                        oldValue == .signedIn && newValue == .logout
-            {
-                shouldDisplayCreation = false
-
-                withAnimation(.smooth(duration: 1).delay(newValue == .logout ? 1 : 0)) {
-                    isLogged = newValue == .signedIn
-                }
-            }*/
 
             if newValue == .signedIn {
                 //delegate.requestAuthorizationForNotifications()
@@ -99,19 +74,9 @@ struct AppView: View {
         .sheet(isPresented: .init(get: { appViewModel.state == .missingProfile }, set: { _ in })) {
             ProfileCoordinator()
         }
-        /*.sheet(isPresented: $shouldDisplayResetPassword,
+        .sheet(isPresented: $shouldDisplayResetPassword,
                content: {
-            LoginCoordinator(
-                routes: [.root(
-                    LoginScreen.resetPassword(
-                        .init(),
-                        InterModuleAction<EmptyResource>.init(onClose: {
-                            shouldDisplayResetPassword = false
-                        })
-                    ),
-                    embedInNavigationView: true
-                )]
-            )
-        })*/
+            ResetPasswordView(presented: $shouldDisplayResetPassword, viewModel: .init())
+        })
     }
 }

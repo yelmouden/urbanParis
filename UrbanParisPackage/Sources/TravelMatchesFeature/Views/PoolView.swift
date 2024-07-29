@@ -6,12 +6,15 @@
 //
 
 import DesignSystem
+import SharedResources
 import SwiftUI
 
 @MainActor
 struct PoolView: View {
 
     @State private var viewModel: PoolViewModel
+
+    @State private var task: Task<Void, Never>?
 
     init(pool: Pool) {
         self.viewModel = .init(pool: pool)
@@ -49,6 +52,8 @@ struct PoolView: View {
                                         .resizable()
                                         .frame(width: 12, height: 12)
                                         .foregroundStyle(DSColors.red.swiftUIColor)
+                                } else {
+                                    Spacer()
                                 }
                             }
                             .frame(width: 35, alignment: .trailing)
@@ -62,12 +67,10 @@ struct PoolView: View {
                                     Spacer()
                                 }
 
-                                if ratio != 0 {
-                                    GeometryReader { proxy in
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(DSColors.white.swiftUIColor)
-                                            .frame(width: CGFloat(proxy.size.width) * CGFloat(ratio), height: 8)
-                                    }
+                                GeometryReader { proxy in
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(DSColors.white.swiftUIColor)
+                                        .frame(width: CGFloat(proxy.size.width) * CGFloat(ratio), height: 8)
                                 }
                             }
                         }
@@ -115,13 +118,15 @@ struct PoolView: View {
                 }
             }
 
-            FWButton(title: viewModel.hasAlreadyAnswered ? "Retirer mon vote" : "Voter") {
+            FWButton(title: viewModel.hasAlreadyAnswered ? "Retirer mon vote" : "Voter", state: viewModel.state.toFWButtonState()) {
                 if viewModel.hasAlreadyAnswered {
-                    Task {
+                    task?.cancel()
+
+                    task = Task {
                         await viewModel.deleteResponses()
                     }
                 } else {
-                    Task {
+                    task = Task {
                         await viewModel.saveResponses()
                     }
                 }
@@ -130,9 +135,13 @@ struct PoolView: View {
             .enabled(!viewModel.selectedProposal.isEmpty || viewModel.hasAlreadyAnswered)
             .fwButtonStyle(.primary)
         }
+        .onDisappear {
+            task?.cancel()
+        }
         .animation(.smooth, value: viewModel.pool)
         .padding()
         .background(DSColors.red.swiftUIColor.opacity(0.6))
         .addBorder(Color.clear, cornerRadius: 12)
+        .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
     }
 }

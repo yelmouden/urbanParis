@@ -17,14 +17,14 @@ public struct FWTextField: View {
     @Environment(\.sizeCategory)
     var sizeCategory
 
-    let title: LocalizedStringResource
-    let placeholder: LocalizedStringResource
+    let title: String
+    let placeholder: String
     let isSecure: Bool
     let text: Binding<String>
 
     public init(
-        title: LocalizedStringResource,
-        placeholder: LocalizedStringResource,
+        title: String,
+        placeholder: String,
         isFocus: FocusState<Bool> = .init(),
         isSecure: Bool = false,
         
@@ -52,13 +52,10 @@ public struct FWTextField: View {
                     .foregroundStyle(isFocus ? DSColors.red.swiftUIColor : DSColors.white.swiftUIColor)
                     .font(.footnote)
                     .offset(x: isFocus ? 30 : 0, y: isFocus ? -(sizeText.height / 2) : 0)
-                    .overlay(
-                        GeometryReader { textGeometryProxy in
-                            Color.clear.onAppear {
-                                self.sizeText = textGeometryProxy.size
-                            }
-                        }
-                    )
+                    .onAppear {
+                        let fontAttributes = [NSAttributedString.Key.font: FontFamily.DonGraffiti.regular.font(size: 20)]
+                        sizeText = title.size(withAttributes: fontAttributes)
+                    }
             }
 
             HStack {

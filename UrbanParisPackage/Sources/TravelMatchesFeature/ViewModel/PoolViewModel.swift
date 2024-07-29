@@ -25,6 +25,8 @@ final class PoolViewModel {
 
     var pool: Pool
 
+    var showError: Bool = false
+
     var hasAlreadyAnswered: Bool {
         guard let idProfile else { return false }
         return pool.hasUserAlreadyAnwsered(idProfile: idProfile)
@@ -57,19 +59,23 @@ final class PoolViewModel {
     func saveResponses() async {
         do {
             state = .loading
+
             let responses = selectedProposal.map { Response(idProposal: $0.id, idProfile: idProfile, idPool: pool.id)}
 
             try await repository.saveResponses(responses)
             
+            try Task.checkCancellation()
+
             selectedProposal.removeAll()
 
             pool.responses.append(contentsOf: responses)
-            
+
             state = .idle
         } catch {
-            print("error ", error)
-            state = .idle
-
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 
@@ -78,18 +84,18 @@ final class PoolViewModel {
 
         do {
             state = .loading
-            let responses = pool.responses.filter {
-                $0.idProfile == idProfile
-            }
 
             try await repository.deleteResponses(idProfile, pool.id)
+
+            try Task.checkCancellation()
 
             pool.responses.removeAll(where: { $0.idProfile == idProfile })
             state = .idle
         } catch {
-            print("error ", error)
-            state = .idle
-
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 

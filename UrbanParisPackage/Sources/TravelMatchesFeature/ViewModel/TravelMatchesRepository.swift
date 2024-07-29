@@ -33,6 +33,7 @@ extension TravelMatchesRepository: DependencyKey {
             return seasons
         }, 
         retrieveTravels: { idSeason in
+
             let travels: [Travel] = try await Database.shared.client
                 .from(Database.Table.travels.rawValue)
                 .select("id, date, appointmentTime, departureTime, price, descriptionTravel, descriptionBar, report, timeMatch, googleDoc, telegram, team(id, name, logo), travels_seasons!inner(idSeason), pool(id,title, limitDate, isMultipleChoices, proposals!proposals_idPool_fkey(id, title), responses!responses_idPool_fkey(idProposal, idProfile, idPool))")

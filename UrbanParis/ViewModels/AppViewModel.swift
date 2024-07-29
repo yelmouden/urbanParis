@@ -5,7 +5,6 @@
 //  Created by Yassin El Mouden on 23/04/2024.
 //
 
-import AuthenticationManager
 import Combine
 import Database
 import DeepLinkManager
@@ -57,16 +56,16 @@ class AppViewModel {
     }
 
     func startListenDeepLink() {
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest4(
             sessionStateChangeSubject.removeDuplicates(),
-            //deeplinkSubject,
+            deeplinkSubject.prepend(nil),
             splashScreenAnimationSubject.filter { $0 }.prefix(1),
             ProfileUpdateNotifier.shared.publisher
                 .removeDuplicates(by: { (previous: Profile?, new: Profile?) in
                     previous?.id == new?.id
                 })
         )
-        .sink { appState, _, profile in
+        .sink { appState, deepLink, _, profile in
             guard appState == .signedIn else {
                 self.state = .logout
                 return
@@ -78,9 +77,11 @@ class AppViewModel {
                 self.state = .signedIn
             }
 
-            //guard appState == .signedIn, let deepLink else { return }
+            guard appState == .signedIn, let deepLink else { return }
 
-            //DeepLinkNotifier.shared.send(deepLinkType: deepLink)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DeepLinkNotifier.shared.send(deepLinkType: deepLink)
+            }
         }
         .store(in: &cancellables)
     }

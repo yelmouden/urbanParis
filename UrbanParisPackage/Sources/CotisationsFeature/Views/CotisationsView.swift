@@ -8,13 +8,14 @@
 import DesignSystem
 import FlowStacks
 import Pow
+import SharedResources
 import SwiftUI
 import Utils
 
 struct CotisationsView: View {
     @EnvironmentObject var navigator: FlowNavigator<CotisationsScreen>
 
-    let viewModel: CotisationsViewModel
+    @Bindable var viewModel: CotisationsViewModel
 
     var body: some View {
         BackgroundImageContainerView(
@@ -116,35 +117,15 @@ struct CotisationsView: View {
                 }
                 .fwButtonStyle(.primary)
             }
+            .paddingBottomScreen()
 
-
-            /*.addBottomScrollContentMargin()
-             .refreshable {
-             onAppearTask?.cancel()
-             onVisibleTask?.cancel()
-             await viewModel.retrieveActivityReports(isFromResfresh: true)
-             }
-             .toolbarAddButton {
-             navigator.presentSheet(.configuration(viewModel: .init()), embedInNavigationView: true)
-             }
-             .onAppear {
-             onAppearTask = Task {
-             await viewModel.retrieveActivityReports()
-             }
-             }
-             .onVisibilityChange { isVisible in
-             if isVisible {
-             onVisibleTask = Task {
-             await viewModel.retrieveActivityReports()
-             }
-             }
-             }*/
         }
         .animation(.default, value: viewModel.state)
         .task {
             await viewModel.retrieveCotisations()
         }
         .navigationTitle("Mes cotisations")
+        .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
     }
 }
 

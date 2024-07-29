@@ -13,11 +13,12 @@ struct PDFDocView: View {
     let docType: DocType
 
     var body: some View {
-        MainContainer(padding: 0) {
+        BackgroundImageContainerView(nameImages: [], bundle: Bundle.module) {
             VStack {
                 PDFKitView(url: Bundle.module.url(forResource: docType.nameFile, withExtension: "pdf")!)
             }
         }
+        .navigationBarTitleDisplayMode(.large)
         .ignoresSafeArea(edges: .bottom)
         .navigationTitle(docType.title)
     }

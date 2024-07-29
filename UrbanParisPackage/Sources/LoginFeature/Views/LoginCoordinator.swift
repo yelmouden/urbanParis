@@ -25,8 +25,6 @@ public enum LoginScreen: Equatable, Hashable {
             return lhsViewModel === rhsViewModel
        case (.forgotPassword, .forgotPassword):
             return true
-        /*case (.resetPassword, .resetPassword):
-            return true*/
         default:
             return false
         }
@@ -53,6 +51,7 @@ public struct LoginCoordinator: View {
 
     public var body: some View {
         FlowStack($routes, withNavigation: true) {
+
             WelcomeView()
                 .flowDestination(for: LoginScreen.self) { screen in
                     switch screen {

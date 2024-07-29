@@ -15,4 +15,19 @@ public extension String {
 
         return emailPredicate.evaluate(with: self)
     }
+
+    var formattedHour: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+
+        guard let date = dateFormatter.date(from: self) else {
+            return self
+        }
+
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH'h'mm"
+
+        let formattedTimeString = timeFormatter.string(from: date)
+        return formattedTimeString
+    }
 }
