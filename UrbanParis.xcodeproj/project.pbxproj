@@ -409,7 +409,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.urban;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.release.urban;
 				PRODUCT_NAME = "Urban Paris";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile release urban";
