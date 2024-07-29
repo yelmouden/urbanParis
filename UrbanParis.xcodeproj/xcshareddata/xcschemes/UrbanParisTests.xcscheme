@@ -51,7 +51,7 @@
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "UrbanDebug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -71,7 +71,7 @@
       buildConfiguration = "Release">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "UrbanDebug"
+      buildConfiguration = "UrbanParisTests"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

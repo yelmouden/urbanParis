@@ -61,12 +61,14 @@ public struct FWTextField: View {
             HStack {
                 ZStack {
                     SecureField("", text: text, prompt: Text(placeholder).foregroundStyle(SwiftUI.Color( DSColors.white.color.withAlphaComponent(0.6))))
+                        .foregroundStyle(DSColors.white.swiftUIColor)
                         .padding([.leading, .trailing], isFocus ? 16 : 0)
                         .padding(.top, isFocus ? 0 : 12)
                         .focused($isFocus)
                         .opacity(shouldRevealPassword ? 0 : 1)
 
                     TextField("", text: text, prompt: Text(placeholder).foregroundStyle(SwiftUI.Color( DSColors.white.color.withAlphaComponent(0.6))))
+                        .foregroundStyle(DSColors.white.swiftUIColor)
                         .padding([.leading, .trailing], isFocus ? 16 : 0)
                         .padding(.top, isFocus ? 0 : 12)
                         .focused($isFocus)

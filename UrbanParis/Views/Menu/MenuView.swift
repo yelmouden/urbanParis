@@ -41,11 +41,13 @@ struct MenuView: View {
                             height: 80)
 
                     Text("Salut")
+                        .foregroundStyle(DSColors.white.swiftUIColor)
                         .font(DSFont.grafTitle3)
                         .padding(.top, 10)
                         .padding(.bottom, Margins.verySmall)
 
                     Text(menuViewModel.nickname)
+                        .foregroundStyle(DSColors.white.swiftUIColor)
                         .font(DSFont.grafTitle3)
 
                     Divider()
@@ -61,6 +63,7 @@ struct MenuView: View {
                                 showMenu = false
                             } label: {
                                 Text("Cotisations")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 0 ?  1 : 0.3)
                             }
@@ -71,6 +74,7 @@ struct MenuView: View {
                                 showMenu = false
                             } label: {
                                 Text("Déplacements")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 1 ?  1 : 0.3)
                             }
@@ -81,6 +85,7 @@ struct MenuView: View {
                                 showMenu = false
                             } label: {
                                 Text("Mon profil")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 2 ?  1 : 0.3)
                             }
@@ -92,6 +97,7 @@ struct MenuView: View {
                                 showMenu = false
                             } label: {
                                 Text(DocType.chart.title)
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 3 ?  1 : 0.3)
                             }
@@ -103,6 +109,7 @@ struct MenuView: View {
                                 showMenu = false
                             } label: {
                                 Text(DocType.organigrame.title)
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 4 ?  1 : 0.3)
                             }
@@ -113,6 +120,7 @@ struct MenuView: View {
                                 showMenu = false
                             } label: {
                                 Text("Paramètres")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 5 ?  1 : 0.3)
                             }

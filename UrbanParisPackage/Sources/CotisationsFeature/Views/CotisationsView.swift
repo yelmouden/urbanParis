@@ -31,6 +31,7 @@ struct CotisationsView: View {
                         loadingView: {
                             VStack {
                                 Text("Montant total restant")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.robotoTitle)
                                     .padding(.top, Margins.large)
                                     .padding(.bottom, Margins.verySmall)
@@ -52,11 +53,13 @@ struct CotisationsView: View {
                             //ScrollView {
                             VStack {
                                 Text("Montant total restant")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.robotoTitle)
                                     .padding(.top, Margins.large)
                                     .padding(.bottom, Margins.verySmall)
 
                                 Text(cotisations.totalAmount.amountText)
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.robotoExtraLargeTitle)
                                     .padding(.bottom, Margins.mediumSmall)
                                     .id(cotisations.totalAmount)
@@ -72,6 +75,7 @@ struct CotisationsView: View {
                                     ForEach(cotisations) { cotisation in
                                         HStack {
                                             Text("Reste à payer mois de \(cotisation.titleMonth)")
+                                                .foregroundStyle(DSColors.white.swiftUIColor)
                                                 .font(DSFont.robotoBody)
 
                                             Spacer()
