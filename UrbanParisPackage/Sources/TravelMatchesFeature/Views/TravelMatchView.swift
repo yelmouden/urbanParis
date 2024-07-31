@@ -48,9 +48,7 @@ struct TravelMatchView: View {
                         getReport()
                             .padding(.bottom, Margins.large)
 
-
-                        switch travelVM.state {
-                        case .loaded(let isUpToDate) where isUpToDate == true:
+                        if travelVM.travel.hasSubscribed {
                             VStack {
                                 if let googleDoc = travelVM.travel.googleDoc {
                                     VStack {
@@ -94,54 +92,22 @@ struct TravelMatchView: View {
                                     }
                                 }
                             }
-                        default: EmptyView()
                         }
-
-                        Spacer()
                     }
                     .padding([.leading, .trailing], Margins.small)
                 }
 
                 Spacer()
 
-                switch travelVM.state {
-                case .loaded(let isUpToDate):
-                    if !isUpToDate {
-                        FWButton(title: "Accéder au listing", state: travelVM.state.toFWButtonState()) {
-                            task = Task {
-                                await travelVM.checkIsUpToDateContribution()
-                            }
+                if !travelVM.travel.hasSubscribed {
+                    FWButton(title: "Accéder au listing", state: travelVM.state.toFWButtonState()) {
+                        task = Task {
+                            await travelVM.checkIsUpToDateContribution()
                         }
-                        .fwButtonStyle(.primary)
-                            .onAppear {
-                                PopupManager.shared.showPopup(item: .alert( .init(
-                                    title: "Cotisation",
-                                    description: "Ta cotisation n'a pas été payée.\nPour accéder au listing, mets toi à jour.",
-                                    primaryButtonItem: .init(
-                                        title: "ok",
-                                        isDestructive: true
-                                    ),
-                                    secondaryButtonItem: nil
-                                    )
-                                ))
-                            }
-                    } else {
-                        EmptyView()
                     }
 
-
-                default:
-                    if travelVM.travel.googleDoc != nil || travelVM.travel.telegram != nil {
-                        FWButton(title: "Accéder au listing", state: travelVM.state.toFWButtonState()) {
-                            task = Task {
-                                await travelVM.checkIsUpToDateContribution()
-                            }
-                        }
-
-                        .fwButtonStyle(.primary)
-                        .padding()
-                    }
-
+                    .fwButtonStyle(.primary)
+                    .padding()
                 }
 
             }
@@ -165,9 +131,31 @@ struct TravelMatchView: View {
         .task {
             self.image = await travelVM.travel.team.retrieveIcon()
         }
+        .task(id: travelVM) {
+            await travelVM.checkAlreadySubscribe()
+        }
         .onDisappear {
             task?.cancel()
         }
+        .onChange(of: travelVM.showAlertCotisation, { _, newValue in
+
+            if newValue {
+                PopupManager.shared.showPopup(item: .alert( .init(
+                    title: "Cotisation",
+                    description: "Ta cotisation n'a pas été payée.\nPour accéder au listing, mets toi à jour.",
+                    primaryButtonItem: .init(
+                        title: "ok",
+                        onDismiss: {
+                            travelVM.showAlertCotisation = false
+                        },
+                        isDestructive: true
+                    ),
+                    secondaryButtonItem: nil
+                    )
+                ))
+
+            }
+        })
         .showBanner($travelVM.showError, text: SharedResources.commonErrorText, type: .error)
 
     }

@@ -37,6 +37,7 @@ public extension Database {
         case seasons
         case travels
         case responses
+        case travels_users
     }
 
     enum Storage: String {

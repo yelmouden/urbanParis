@@ -21,6 +21,7 @@ struct Travel: Identifiable, Equatable, Codable {
     let telegram: String?
     let team: Team
     let pool: Pool?
+    var hasSubscribed: Bool = false
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

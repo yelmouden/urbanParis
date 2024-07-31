@@ -16,8 +16,12 @@ import Utils
 public struct TravelMatchesRepository: Sendable {
     var retrieveSeasons: @Sendable() async throws -> [Season]
     var retrieveTravels: @Sendable(_ idSeason: Int) async throws -> [Travel]
+    var subscribeToTravel: @Sendable(_ idTravel: Int, _ idSeason: Int) async throws -> Void
+    var checkAlreadySubscribe: @Sendable(_ idTravel: Int, _ idSeason: Int) async throws -> Bool
+    var retrieveMyTravels: @Sendable(_ idSeason: Int) async throws -> [Travel]
     var saveResponses: @Sendable(_ responses: [Response]) async throws -> Void
     var deleteResponses: @Sendable(_ idProfile: Int, _ idPool: Int) async throws -> Void
+
 
 }
 
@@ -31,9 +35,8 @@ extension TravelMatchesRepository: DependencyKey {
                 .value
 
             return seasons
-        }, 
-        retrieveTravels: { idSeason in
-
+        },
+              retrieveTravels: { idSeason in
             let travels: [Travel] = try await Database.shared.client
                 .from(Database.Table.travels.rawValue)
                 .select("id, date, appointmentTime, departureTime, price, descriptionTravel, descriptionBar, report, timeMatch, googleDoc, telegram, team(id, name, logo), travels_seasons!inner(idSeason), pool(id,title, limitDate, isMultipleChoices, proposals!proposals_idPool_fkey(id, title), responses!responses_idPool_fkey(idProposal, idProfile, idPool))")
@@ -44,14 +47,51 @@ extension TravelMatchesRepository: DependencyKey {
 
             return travels
         },
-        saveResponses: { responses in
+        subscribeToTravel: { idTravel, idSeason in
+            let travelUser = TravelUser(idTravel: idTravel, idSeason: idSeason)
+
+            try await Database.shared.client
+                .from(Database.Table.travels_users.rawValue)
+                .insert(travelUser)
+                .execute()
+        },
+        checkAlreadySubscribe: { idTravel, idSeason in
+                  guard let id = Database.shared.client.auth.currentUser?.id else {
+                      throw DatabaseClientError.notFoundId
+                  }
+
+            let result: Int? = try await Database.shared.client
+                      .from(Database.Table.travels_users.rawValue)
+                      .select("id", head: true, count: .exact)
+                      .eq("idTravel", value: idTravel)
+                      .eq("idUser", value: id)
+                      .eq("idSeason", value: idSeason)
+                      .execute()
+                      .count
+
+            guard let result else { return false }
+            return result != 0
+        },
+        retrieveMyTravels: { idSeason in
+            let travels: [Travel] = try await Database.shared.client
+                .from(Database.Table.travels.rawValue)
+                .select("id, date, team(id, name, logo), travels_users!inner(idSeason)")
+                .eq("travels_users.idSeason", value: idSeason)
+                .eq("travels_users.isValidate", value: true)
+                .order("numMatch")
+
+                .execute()
+                .value
+
+            return travels
+        },
+              saveResponses: { responses in
             try await Database.shared.client
                 .from(Database.Table.responses.rawValue)
                 .insert(responses)
                 .execute()
-                .value
         },
-        deleteResponses: { idProfile, idPool in
+              deleteResponses: { idProfile, idPool in
             try await Database.shared.client
                 .from(Database.Table.responses.rawValue)
                 .delete()
@@ -65,8 +105,8 @@ extension TravelMatchesRepository: DependencyKey {
 }
 
 public extension DependencyValues {
-  var travelMatchesRepository: TravelMatchesRepository {
-    get { self[TravelMatchesRepository.self] }
-    set { self[TravelMatchesRepository.self] = newValue }
-  }
+    var travelMatchesRepository: TravelMatchesRepository {
+        get { self[TravelMatchesRepository.self] }
+        set { self[TravelMatchesRepository.self] = newValue }
+    }
 }

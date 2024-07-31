@@ -28,7 +28,9 @@ struct HomeView : View {
                     TravelMatchesCoordinator(showMenu: $show)
                         .transition(.opacity)
                 } else if index == 2 {
-                    ProfileCoordinator(showMenu: $show)
+                    ProfileCoordinator(showMenu: $show, getMyTravels: {
+                        AnyView(MyTravelsView(interModuleAction: $0))
+                    })
                         .transition(.opacity)
                 } else if index == 3 {
                     PDFCoordinator(showMenu: $show, docType: .chart)

@@ -2,24 +2,24 @@
 //  File.swift
 //  
 //
-//  Created by Yassin El Mouden on 26/07/2024.
+//  Created by Yassin El Mouden on 30/07/2024.
 //
 
 import Foundation
 import Dependencies
+import Observation
 import Utils
 
 @Observable
-@MainActor
-final class TravelMatchesViewModel {
+final class MyTravelsViewModel {
     @ObservationIgnored
     @Dependency(\.travelMatchesRepository) var repository
 
-    var selectedSeason: Season?
-    
-    var stateSeasonsView: StateView<[Season]> = .loading
+    var stateTravels: StateView<[Travel]> = .loading
 
-    var stateTravelsView: StateView<[TravelMatchViewModel]> = .loading
+    var selectedSeason: Season?
+
+    var stateSeasonsView: StateView<[Season]> = .loading
 
     var showError = false
 
@@ -38,22 +38,17 @@ final class TravelMatchesViewModel {
         }
     }
 
-    func retrieveTravels() async {
+    func retrieveMyTravels() async {
         do {
-            if let id = selectedSeason?.id {
-                let travels = try await repository.retrieveTravels(id)
+            guard let selectedSeason else { return }
 
-                try Task.checkCancellation()
-                
-                let travelsVM: [TravelMatchViewModel] = travels.map {
-                    .init(travel: $0, idSeason: id)
-                }
-
-                stateTravelsView = .loaded(travelsVM)
-            }
+            let items = try await repository.retrieveMyTravels(selectedSeason.id)
+            
+            self.stateTravels = items.isEmpty ? .empty : .loaded(items)
         } catch {
             if !(error is CancellationError) {
                 showError = true
+                stateTravels = .idle
             }
         }
     }

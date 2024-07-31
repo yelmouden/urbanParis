@@ -18,16 +18,33 @@ final class TravelMatchViewModel: Equatable {
     }
 
     @ObservationIgnored
-    @Dependency(\.cotisationsRepository) var repository
+    @Dependency(\.cotisationsRepository) var cotisationsRepository
 
-    var state: StateView<Bool> = .idle
+    @ObservationIgnored
+    @Dependency(\.travelMatchesRepository) var travelsRepository
+
+    var state: StateView<EmptyResource> = .loading
 
     var travel: Travel
 
-    var showError = false
+    let idSeason: Int
 
-    init(travel: Travel) {
+    var showError = false
+    var showAlertCotisation = false
+
+    init(travel: Travel, idSeason: Int) {
         self.travel = travel
+        self.idSeason = idSeason
+    }
+
+    func checkAlreadySubscribe() async {
+        do {
+            travel.hasSubscribed = try await travelsRepository.checkAlreadySubscribe(travel.id, idSeason)
+            state = .idle
+        } catch {
+            travel.hasSubscribed = false
+            state = .idle
+        }
     }
 
     nonisolated func checkIsUpToDateContribution() async {
@@ -47,22 +64,26 @@ final class TravelMatchViewModel: Equatable {
             let components = calendar.dateComponents([.month], from: date)
             let month = components.month
 
-            let cotisations = try await repository.retrieveCotisations()
+            let cotisations = try await cotisationsRepository.retrieveCotisations()
 
             try Task.checkCancellation()
 
             let isUpToDate = cotisations.first?.amount == 0
 
-            await MainActor.run { [self] in
-                state = .loaded(isUpToDate)
-            }
+            if isUpToDate {
+                try await travelsRepository.subscribeToTravel(travel.id, idSeason)
+                try Task.checkCancellation()
 
-
-            if !isUpToDate {
                 await MainActor.run { [self] in
+                    travel.hasSubscribed = true
+                }
+            } else {
+                await MainActor.run { [self] in
+                    showAlertCotisation = true
                     state = .idle
                 }
             }
+
         } catch {
             if !(error is CancellationError) {
                 await MainActor.run { [self] in

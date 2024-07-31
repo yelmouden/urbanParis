@@ -21,6 +21,7 @@ struct AppView: View {
     @State private var shouldDisplayResetPassword = false
     @State private var isLogged: Bool? = nil
     @State private var shouldDisplayCreation: Bool = false
+    @State private var showUserLocked = false
 
     @Bindable var appViewModel: AppViewModel
 
@@ -38,6 +39,11 @@ struct AppView: View {
             }
         }
         .onChange(of: appViewModel.state, { oldValue, newValue in
+            if newValue == .userLocked {
+                self.showUserLocked = true
+                return
+            }
+
             guard newValue != .missingProfile else {
                 return
             }
@@ -78,5 +84,10 @@ struct AppView: View {
                content: {
             ResetPasswordView(presented: $shouldDisplayResetPassword, viewModel: .init())
         })
+        .sheet(isPresented: $showUserLocked,
+               content: {
+            UserLockedView()
+        })
+
     }
 }

@@ -19,6 +19,7 @@ enum AppState: Equatable {
     case signedIn
     case missingProfile
     case logout
+    case userLocked
 }
 
 enum SessionState: Equatable {
@@ -71,11 +72,17 @@ class AppViewModel {
                 return
             }
 
-            if profile == nil {
+            guard let profile else {
                 self.state = .missingProfile
-            } else {
-                self.state = .signedIn
+                return
             }
+
+            guard !profile.isLocked else {
+                self.state = .userLocked
+                return
+            }
+
+            self.state = .signedIn
 
             guard appState == .signedIn, let deepLink else { return }
 

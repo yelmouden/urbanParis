@@ -9,6 +9,7 @@ import AuthenticationManager
 import Foundation
 import Dependencies
 import SharedResources
+import Supabase
 //import TrackingManager
 import Utils
 
@@ -32,12 +33,21 @@ public final class SignUpViewModel {
         do {
             signUpState = .loading
             try await manager.createUser(email: email, password: password)
-            //tracking.trackEvent(event: .signUp, parameters: [:])
-            try Task.checkCancellation()
         } catch {
-            if !(error is CancellationError) {
-                signUpState = .idle
+            if let authError = error as? AuthError {
                 showError = true
+                signUpState = .idle
+
+                switch authError {
+                case .api(let error) where error.code == 422:
+                    errorText = "email déjà utilisé"
+                default:
+                    errorText = SharedResources.commonErrorText
+                }
+            } else if !(error is CancellationError) {
+                showError = true
+                signUpState = .idle
+
                 errorText = SharedResources.commonErrorText
             }
         }

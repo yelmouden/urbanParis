@@ -180,6 +180,28 @@ public struct EditProfileView: View, KeyboardReadable {
 
                             }
                         }
+
+                        if !viewModel.isCreation && !isEditing {
+                            HStack {
+                                Button {
+                                    navigator.push(.myTravels(.init(onClose: { [navigator] in
+                                        navigator.goBack()
+                                    })))
+                                } label: {
+                                    HStack {
+                                        Text("Voir mes déplacements de la saison")
+                                            .font(DSFont.grafHeadline)
+                                            .foregroundStyle(DSColors.white.swiftUIColor)
+
+                                        Spacer()
+
+                                        Image(systemName: "chevron.right")
+                                            .foregroundStyle(DSColors.red.swiftUIColor)
+                                    }
+
+                                }
+                            }
+                        }
                     }
                 }
                 .zIndex(2)
