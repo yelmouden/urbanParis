@@ -21,6 +21,9 @@ final class TravelMatchViewModel: Equatable {
     @Dependency(\.cotisationsRepository) var cotisationsRepository
 
     @ObservationIgnored
+    @Dependency(\.matosRepository) var matosRepository
+
+    @ObservationIgnored
     @Dependency(\.travelMatchesRepository) var travelsRepository
 
     var state: StateView<EmptyResource> = .loading
@@ -31,6 +34,11 @@ final class TravelMatchViewModel: Equatable {
 
     var showError = false
     var showAlertCotisation = false
+    var showAlertMatos = false
+
+    var isActive: Bool {
+        travel.googleDoc != nil || travel.telegram != nil
+    }
 
     init(travel: Travel, idSeason: Int) {
         self.travel = travel
@@ -38,6 +46,10 @@ final class TravelMatchViewModel: Equatable {
     }
 
     func checkAlreadySubscribe() async {
+        guard isActive else {
+            return
+        }
+
         do {
             travel.hasSubscribed = try await travelsRepository.checkAlreadySubscribe(travel.id, idSeason)
             state = .idle
@@ -53,25 +65,27 @@ final class TravelMatchViewModel: Equatable {
                 state = .loading
             }
 
-            guard let date = travel.date else { return }
+            // verification si le paiement du matos est à jour
 
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let isUpToDateMatosPayment = try await matosRepository.isUpToDate()
 
-            guard let date = dateFormatter.date(from: date) else { return }
+            try Task.checkCancellation()
+            guard isUpToDateMatosPayment else {
+                await MainActor.run { [self] in
+                    showAlertMatos = true
+                    state = .idle
+                }
 
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.month], from: date)
-            let month = components.month
+                return
+            }
 
-            let cotisations = try await cotisationsRepository.retrieveCotisations()
+            let isUpToDateCotisationPayment = try await cotisationsRepository.isUpToDate()
 
             try Task.checkCancellation()
 
-            let isUpToDate = cotisations.first?.amount == 0
-
-            if isUpToDate {
+            if isUpToDateCotisationPayment {
                 try await travelsRepository.subscribeToTravel(travel.id, idSeason)
+
                 try Task.checkCancellation()
 
                 await MainActor.run { [self] in

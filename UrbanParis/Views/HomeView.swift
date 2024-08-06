@@ -2,6 +2,7 @@ import CotisationsFeature
 import DesignSystem
 import ProfileFeature
 import PDFFeature
+import MatosFeature
 import SettingsFeature
 import SwiftUI
 import TravelMatchesFeature
@@ -28,17 +29,20 @@ struct HomeView : View {
                     TravelMatchesCoordinator(showMenu: $show)
                         .transition(.opacity)
                 } else if index == 2 {
+                    MatosCoordinator(showMenu: $show)
+                        .transition(.opacity)
+                } else if index == 3 {
                     ProfileCoordinator(showMenu: $show, getMyTravels: {
                         AnyView(MyTravelsView(interModuleAction: $0))
                     })
                         .transition(.opacity)
-                } else if index == 3 {
+                } else if index == 4 {
                     PDFCoordinator(showMenu: $show, docType: .chart)
                         .transition(.opacity)
-                } else if index == 4 {
+                } else if index == 5 {
                     PDFCoordinator(showMenu: $show, docType: .organigrame)
                         .transition(.opacity)
-                } else if index == 5 {
+                } else if index == 6 {
                     SettingsCoordinator(showMenu: $show)
                         .transition(.opacity)
                 }

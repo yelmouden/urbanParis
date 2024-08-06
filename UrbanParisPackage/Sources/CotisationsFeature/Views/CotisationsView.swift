@@ -107,7 +107,13 @@ struct CotisationsView: View {
 
                         },
                         emptyView: {
-                            EmptyView()
+                            ZStack {
+                                Spacer().containerRelativeFrame([.vertical])
+                                Text("Pas de cotisations pour le moment")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
+                                    .font(DSFont.robotoTitle)
+                                    .multilineTextAlignment(.center)
+                            }
                         }
                     )
                 }

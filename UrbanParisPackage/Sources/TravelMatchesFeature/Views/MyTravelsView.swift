@@ -131,7 +131,7 @@ public struct MyTravelsView: View {
             }
         }
         .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
-        .navigationTitle("Mes déplacements")
+        .navigationTitle("Mes deplacements")
     }
 }
 

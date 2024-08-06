@@ -17,12 +17,12 @@ public extension UINavigationBar {
 
         appearance.titleTextAttributes = [
             .foregroundColor: DSColors.white.color,
-            NSAttributedString.Key.font: FontFamily.DonGraffiti.regular.font(size: 32)
+            NSAttributedString.Key.font: FontFamily.Dreamlands.regular.font(size: 25)
         ]
 
         appearance.largeTitleTextAttributes = [
             .foregroundColor: DSColors.white.color,
-            NSAttributedString.Key.font: FontFamily.DonGraffiti.regular.font(size: 42)
+            NSAttributedString.Key.font: FontFamily.Dreamlands.regular.font(size: 35)
         ]
 
         //UINavigationBar.appearance().standardAppearance = appearance

@@ -73,7 +73,7 @@ struct MenuView: View {
                                 index = 1
                                 showMenu = false
                             } label: {
-                                Text("Déplacements")
+                                Text("Deplacements")
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 1 ?  1 : 0.3)
@@ -84,19 +84,18 @@ struct MenuView: View {
                                 index = 2
                                 showMenu = false
                             } label: {
-                                Text("Mon profil")
+                                Text("Matos")
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 2 ?  1 : 0.3)
                             }
                             .buttonStyle(.plain)
 
-
                             Button {
                                 index = 3
                                 showMenu = false
                             } label: {
-                                Text(DocType.chart.title)
+                                Text("Mon profil")
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 3 ?  1 : 0.3)
@@ -108,21 +107,33 @@ struct MenuView: View {
                                 index = 4
                                 showMenu = false
                             } label: {
-                                Text(DocType.organigrame.title)
+                                Text(DocType.chart.title)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 4 ?  1 : 0.3)
                             }
                             .buttonStyle(.plain)
 
+
                             Button {
                                 index = 5
                                 showMenu = false
                             } label: {
-                                Text("Paramètres")
+                                Text(DocType.organigrame.title)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 5 ?  1 : 0.3)
+                            }
+                            .buttonStyle(.plain)
+
+                            Button {
+                                index = 6
+                                showMenu = false
+                            } label: {
+                                Text("Parametres")
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
+                                    .font(DSFont.grafTitle3)
+                                    .opacity(index == 6 ?  1 : 0.3)
                             }
                             .buttonStyle(.plain)
                         }

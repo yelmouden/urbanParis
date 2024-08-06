@@ -93,7 +93,7 @@ struct TravelMatchesView: View {
                 }
             }
         }
-        .navigationTitle("Déplacements")
+        .navigationTitle("Deplacements")
         .onAppear {
             self.task = Task {
                await viewModel.retrieveSeasons()

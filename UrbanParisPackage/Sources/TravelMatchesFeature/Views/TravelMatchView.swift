@@ -53,7 +53,7 @@ struct TravelMatchView: View {
                                 if let googleDoc = travelVM.travel.googleDoc {
                                     VStack {
                                         HStack {
-                                            Text("listing déplacement")
+                                            Text("listing deplacement")
                                                 .font(DSFont.grafHeadline)
                                                 .underline()
                                                 .foregroundStyle(DSColors.white.swiftUIColor)
@@ -61,12 +61,12 @@ struct TravelMatchView: View {
                                         }
                                         .padding(.bottom, Margins.mediumSmall)
 
-                                        Button(googleDoc) {
+                                        FWButton(title: "Lien listing") {
                                             if let url = URL(string: googleDoc) {
                                                 navigator.presentSheet(.link(url))
                                             }
                                         }
-                                        .foregroundStyle(DSColors.red.swiftUIColor)
+                                        .fwButtonStyle(.primary)
                                     }
                                     .padding(.bottom, Margins.large)
 
@@ -75,20 +75,19 @@ struct TravelMatchView: View {
                                 if let telegram = travelVM.travel.telegram {
                                     VStack {
                                         HStack {
-                                            Text("Page du déplacement")
+                                            Text("Page du deplacement")
                                                 .font(DSFont.grafHeadline)
-                                                .underline()
                                                 .foregroundStyle(DSColors.white.swiftUIColor)
                                             Spacer()
                                         }
                                         .padding(.bottom, Margins.mediumSmall)
 
-                                        Button(telegram) {
+                                        FWButton(title: "Lien Télégram") {
                                             if let url = URL(string: telegram) {
                                                 navigator.presentSheet(.link(url))
                                             }
                                         }
-                                        .foregroundStyle(DSColors.red.swiftUIColor)
+                                        .fwButtonStyle(.primary)
                                     }
                                 }
                             }
@@ -99,7 +98,7 @@ struct TravelMatchView: View {
 
                 Spacer()
 
-                if !travelVM.travel.hasSubscribed {
+                if !travelVM.travel.hasSubscribed, travelVM.isActive {
                     FWButton(title: "Accéder au listing", state: travelVM.state.toFWButtonState()) {
                         task = Task {
                             await travelVM.checkIsUpToDateContribution()
@@ -156,6 +155,25 @@ struct TravelMatchView: View {
 
             }
         })
+        .onChange(of: travelVM.showAlertMatos, { _, newValue in
+
+            if newValue {
+                PopupManager.shared.showPopup(item: .alert( .init(
+                    title: "Matos",
+                    description: "Tu n'es pas à jour dans le paiement de ton matos.\nPour accéder au listing, mets toi à jour.",
+                    primaryButtonItem: .init(
+                        title: "ok",
+                        onDismiss: {
+                            travelVM.showAlertMatos = false
+                        },
+                        isDestructive: true
+                    ),
+                    secondaryButtonItem: nil
+                    )
+                ))
+
+            }
+        })
         .showBanner($travelVM.showError, text: SharedResources.commonErrorText, type: .error)
 
     }
@@ -163,9 +181,8 @@ struct TravelMatchView: View {
     func getTravelInfo() -> some View {
         VStack {
             HStack {
-                Text("Infos déplacement")
+                Text("Infos deplacement")
                     .font(DSFont.grafHeadline)
-                    .underline()
                     .foregroundStyle(DSColors.white.swiftUIColor)
                 Spacer()
             }
@@ -174,7 +191,6 @@ struct TravelMatchView: View {
             HStack {
                 Text("Heure du rendez-vous :")
                     .font(DSFont.robotoBody)
-                    .underline()
                     .foregroundStyle(DSColors.white.swiftUIColor)
                 Spacer()
                 if let appointmentTime = travelVM.travel.appointmentTime  {
@@ -192,7 +208,6 @@ struct TravelMatchView: View {
             HStack {
                 Text("Heure de départ :")
                     .font(DSFont.robotoBody)
-                    .underline()
                     .foregroundStyle(DSColors.white.swiftUIColor)
                 Spacer()
 
@@ -212,7 +227,6 @@ struct TravelMatchView: View {
             HStack {
                 Text("Prix du bus :")
                     .font(DSFont.robotoBody)
-                    .underline()
                     .foregroundStyle(DSColors.white.swiftUIColor)
                 Spacer()
 
@@ -233,7 +247,6 @@ struct TravelMatchView: View {
                 HStack {
                     Text(descriptionTravel)
                         .font(DSFont.robotoBody)
-                        .underline()
                         .foregroundStyle(DSColors.white.swiftUIColor)
                     Spacer()
                 }
@@ -247,7 +260,6 @@ struct TravelMatchView: View {
             HStack {
                 Text("Infos Buvette")
                     .font(DSFont.grafHeadline)
-                    .underline()
                     .foregroundStyle(DSColors.white.swiftUIColor)
                 Spacer()
             }
@@ -257,7 +269,6 @@ struct TravelMatchView: View {
                 HStack {
                     Text(descriptionBar)
                         .font(DSFont.robotoBody)
-                        .underline()
                         .foregroundStyle(DSColors.white.swiftUIColor)
                     Spacer()
                 }
@@ -275,7 +286,6 @@ struct TravelMatchView: View {
             HStack {
                 Text("Compte-Rendu")
                     .font(DSFont.grafHeadline)
-                    .underline()
                     .foregroundStyle(DSColors.white.swiftUIColor)
                 Spacer()
             }
@@ -285,7 +295,6 @@ struct TravelMatchView: View {
                 HStack {
                     Text(report)
                         .font(DSFont.robotoBody)
-                        .underline()
                         .foregroundStyle(DSColors.white.swiftUIColor)
                     Spacer()
                 }
@@ -294,7 +303,6 @@ struct TravelMatchView: View {
                 HStack {
                     Text("Pas de compte rendu du match")
                         .font(DSFont.robotoBody)
-                        .underline()
                         .foregroundStyle(DSColors.white.swiftUIColor)
                 }
                 .padding(.bottom, Margins.mediumSmall)

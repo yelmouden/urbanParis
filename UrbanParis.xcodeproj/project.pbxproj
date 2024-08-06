@@ -31,9 +31,8 @@
 		DC61D1F02C50583D0047136F /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC61D1EF2C50583D0047136F /* SettingsFeature */; };
 		DC6FD5BB2C5AA8D400536C19 /* AuthenticationManager in Frameworks */ = {isa = PBXBuildFile; productRef = DC6FD5BA2C5AA8D400536C19 /* AuthenticationManager */; };
 		DC6FD5BD2C5AAFC100536C19 /* UserLockedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FD5BC2C5AAFC100536C19 /* UserLockedView.swift */; };
-		DC6FD5C02C5AB0C900536C19 /* blessure.pdf in Resources */ = {isa = PBXBuildFile; fileRef = DC6FD5BF2C5AB0C900536C19 /* blessure.pdf */; };
-		DC6FD5C22C5AB1AA00536C19 /* tacle.pdf in Resources */ = {isa = PBXBuildFile; fileRef = DC6FD5C12C5AB1AA00536C19 /* tacle.pdf */; };
 		DC6FD5C42C5AB26100536C19 /* apoula.pdf in Resources */ = {isa = PBXBuildFile; fileRef = DC6FD5C32C5AB26100536C19 /* apoula.pdf */; };
+		DC6FD5FC2C60FF4400536C19 /* MatosFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC6FD5FB2C60FF4400536C19 /* MatosFeature */; };
 		DC760BE22C4B222C0008990B /* UrbanParisPackage in Resources */ = {isa = PBXBuildFile; fileRef = DC760BE12C4B222C0008990B /* UrbanParisPackage */; };
 		DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7914FB2C4EB012005A3244 /* ProfileFeature */; };
 		DC7F514C2C52ABA600C6D4BE /* CotisationsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */; };
@@ -64,8 +63,6 @@
 		DC5413192C53041400BF0010 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		DC61D1EA2C5023C40047136F /* SplashscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenView.swift; sourceTree = "<group>"; };
 		DC6FD5BC2C5AAFC100536C19 /* UserLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLockedView.swift; sourceTree = "<group>"; };
-		DC6FD5BF2C5AB0C900536C19 /* blessure.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = blessure.pdf; sourceTree = "<group>"; };
-		DC6FD5C12C5AB1AA00536C19 /* tacle.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = tacle.pdf; sourceTree = "<group>"; };
 		DC6FD5C32C5AB26100536C19 /* apoula.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = apoula.pdf; sourceTree = "<group>"; };
 		DC760BE12C4B222C0008990B /* UrbanParisPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UrbanParisPackage; sourceTree = "<group>"; };
 		DCA8975B2C4EDECE00788FC6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -92,6 +89,7 @@
 				DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */,
 				DC12B89C2C50627100F3FF93 /* PDFFeature in Frameworks */,
 				DC0015ED2C4FD55200416056 /* Lottie in Frameworks */,
+				DC6FD5FC2C60FF4400536C19 /* MatosFeature in Frameworks */,
 				DC6FD5BB2C5AA8D400536C19 /* AuthenticationManager in Frameworks */,
 				DCB623642C56E62000EA13F7 /* DeepLinkManager in Frameworks */,
 				DC61D1EE2C50248F0047136F /* AnimateText in Frameworks */,
@@ -166,9 +164,7 @@
 		DC6FD5BE2C5AB0C000536C19 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DC6FD5C12C5AB1AA00536C19 /* tacle.pdf */,
 				DC6FD5C32C5AB26100536C19 /* apoula.pdf */,
-				DC6FD5BF2C5AB0C900536C19 /* blessure.pdf */,
 				DCD8AEA22C47E91E0070B0D1 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -260,6 +256,7 @@
 				DC54131B2C53E93600BF0010 /* TravelMatchesFeature */,
 				DCB623632C56E62000EA13F7 /* DeepLinkManager */,
 				DC6FD5BA2C5AA8D400536C19 /* AuthenticationManager */,
+				DC6FD5FB2C60FF4400536C19 /* MatosFeature */,
 			);
 			productName = UrbanParis;
 			productReference = DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */;
@@ -307,7 +304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6FD5C22C5AB1AA00536C19 /* tacle.pdf in Resources */,
 				DC4E65922C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard in Resources */,
 				DC12B8A02C506B4500F3FF93 /* fumiRedAnimation.json in Resources */,
 				DC4E65802C49834300B08F1A /* LaunchScreenUrban.storyboard in Resources */,
@@ -319,7 +315,6 @@
 				DC0015F92C50118D00416056 /* urban-debug.xcconfig in Resources */,
 				DCD8AEA32C47E91E0070B0D1 /* Assets.xcassets in Resources */,
 				DC0015E72C4FD41100416056 /* fumiBlueAnimation.json in Resources */,
-				DC6FD5C02C5AB0C900536C19 /* blessure.pdf in Resources */,
 				DC0015F82C50118A00416056 /* urban.xcconfig in Resources */,
 				DC0015FA2C50118F00416056 /* nonUrban.xcconfig in Resources */,
 			);
@@ -944,6 +939,10 @@
 		DC6FD5BA2C5AA8D400536C19 /* AuthenticationManager */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AuthenticationManager;
+		};
+		DC6FD5FB2C60FF4400536C19 /* MatosFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MatosFeature;
 		};
 		DC7914FB2C4EB012005A3244 /* ProfileFeature */ = {
 			isa = XCSwiftPackageProductDependency;

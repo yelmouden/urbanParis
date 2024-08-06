@@ -121,7 +121,7 @@ struct SettingsView: View {
 
             }
         }
-        .navigationTitle("Paramètres")
+        .navigationTitle("Parametres")
         .showBanner($viewModel.hasError, text: viewModel.errorText, type: .error)
     }
 

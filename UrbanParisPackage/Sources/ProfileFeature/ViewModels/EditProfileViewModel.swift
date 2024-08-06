@@ -76,7 +76,7 @@ public class EditProfileViewModel {
                 state = .idle
                 showError = true
 
-                if let postgrestError = error as? PostgrestError, postgrestError.code == "23505" {
+                if let postgrestError = error as? PostgrestError, postgrestError.code == "23505", !postgrestError.message.contains("matos_users_pkey") {
                     errorText = "Surnom déjà utilisé"
                 } else {
                     errorText = SharedResources.commonErrorText

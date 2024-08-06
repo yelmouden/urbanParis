@@ -47,7 +47,7 @@ extension TravelMatchesRepository: DependencyKey {
 
             return travels
         },
-        subscribeToTravel: { idTravel, idSeason in
+              subscribeToTravel: { idTravel, idSeason in
             let travelUser = TravelUser(idTravel: idTravel, idSeason: idSeason)
 
             try await Database.shared.client
@@ -55,24 +55,24 @@ extension TravelMatchesRepository: DependencyKey {
                 .insert(travelUser)
                 .execute()
         },
-        checkAlreadySubscribe: { idTravel, idSeason in
-                  guard let id = Database.shared.client.auth.currentUser?.id else {
-                      throw DatabaseClientError.notFoundId
-                  }
+              checkAlreadySubscribe: { idTravel, idSeason in
+            guard let id = Database.shared.client.auth.currentUser?.id else {
+                throw DatabaseClientError.notFoundId
+            }
 
             let result: Int? = try await Database.shared.client
-                      .from(Database.Table.travels_users.rawValue)
-                      .select("id", head: true, count: .exact)
-                      .eq("idTravel", value: idTravel)
-                      .eq("idUser", value: id)
-                      .eq("idSeason", value: idSeason)
-                      .execute()
-                      .count
+                .from(Database.Table.travels_users.rawValue)
+                .select("id", head: true, count: .exact)
+                .eq("idTravel", value: idTravel)
+                .eq("idUser", value: id)
+                .eq("idSeason", value: idSeason)
+                .execute()
+                .count
 
             guard let result else { return false }
             return result != 0
         },
-        retrieveMyTravels: { idSeason in
+              retrieveMyTravels: { idSeason in
             let travels: [Travel] = try await Database.shared.client
                 .from(Database.Table.travels.rawValue)
                 .select("id, date, team(id, name, logo), travels_users!inner(idSeason)")

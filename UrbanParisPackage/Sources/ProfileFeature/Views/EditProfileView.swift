@@ -31,7 +31,7 @@ public struct EditProfileView: View, KeyboardReadable {
                     VStack(spacing: isEditing ? Margins.medium: Margins.extraLarge) {
                         if viewModel.isCreation || isEditing {
                             FWTextField(
-                                title: "Ton prénom",
+                                title: "Ton prenom",
                                 placeholder: "Saissi ton prénom",
                                 text: $viewModel.profile.firstname
                             )
@@ -40,7 +40,7 @@ public struct EditProfileView: View, KeyboardReadable {
                             .padding(.top, Margins.medium)
                         } else {
                             HStack {
-                                Text("Mon Prénom:")
+                                Text("Mon Prenom:")
                                     .font(DSFont.grafHeadline)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
 
@@ -104,7 +104,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                             HStack {
                                 VStack {
-                                    Text("Ton année d'entrée dans le groupe")
+                                    Text("Ton annee d'entree dans le groupe")
                                         .font(DSFont.grafHeadline)
                                         .foregroundStyle(DSColors.white.swiftUIColor)
                                 }
@@ -145,7 +145,7 @@ public struct EditProfileView: View, KeyboardReadable {
                         } else {
                             
                             HStack {
-                                Text("Mon année d'entrée dans le groupe:")
+                                Text("Mon annee d'entree dans le groupe:")
                                     .font(DSFont.grafHeadline)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
 
@@ -189,7 +189,7 @@ public struct EditProfileView: View, KeyboardReadable {
                                     })))
                                 } label: {
                                     HStack {
-                                        Text("Voir mes déplacements de la saison")
+                                        Text("Voir mes deplacements de la saison")
                                             .font(DSFont.grafHeadline)
                                             .foregroundStyle(DSColors.white.swiftUIColor)
 
@@ -255,7 +255,7 @@ public struct EditProfileView: View, KeyboardReadable {
         .animation(.smooth, value: isEditing)
         .interactiveDismissDisabled()
         .navigationBarTitleDisplayMode(.large)
-        .navigationTitle(viewModel.isCreation ? "Créer ton profil": "Mon profil")
+        .navigationTitle(viewModel.isCreation ? "Creer ton profil": "Mon profil")
         .showBanner($viewModel.showError, text: viewModel.errorText, type: .error)
     }
 }

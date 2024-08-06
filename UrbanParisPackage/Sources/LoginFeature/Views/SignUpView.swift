@@ -88,7 +88,7 @@ public struct SignUpView: View, KeyboardReadable {
         }
         .showBanner($viewModel.showError, text: viewModel.errorText, type: .error)
         .navigationBarTitleDisplayMode(.large)
-        .navigationTitle("Créer un compte")
+        .navigationTitle("Creer un compte")
     }
 }
 

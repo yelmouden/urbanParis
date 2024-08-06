@@ -36,7 +36,14 @@
 		<string>readdle-spark</string>
 		<string>ymail</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>PROJECT_URL</key>
 	<string>$(PROJECT_URL)</string>
+	<key>TIMEZONE_DB_API_KEY</key>
+	<string>$(TIMEZONE_DB_API_KEY)</string>
 </dict>
 </plist>

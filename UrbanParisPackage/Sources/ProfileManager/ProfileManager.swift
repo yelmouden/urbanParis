@@ -48,7 +48,7 @@ extension ProfileManager: DependencyKey {
         return .init(
             createProfile: { profile in
                 let createdProfile: Profile = try await Database.shared.client.from(Database.Table.profiles.rawValue)
-                   .insert(profile)
+                   .upsert(profile)
                    .select()
                    .single()
                    .execute()

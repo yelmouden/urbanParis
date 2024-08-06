@@ -11,6 +11,7 @@ import Utils
 
 public enum DatabaseClientError: Error {
     case notFoundId
+    case valueNotFound
 }
 
 final public class Database {
@@ -38,11 +39,14 @@ public extension Database {
         case travels
         case responses
         case travels_users
+        case matos
+        case matos_users
     }
 
     enum Storage: String {
         // swiftlint:disable identifier_name
         case logos
+        case matos
     }
 }
 

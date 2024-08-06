@@ -25,6 +25,7 @@ final class TravelMatchesViewModel {
 
     func retrieveSeasons() async {
         do {
+            try await Task.sleep(for: .milliseconds(200))
             let seasons = try await repository.retrieveSeasons()
 
             try Task.checkCancellation()

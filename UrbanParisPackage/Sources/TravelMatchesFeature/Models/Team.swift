@@ -21,7 +21,7 @@ extension Team {
 
         guard let data = try? await Database.shared.client.storage
             .from(Database.Storage.logos.rawValue)
-            .download(path: "img/\(logo).png")
+            .download(path: "img/\(logo)")
         else { return nil }
 
         return UIImage(data: data)
