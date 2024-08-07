@@ -36,8 +36,16 @@ final class TravelMatchViewModel: Equatable {
     var showAlertCotisation = false
     var showAlertMatos = false
 
+    var isPast: Bool {
+        let currentDate = Date.currentDate
+
+        guard let currentDate, let dateString = travel.date, let dateMatch = Date.fromString(dateString) else { return false }
+
+        return currentDate > dateMatch
+    }
+
     var isActive: Bool {
-        travel.googleDoc != nil || travel.telegram != nil
+        (travel.googleDoc != nil && travel.googleDoc?.isEmpty == false) || (travel.telegram != nil && travel.telegram?.isEmpty == false)
     }
 
     init(travel: Travel, idSeason: Int) {
@@ -46,7 +54,7 @@ final class TravelMatchViewModel: Equatable {
     }
 
     func checkAlreadySubscribe() async {
-        guard isActive else {
+        guard isActive, !isPast else {
             return
         }
 

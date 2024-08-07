@@ -23,12 +23,16 @@ final class TravelMatchesViewModel {
 
     var showError = false
 
+    var currentIndex = 0
+
     func retrieveSeasons() async {
         do {
             try await Task.sleep(for: .milliseconds(200))
             let seasons = try await repository.retrieveSeasons()
 
             try Task.checkCancellation()
+
+            
 
             stateSeasonsView = .loaded(seasons)
             self.selectedSeason = seasons.last
@@ -45,12 +49,34 @@ final class TravelMatchesViewModel {
                 let travels = try await repository.retrieveTravels(id)
 
                 try Task.checkCancellation()
-                
+
+                let currentDate = Date.currentDate
+
+                if let currentDate {
+                    let index = travels.firstIndex(where: {
+                        guard let date = $0.date,
+                              let dateMatch = Date.fromString(date)
+                        else { return false }
+
+                        return currentDate <= dateMatch
+
+                    })
+
+                    if let index {
+                        self.currentIndex = index
+                    } else {
+                        self.currentIndex = travels.count - 1
+                    }
+                }
+
+
                 let travelsVM: [TravelMatchViewModel] = travels.map {
                     .init(travel: $0, idSeason: id)
                 }
 
                 stateTravelsView = .loaded(travelsVM)
+
+
             }
         } catch {
             if !(error is CancellationError) {

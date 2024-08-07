@@ -46,7 +46,7 @@ struct TravelMatchesView: View {
                 .transition(.opacity)
 
             case .loaded(let items):
-                ACarousel(items, id: \.travel.id, sidesScaling: 0.85) { travelVM in
+                ACarousel(items, id: \.travel.id, index: $viewModel.currentIndex, sidesScaling: 0.85) { travelVM in
                     TravelMatchView(travelVM: travelVM)
                 }
                 .transition(.opacity)

@@ -43,8 +43,9 @@ final class MyTravelsViewModel {
             guard let selectedSeason else { return }
 
             let items = try await repository.retrieveMyTravels(selectedSeason.id)
-            
+
             self.stateTravels = items.isEmpty ? .empty : .loaded(items)
+
         } catch {
             if !(error is CancellationError) {
                 showError = true

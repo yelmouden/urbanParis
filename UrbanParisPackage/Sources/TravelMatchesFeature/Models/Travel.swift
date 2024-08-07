@@ -19,6 +19,7 @@ struct Travel: Identifiable, Equatable, Codable {
     let report: String?
     let googleDoc: String?
     let telegram: String?
+    let priceMatch: Float?
     let team: Team
     let pool: Pool?
     var hasSubscribed: Bool = false
@@ -37,6 +38,8 @@ struct Travel: Identifiable, Equatable, Codable {
         team = try container.decode(Team.self, forKey: .team)
         googleDoc = try container.decodeIfPresent(String.self, forKey: .googleDoc)
         telegram = try container.decodeIfPresent(String.self, forKey: .telegram)
+        priceMatch = try container.decodeIfPresent(Float.self, forKey: .priceMatch)
+
         pool = try container.decodeIfPresent(Pool.self, forKey: .pool)
 
         // Transformer la chaîne de caractères en Date

@@ -39,14 +39,16 @@ struct TravelMatchView: View {
                                 .padding(.bottom, Margins.large)
                         }
 
-                        getTravelInfo()
-                            .padding(.bottom, Margins.large)
+                        if travelVM.isPast {
+                            getReport()
+                                .padding(.bottom, Margins.large)
+                        } else {
+                            getTravelInfo()
+                                .padding(.bottom, Margins.large)
 
-                        getBarInfo()
-                            .padding(.bottom, Margins.large)
-
-                        getReport()
-                            .padding(.bottom, Margins.large)
+                            getBarInfo()
+                                .padding(.bottom, Margins.large)
+                        }
 
                         if travelVM.travel.hasSubscribed {
                             VStack {
@@ -55,7 +57,6 @@ struct TravelMatchView: View {
                                         HStack {
                                             Text("listing deplacement")
                                                 .font(DSFont.grafHeadline)
-                                                .underline()
                                                 .foregroundStyle(DSColors.white.swiftUIColor)
                                             Spacer()
                                         }
@@ -225,6 +226,25 @@ struct TravelMatchView: View {
             .padding(.bottom, Margins.mediumSmall)
 
             HStack {
+                Text("Prix de la place :")
+                    .font(DSFont.robotoBody)
+                    .foregroundStyle(DSColors.white.swiftUIColor)
+                Spacer()
+
+                if let price = travelVM.travel.priceMatch  {
+                    Text(price.amountText)
+                        .font(DSFont.robotoBodyBold)
+                        .foregroundStyle(DSColors.white.swiftUIColor)
+                } else {
+                    Text("N.C.")
+                        .font(DSFont.robotoBodyBold)
+                        .foregroundStyle(DSColors.white.swiftUIColor)
+                }
+
+            }
+            .padding(.bottom, Margins.mediumSmall)
+
+            HStack {
                 Text("Prix du bus :")
                     .font(DSFont.robotoBody)
                     .foregroundStyle(DSColors.white.swiftUIColor)
@@ -275,7 +295,7 @@ struct TravelMatchView: View {
                 .padding(.bottom, Margins.mediumSmall)
             }
 
-            if let pool = travelVM.travel.pool {
+            if let pool = travelVM.travel.pool, pool.isActive {
                 PoolView(pool: pool)
             }
         }

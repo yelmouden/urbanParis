@@ -14,7 +14,8 @@ struct Pool: Equatable, Codable {
     let proposals: [Proposal]
     var responses: [Response]
     let isMultipleChoices: Bool
-    
+    let isActive: Bool
+
 
     enum CodingKeys: CodingKey {
         case id
@@ -23,6 +24,7 @@ struct Pool: Equatable, Codable {
         case responses
         case isMultipleChoices
         case proposals
+        case isActive
     }
     
     init(from decoder: Decoder) throws {
@@ -34,6 +36,7 @@ struct Pool: Equatable, Codable {
         self.responses = try container.decode([Response].self, forKey: Pool.CodingKeys.responses)
         self.proposals = try container.decode([Proposal].self, forKey: Pool.CodingKeys.proposals)
         self.isMultipleChoices = try container.decode(Bool.self, forKey: Pool.CodingKeys.isMultipleChoices)
+        self.isActive = try container.decode(Bool.self, forKey: Pool.CodingKeys.isActive)
 
         if let date {
             let dateFormatter = DateFormatter()

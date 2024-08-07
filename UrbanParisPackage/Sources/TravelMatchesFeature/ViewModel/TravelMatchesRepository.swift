@@ -36,10 +36,10 @@ extension TravelMatchesRepository: DependencyKey {
 
             return seasons
         },
-              retrieveTravels: { idSeason in
+        retrieveTravels: { idSeason in
             let travels: [Travel] = try await Database.shared.client
                 .from(Database.Table.travels.rawValue)
-                .select("id, date, appointmentTime, departureTime, price, descriptionTravel, descriptionBar, report, timeMatch, googleDoc, telegram, team(id, name, logo), travels_seasons!inner(idSeason), pool(id,title, limitDate, isMultipleChoices, proposals!proposals_idPool_fkey(id, title), responses!responses_idPool_fkey(idProposal, idProfile, idPool))")
+                .select("id, date, appointmentTime, departureTime, price, descriptionTravel, descriptionBar, report, priceMatch, timeMatch, googleDoc, telegram, team(id, name, logo), travels_seasons!inner(idSeason), pool(id,title, limitDate, isMultipleChoices, isActive, proposals!proposals_idPool_fkey(id, title), responses!responses_idPool_fkey(idProposal, idProfile, idPool))")
                 .eq("travels_seasons.idSeason", value: idSeason)
                 .order("numMatch")
                 .execute()
@@ -72,14 +72,18 @@ extension TravelMatchesRepository: DependencyKey {
             guard let result else { return false }
             return result != 0
         },
-              retrieveMyTravels: { idSeason in
+        retrieveMyTravels: { idSeason in
+            guard let id = Database.shared.client.auth.currentUser?.id else {
+                throw DatabaseClientError.notFoundId
+            }
+
             let travels: [Travel] = try await Database.shared.client
                 .from(Database.Table.travels.rawValue)
                 .select("id, date, team(id, name, logo), travels_users!inner(idSeason)")
                 .eq("travels_users.idSeason", value: idSeason)
                 .eq("travels_users.isValidate", value: true)
+                .eq("travels_users.idUser", value: id)
                 .order("numMatch")
-
                 .execute()
                 .value
 
