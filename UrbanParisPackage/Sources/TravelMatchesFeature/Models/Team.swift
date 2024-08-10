@@ -16,14 +16,13 @@ struct Team: Identifiable, Equatable, Codable {
 }
 
 extension Team {
-    func retrieveIcon() async -> UIImage? {
+    func retrieveURLIcon() async -> URL? {
         guard let logo = logo else { return nil }
 
-        guard let data = try? await Database.shared.client.storage
+        let url = try? await Database.shared.client.storage
             .from(Database.Storage.logos.rawValue)
-            .download(path: "img/\(logo)")
-        else { return nil }
+            .createSignedURL(path: "img/\(logo)", expiresIn: 60)
 
-        return UIImage(data: data)
+        return url
     }
 }

@@ -12,6 +12,29 @@ import Utils
 
 public enum TravelMatchesScreen: Equatable, Hashable {
     case link(URL)
+    case register(travel: Travel, idSeason: Int, onSubscribeSucceeded: (() -> Void))
+
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .link:
+            hasher.combine(1)
+        case .register:
+            hasher.combine(2)
+        }
+    }
+
+    public static func == (lhs: TravelMatchesScreen, rhs: TravelMatchesScreen) -> Bool {
+            switch (lhs, rhs) {
+            case (.link(let url1), .link(let url2)):
+                return url1 == url2
+
+            case (.register(let travel1, let idSeason1, _), .register(let travel2, let idSeason2, _)):
+                return travel1 == travel2 && idSeason1 == idSeason2
+
+            default:
+                return false
+            }
+        }
 }
 
 @MainActor
@@ -33,6 +56,8 @@ public struct TravelMatchesCoordinator: View {
                     switch screen {
                     case .link(let url):
                         SafariWebView(url: url)
+                    case .register(let travel, let idSeason, let onSubscribeSucceeded):
+                        TravelMatchFormView(viewModel: .init(travel: travel, idSeason: idSeason), onSubscribeSucceeded: onSubscribeSucceeded)
                     }
                 }
         }

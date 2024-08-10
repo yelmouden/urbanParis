@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Travel: Identifiable, Equatable, Codable {
-    let id: Int
+public struct Travel: Identifiable, Equatable, Codable {
+    public let id: Int
     let date: String?
     let appointmentTime: String?
     let departureTime: String?
@@ -24,7 +24,7 @@ struct Travel: Identifiable, Equatable, Codable {
     let pool: Pool?
     var hasSubscribed: Bool = false
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try container.decode(Int.self, forKey: .id)

@@ -47,6 +47,7 @@ public extension Database {
         // swiftlint:disable identifier_name
         case logos
         case matos
+        case profiles
     }
 }
 

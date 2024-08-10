@@ -6,20 +6,28 @@
 //
 
 import DesignSystem
+import SDWebImageSwiftUI
 import SwiftUI
 
 struct MyTravelView: View {
-    @State var image: UIImage?
+    @State var url: URL?
 
     let travel: Travel
 
     var body: some View {
         HStack {
-            if let image {
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 34, height: 34)
-                    .padding([.leading, .trailing], Margins.small)
+            if let url {
+                WebImage(url: url) { image in
+                    image
+                        .resizable()
+                        .frame(width: 34, height: 34)
+                        .scaledToFit()
+                } placeholder: {
+                    Assets.fanion.swiftUIImage
+                        .resizable()
+                        .frame(width: 34, height: 34)
+                }
+                .padding([.leading, .trailing], Margins.small)
 
             } else {
                 Assets.fanion.swiftUIImage
@@ -42,7 +50,7 @@ struct MyTravelView: View {
 
         }
         .task {
-            self.image = await travel.team.retrieveIcon()
+            self.url = await travel.team.retrieveURLIcon()
         }
     }
 }

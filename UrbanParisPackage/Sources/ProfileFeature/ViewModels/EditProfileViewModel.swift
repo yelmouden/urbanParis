@@ -12,6 +12,7 @@ import ProfileManager
 import SharedResources
 import Supabase
 import Observation
+import UIKit
 import Utils
 
 @Observable
@@ -21,6 +22,7 @@ public class EditProfileViewModel {
     @ObservationIgnored
     @Dependency(\.profileManager) var profileManager
 
+    var stateURLImageProfile: StateView<URL?> = .idle
     var profile: Profile!
 
     var cancellables = Set<AnyCancellable>()
@@ -31,33 +33,54 @@ public class EditProfileViewModel {
 
     var isCreation: Bool = false
 
+    var selectedImage: UIImage?
+
     init() {
         ProfileUpdateNotifier.shared.publisher
             .prefix(1)
             .sink { [weak self] profile in
                 self?._isCreation = profile == nil
+                self?._stateURLImageProfile = profile == nil ? .loaded(nil) : .loading
                 self?._profile = profile ?? Profile()
             }
             .store(in: &cancellables)
+
+
     }
+    
 
     var isFieldsAllValid: Bool {
-        return !profile.firstname.isEmpty &&
-        !profile.lastname.isEmpty &&
-        !profile.nickname.isEmpty &&
-        profile.typeAbo != nil
+        if isCreation {
+            return !profile.firstname.isEmpty &&
+            !profile.lastname.isEmpty &&
+            !profile.nickname.isEmpty &&
+            profile.typeAbo != nil &&
+            selectedImage != nil
+        } else {
+            return !profile.firstname.isEmpty &&
+            !profile.lastname.isEmpty &&
+            !profile.nickname.isEmpty &&
+            profile.typeAbo != nil
+        }
+
+    }
+
+    func retrieveURLProfileImage() async {
+        stateURLImageProfile = .loaded(await profile.urlDownloadPhoto())
     }
 
     func saveProfile() async -> Bool {
         do {
             state = .loading
 
-            if isCreation {
-                try await profileManager.createProfile(profile)
-            } else {
-                try await profileManager.updateProfile(profile)
-            }
+            let data = selectedImage?.pngData()
 
+            if isCreation {
+                try await profileManager.createProfile(profile, data)
+            } else {
+                try await profileManager.updateProfile(profile, data)
+            }
+            
             try Task.checkCancellation()
 
             state = .loaded(.emptyResource)

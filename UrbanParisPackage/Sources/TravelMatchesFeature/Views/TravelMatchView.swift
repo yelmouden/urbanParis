@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Yassin El Mouden on 28/07/2024.
 //
@@ -8,12 +8,13 @@
 import Foundation
 import DesignSystem
 import FlowStacks
+import SDWebImageSwiftUI
 import SharedResources
 import SwiftUI
 
 struct TravelMatchView: View {
-    @State var image: UIImage?
-    
+    @State var url: URL?
+
     @State var task: Task<Void, Never>?
 
     @EnvironmentObject var navigator: FlowNavigator<TravelMatchesScreen>
@@ -50,28 +51,43 @@ struct TravelMatchView: View {
                                 .padding(.bottom, Margins.large)
                         }
 
-                        if travelVM.travel.hasSubscribed {
+                        if travelVM.canAccessListing {
                             VStack {
-                                if let googleDoc = travelVM.travel.googleDoc {
-                                    VStack {
+                                VStack {
+                                    HStack {
+                                        Text("listing deplacement")
+                                            .font(DSFont.grafHeadline)
+                                            .foregroundStyle(DSColors.white.swiftUIColor)
+                                        Spacer()
+                                    }
+                                    .padding(.bottom, Margins.mediumSmall)
+
+                                    if travelVM.travel.hasSubscribed {
                                         HStack {
-                                            Text("listing deplacement")
-                                                .font(DSFont.grafHeadline)
-                                                .foregroundStyle(DSColors.white.swiftUIColor)
+                                            Spacer()
+                                            Text("Tu es inscrit pour le déplacement")
+                                                .font(DSFont.robotoTitle3)
+                                                .foregroundStyle(DSColors.success.swiftUIColor)
                                             Spacer()
                                         }
                                         .padding(.bottom, Margins.mediumSmall)
 
-                                        FWButton(title: "Lien listing") {
+
+                                    } else if let googleDoc = travelVM.travel.googleDoc {
+                                        FWButton(title: "S'inscrire") {
                                             if let url = URL(string: googleDoc) {
-                                                navigator.presentSheet(.link(url))
+
+                                                navigator.presentSheet(.register(travel: travelVM.travel, idSeason: travelVM.idSeason, onSubscribeSucceeded: travelVM.onSubscribeSucceeded), withNavigation: true)
                                             }
                                         }
                                         .fwButtonStyle(.primary)
+
                                     }
-                                    .padding(.bottom, Margins.large)
 
                                 }
+                                .padding(.bottom, Margins.large)
+
+
 
                                 if let telegram = travelVM.travel.telegram {
                                     VStack {
@@ -99,7 +115,7 @@ struct TravelMatchView: View {
 
                 Spacer()
 
-                if !travelVM.travel.hasSubscribed, travelVM.isActive {
+                if !travelVM.canAccessListing, travelVM.isActive {
                     FWButton(title: "Accéder au listing", state: travelVM.state.toFWButtonState()) {
                         task = Task {
                             await travelVM.checkIsUpToDateContribution()
@@ -116,10 +132,17 @@ struct TravelMatchView: View {
             .addBorder(DSColors.red.swiftUIColor, cornerRadius: 12)
             .padding(.top, 32)
 
-            if let image {
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 64, height: 64)
+            if let url {
+                WebImage(url: url) { image in
+                    image
+                        .resizable()
+                        .frame(width: 64, height: 64)
+                        .scaledToFit()
+                } placeholder: {
+                    Assets.fanion.swiftUIImage
+                        .resizable()
+                        .frame(width: 64, height: 64)
+                }
 
             } else {
                 Assets.fanion.swiftUIImage
@@ -129,7 +152,7 @@ struct TravelMatchView: View {
 
         }
         .task {
-            self.image = await travelVM.travel.team.retrieveIcon()
+            self.url = await travelVM.travel.team.retrieveURLIcon()
         }
         .task(id: travelVM) {
             await travelVM.checkAlreadySubscribe()
@@ -151,7 +174,7 @@ struct TravelMatchView: View {
                         isDestructive: true
                     ),
                     secondaryButtonItem: nil
-                    )
+                )
                 ))
 
             }
@@ -170,7 +193,7 @@ struct TravelMatchView: View {
                         isDestructive: true
                     ),
                     secondaryButtonItem: nil
-                    )
+                )
                 ))
 
             }

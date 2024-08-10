@@ -35,9 +35,9 @@ public class ProfileUpdateNotifier {
 @DependencyClient
 public struct ProfileManager: Sendable {
 
-    public var createProfile: (_ profile: Profile) async throws -> Void
+    public var createProfile: (_ profile: Profile, _ profileImageData: Data?) async throws -> Void
     public var retrieveProfile: () async throws -> Void
-    public var updateProfile: (_ profile: Profile) async throws -> Void
+    public var updateProfile: (_ profile: Profile, _ profileImageData: Data?) async throws -> Void
 
 }
 
@@ -46,13 +46,19 @@ extension ProfileManager: DependencyKey {
     public static var liveValue: ProfileManager {
 
         return .init(
-            createProfile: { profile in
+            createProfile: { profile, data in
                 let createdProfile: Profile = try await Database.shared.client.from(Database.Table.profiles.rawValue)
                    .upsert(profile)
                    .select()
                    .single()
                    .execute()
                    .value
+
+                if let id = createdProfile.id, let data {
+                    let _ = try? await Database.shared.client.storage
+                        .from(Database.Storage.profiles.rawValue)
+                        .upload(path: "img/\(id).png", file: data, options: .init(upsert: true))
+                }
 
                 await ProfileUpdateNotifier.shared.send(profile: createdProfile)
 
@@ -73,7 +79,7 @@ extension ProfileManager: DependencyKey {
 
             },
 
-            updateProfile: { profile in
+            updateProfile: { profile, data in
                 guard let id = profile.id else {
                     throw DatabaseClientError.notFoundId
                 }
@@ -82,6 +88,13 @@ extension ProfileManager: DependencyKey {
                    .update(profile)
                    .eq("id", value: id)
                    .execute()
+
+                if let data {
+                    try await Database.shared.client.storage
+                        .from(Database.Storage.profiles.rawValue)
+                        .upload(path: "img/\(id).png", file: data, options: .init(upsert: true))
+                }
+
 
                await ProfileUpdateNotifier.shared.send(profile: profile)
             }

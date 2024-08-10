@@ -9,6 +9,7 @@
 import DesignSystem
 import FlowStacks
 import ProfileManager
+import SDWebImageSwiftUI
 import SwiftUI
 import Utils
 
@@ -17,8 +18,14 @@ public struct EditProfileView: View, KeyboardReadable {
 
     @Bindable var viewModel: EditProfileViewModel
 
+    @State var isPresented = false
+
     @State var task: Task<Void, Never>?
     @State var isEditing = false
+    @State var selectedImage: UIImage?
+    @State var croppingImage: UIImage?
+
+    @State var urlProfileImage: URL?
 
     public var body: some View {
         BackgroundImageContainerView(
@@ -29,6 +36,111 @@ public struct EditProfileView: View, KeyboardReadable {
             VStack {
                 FWScrollView {
                     VStack(spacing: isEditing ? Margins.medium: Margins.extraLarge) {
+                        Group {
+                            if let image = viewModel.selectedImage {
+                                VStack {
+                                    Image(uiImage: image)
+                                        .padding(.top, Margins.medium)
+
+                                    if isEditing {
+                                        FWButton(title: "Modifier la photo") {
+                                            isPresented = true
+                                        }
+                                        .padding(.top, Margins.medium)
+                                    }
+
+                                }
+
+
+                            } else {
+                                if viewModel.isCreation {
+                                    Button(action: {
+                                        isPresented = true
+                                    }, label: {
+                                        ZStack {
+                                            Circle()
+                                                .fill(DSColors.red.swiftUIColor.opacity(0.5))
+                                                .frame(width: 180, height: 180)
+                                            Image(systemName: "camera.fill")
+                                                .font(.largeTitle)
+                                                .foregroundStyle(DSColors.background.swiftUIColor)
+
+                                        }
+                                    })
+                                } else {
+                                    switch viewModel.stateURLImageProfile {
+                                    case .loading:
+                                        ZStack {
+                                            Circle()
+                                                .fill(DSColors.red.swiftUIColor.opacity(0.5))
+                                                .frame(width: 180, height: 180)
+                                            ProgressView()
+                                                .tint(DSColors.background.swiftUIColor)
+                                                .frame(width: 75, height: 75)
+
+                                        }
+                                    case .loaded(let url):
+                                        VStack {
+                                            if let url {
+                                                WebImage(url: url) { image in
+                                                    image
+                                                        .resizable()
+                                                        .frame(width: 180, height: 180)
+                                                        .scaledToFill()
+                                                        .clipShape(Circle())
+                                                } placeholder: {
+                                                    ZStack {
+                                                        Circle()
+                                                            .fill(DSColors.red.swiftUIColor.opacity(0.5))
+                                                            .frame(width: 180, height: 180)
+                                                        ProgressView()
+                                                            .tint(DSColors.background.swiftUIColor)
+                                                            .frame(width: 75, height: 75)
+
+                                                    }
+                                                }
+                                            } else {
+                                                ZStack {
+                                                    Circle()
+                                                        .fill(DSColors.red.swiftUIColor.opacity(0.5))
+                                                        .frame(width: 180, height: 180)
+                                                    Image(systemName: "camera.fill")
+                                                        .font(.largeTitle)
+                                                        .foregroundStyle(DSColors.background.swiftUIColor)
+
+                                                }
+                                            }
+
+                                            if isEditing {
+                                                FWButton(title: "Modifier la photo") {
+                                                    isPresented = true
+                                                }
+                                                .padding(.top, Margins.medium)
+
+                                            }
+                                        }
+                                    default:
+                                        EmptyView()
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.top, Margins.large)
+                        .confirmationDialog("Séléctionner une source" ,isPresented: $isPresented) {
+                            Button("Appareil Photo") {
+                                navigator.presentSheet(.selectPhotoFromCamera($selectedImage))
+                                isPresented = false
+                            }
+
+                            Button("Bibliothèque de photos") {
+                                navigator.presentSheet(.selectPhotoFromLibrary($selectedImage))
+                                isPresented = false
+                            }
+                        }
+
+
+
+
                         if viewModel.isCreation || isEditing {
                             FWTextField(
                                 title: "Ton prenom",
@@ -217,14 +329,11 @@ public struct EditProfileView: View, KeyboardReadable {
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
 
                                 task = Task {
-                                    do {
-                                        try await Task.sleep(for: .seconds(0.4))
-                                        let hasSaved = await viewModel.saveProfile()
+                                    let hasSaved = await viewModel.saveProfile()
 
-                                        if isEditing, hasSaved {
-                                            isEditing = false
-                                        }
-                                    } catch {}
+                                    if isEditing, hasSaved {
+                                        isEditing = false
+                                    }
 
                                 }
                             })
@@ -251,6 +360,16 @@ public struct EditProfileView: View, KeyboardReadable {
                 }
             }
 
+        }
+        .onChange(of: selectedImage, { oldValue, newValue in
+            if let newValue {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    navigator.presentSheet(.cropImage(newValue, $viewModel.selectedImage))
+                }
+            }
+        })
+        .task {
+            await viewModel.retrieveURLProfileImage()
         }
         .animation(.smooth, value: isEditing)
         .interactiveDismissDisabled()

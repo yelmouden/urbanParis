@@ -84,6 +84,7 @@ let package = Package(
         .package(url: "https://github.com/CombineCommunity/CombineExt", branch: "main"),
         .package(url: "https://github.com/JWAutumn/ACarousel", branch: "main"),
         .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", branch: "master"),
+        .package(url: "https://github.com/TimOliver/TOCropViewController", branch: "main")
     ],
     targets: [
         .target(
@@ -111,6 +112,8 @@ let package = Package(
                 .product(name: "FlowStacks", package: "FlowStacks"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "Pow", package: "Pow"),
+                .product(name: "TOCropViewController", package: "TOCropViewController"),
+                .product(name: "SDWebImageSwiftUI", package: "SDWebImageSwiftUI"),
                 "ProfileManager",
                 "DesignSystem",
                 "SharedResources"
@@ -144,6 +147,7 @@ let package = Package(
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "Pow", package: "Pow"),
                 .product(name: "ACarousel", package: "ACarousel"),
+                .product(name: "SDWebImageSwiftUI", package: "SDWebImageSwiftUI"),
                 "ProfileManager",
                 "DesignSystem",
                 "SharedResources",

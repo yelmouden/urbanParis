@@ -36,6 +36,10 @@ final class TravelMatchViewModel: Equatable {
     var showAlertCotisation = false
     var showAlertMatos = false
 
+    var canAccessListing = false
+
+    var onSubscribeSucceeded: (() -> Void) = {}
+
     var isPast: Bool {
         let currentDate = Date.currentDate
 
@@ -51,15 +55,19 @@ final class TravelMatchViewModel: Equatable {
     init(travel: Travel, idSeason: Int) {
         self.travel = travel
         self.idSeason = idSeason
+
+        onSubscribeSucceeded = { [weak self]  in
+            self?.travel.hasSubscribed = true
+        }
     }
 
     func checkAlreadySubscribe() async {
         guard isActive, !isPast else {
             return
         }
-
         do {
             travel.hasSubscribed = try await travelsRepository.checkAlreadySubscribe(travel.id, idSeason)
+            canAccessListing = travel.hasSubscribed
             state = .idle
         } catch {
             travel.hasSubscribed = false
@@ -92,12 +100,8 @@ final class TravelMatchViewModel: Equatable {
             try Task.checkCancellation()
 
             if isUpToDateCotisationPayment {
-                try await travelsRepository.subscribeToTravel(travel.id, idSeason)
-
-                try Task.checkCancellation()
-
                 await MainActor.run { [self] in
-                    travel.hasSubscribed = true
+                    canAccessListing = isUpToDateCotisationPayment
                 }
             } else {
                 await MainActor.run { [self] in
