@@ -29,7 +29,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
     public var body: some View {
         BackgroundImageContainerView(
-            nameImages: ["susic", "rai", "pauleta", "sakho"],
+            nameImages: ["telescoUP", "fumis100up", "tifo", "regroupement"],
             bundle: Bundle.module
         )
         {
