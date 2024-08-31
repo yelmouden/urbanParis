@@ -115,7 +115,7 @@ struct TravelMatchView: View {
 
                 Spacer()
 
-                if !travelVM.canAccessListing, travelVM.isActive {
+                if !travelVM.canAccessListing, travelVM.isActive, !travelVM.isPast {
                     FWButton(title: "Accéder au listing", state: travelVM.state.toFWButtonState()) {
                         task = Task {
                             await travelVM.checkIsUpToDateContribution()
@@ -168,7 +168,7 @@ struct TravelMatchView: View {
                     description: "Ta cotisation n'a pas été payée.\nPour accéder au listing, mets toi à jour.",
                     primaryButtonItem: .init(
                         title: "ok",
-                        onDismiss: {
+                        action: {
                             travelVM.showAlertCotisation = false
                         },
                         isDestructive: true
@@ -187,7 +187,7 @@ struct TravelMatchView: View {
                     description: "Tu n'es pas à jour dans le paiement de ton matos.\nPour accéder au listing, mets toi à jour.",
                     primaryButtonItem: .init(
                         title: "ok",
-                        onDismiss: {
+                        action: {
                             travelVM.showAlertMatos = false
                         },
                         isDestructive: true
@@ -289,6 +289,7 @@ struct TravelMatchView: View {
             if let descriptionTravel = travelVM.travel.descriptionTravel {
                 HStack {
                     Text(descriptionTravel)
+                        .fixedSize(horizontal: false, vertical: true)
                         .font(DSFont.robotoBody)
                         .foregroundStyle(DSColors.white.swiftUIColor)
                     Spacer()

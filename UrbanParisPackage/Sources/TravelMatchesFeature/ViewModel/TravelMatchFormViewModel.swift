@@ -65,7 +65,7 @@ final class TravelMatchFormViewModel {
         do {
             state = .loading
 
-            try await repository.subscribeToTravel(profile.lastname, profile.firstname, user?.email ?? "" , "Urban", carResponse?.rawValue ?? "Oui", travel.id, idSeason)
+            try await repository.subscribeToTravel(travel.id, idSeason)
 
             try Task.checkCancellation()
 
@@ -78,19 +78,10 @@ final class TravelMatchFormViewModel {
                 state = .idle
 
                 showError = true
-                
-                if let errorRepo = error as? TravelMatchesRepositoryError {
-                    switch errorRepo {
-                    case .malFormattedURL:
-                        errorText = "Problème URL Formulaire"
-                    case .errorGoogleForm:
-                        errorText = "Problème Reqûete Formulaire"
-                    case .errorDatabase:
-                        errorText = SharedResources.commonErrorText
-                    }
 
-                    return false
-                }
+                errorText = "Impossible de sauvegarder l'inscription"
+
+                return false
             }
         }
         

@@ -84,7 +84,10 @@ let package = Package(
         .package(url: "https://github.com/CombineCommunity/CombineExt", branch: "main"),
         .package(url: "https://github.com/JWAutumn/ACarousel", branch: "main"),
         .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", branch: "master"),
-        .package(url: "https://github.com/TimOliver/TOCropViewController", branch: "main")
+        .package(url: "https://github.com/TimOliver/TOCropViewController", branch: "main"),
+        .package(url: "https://github.com/scinfu/SwiftSoup", branch: "master")
+
+
     ],
     targets: [
         .target(
@@ -148,6 +151,7 @@ let package = Package(
                 .product(name: "Pow", package: "Pow"),
                 .product(name: "ACarousel", package: "ACarousel"),
                 .product(name: "SDWebImageSwiftUI", package: "SDWebImageSwiftUI"),
+                .product(name: "SwiftSoup", package: "SwiftSoup"),
                 "ProfileManager",
                 "DesignSystem",
                 "SharedResources",

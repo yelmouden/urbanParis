@@ -110,6 +110,8 @@ struct TravelMatchesView: View {
                 if viewModel.selectedSeason != nil {
                     await viewModel.retrieveTravels()
                 }
+
+                action = .idle
             }
         }
         .onChange(of: viewModel.selectedSeason, { _, _ in

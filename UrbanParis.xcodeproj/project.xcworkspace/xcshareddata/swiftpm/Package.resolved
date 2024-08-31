@@ -208,6 +208,15 @@
       }
     },
     {
+      "identity" : "swiftsoup",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/scinfu/SwiftSoup",
+      "state" : {
+        "branch" : "master",
+        "revision" : "0af31943b57698ea12b7a29418c1fbf0ec497e61"
+      }
+    },
+    {
       "identity" : "swiftyemail",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/MarcosAtMorais/SwiftyEmail",
