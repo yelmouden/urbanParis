@@ -14,12 +14,13 @@ import Utils
 
 enum CotisationsRepositoryError: Error {
     case urlMalFormatted
+    case errorDate
 }
 
 @DependencyClient
 public struct CotisationsRepository: Sendable {
     public var retrieveCotisations: @Sendable() async throws -> [Cotisation]
-    public var isUpToDate: @Sendable() async throws -> Bool
+    public var isUpToDate: @Sendable(_ date: String) async throws -> Bool
 }
 
 extension CotisationsRepository: DependencyKey {
@@ -50,14 +51,14 @@ extension CotisationsRepository: DependencyKey {
     public static var liveValue: CotisationsRepository {
         .init(retrieveCotisations: {
             return try await cotisations
-        }, isUpToDate: {
+        }, isUpToDate: { dateString in
             guard let id = Database.shared.client.auth.currentUser?.id else {
                 throw DatabaseClientError.notFoundId
             }
 
             async let cotisationsResult: [Cotisation] = await cotisations
 
-            let apiKey: String = ConfigurationReader.value(for: "TIMEZONE_DB_API_KEY")
+            /*let apiKey: String = ConfigurationReader.value(for: "TIMEZONE_DB_API_KEY")
             let urlString = "http://api.timezonedb.com/v2.1/get-time-zone?key=\(apiKey)&format=json&by=zone&zone=Europe/Paris"
 
             guard let url = URL(string: urlString) else {
@@ -87,6 +88,10 @@ extension CotisationsRepository: DependencyKey {
                 }
             } catch {
                 date = Date()
+            }*/
+
+            guard let date = Date.fromString(dateString) else {
+                throw CotisationsRepositoryError.errorDate
             }
 
             let cotisations = try await cotisationsResult

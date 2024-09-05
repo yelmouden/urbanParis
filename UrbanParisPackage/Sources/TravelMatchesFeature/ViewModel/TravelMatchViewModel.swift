@@ -10,6 +10,10 @@ import Dependencies
 import SharedRepository
 import Utils
 
+private enum TravelMatchViewModelError: Error {
+    case missingDate
+}
+
 @Observable
 final class TravelMatchViewModel: Equatable {
     
@@ -94,8 +98,16 @@ final class TravelMatchViewModel: Equatable {
 
                 return
             }
+            
+            let date = travel.date
 
-            let isUpToDateCotisationPayment = try await cotisationsRepository.isUpToDate()
+            let isUpToDateCotisationPayment: Bool
+
+            if let date  {
+                isUpToDateCotisationPayment = try await cotisationsRepository.isUpToDate(date: date)
+            } else {
+                throw TravelMatchViewModelError.missingDate
+            }
 
             try Task.checkCancellation()
 
