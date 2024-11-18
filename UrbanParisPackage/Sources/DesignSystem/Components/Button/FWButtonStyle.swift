@@ -25,7 +25,8 @@ public struct FWButtonConfiguration {
     let action: (() -> Void)
 }
 
-public protocol FWButtonStyle {
+@MainActor
+public protocol FWButtonStyle: Sendable {
     associatedtype Body: View
 
     @ViewBuilder
@@ -34,8 +35,9 @@ public protocol FWButtonStyle {
     typealias Configuration = FWButtonConfiguration
 }
 
+@MainActor
 struct FWButtonStyleKey: EnvironmentKey {
-    static var defaultValue: any FWButtonStyle = FWButtonDefaultStyle()
+    static let defaultValue: any FWButtonStyle = FWButtonDefaultStyle()
 }
 
 extension EnvironmentValues {
@@ -52,7 +54,7 @@ public extension View {
 }
 
 struct FWButtonEnabledKey: EnvironmentKey {
-    static var defaultValue: Bool = true
+    static let defaultValue: Bool = true
 }
 
 extension EnvironmentValues {
@@ -111,6 +113,7 @@ extension AnyTransition {
         )
     }
 }
+
 
 public struct FWButtonPrimaryStyle: FWButtonStyle {
     @State var animateOpacitySuccess = false

@@ -34,38 +34,6 @@
             endingLineNumber = "109"
             landmarkName = "liveValue"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "BE275EBB-0C05-4F41-B18C-2B0792A30EF4 - 9934a4d395e28868"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for closure #2 @Sendable () async throws -&gt; Swift.Bool in static SharedRepository.CotisationsRepository.liveValue.getter : SharedRepository.CotisationsRepository"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/SharedRepository/Cotisations/CotisationsRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "516">
-               </Location>
-               <Location
-                  uuid = "BE275EBB-0C05-4F41-B18C-2B0792A30EF4 - c0d9be5ed70bef9d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SharedRepository.Cotisation) -&gt; Swift.Bool in closure #2 @Sendable () async throws -&gt; Swift.Bool in static SharedRepository.CotisationsRepository.liveValue.getter : SharedRepository.CotisationsRepository"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/SharedRepository/Cotisations/CotisationsRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,8 +46,8 @@
             filePath = "UrbanParisPackage/Sources/DesignSystem/Components/Alert/AlertView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "getFWButton(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +62,8 @@
             filePath = "UrbanParisPackage/Sources/DesignSystem/Components/Alert/AlertView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "getFWButton(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -114,38 +82,6 @@
             endingLineNumber = "78"
             landmarkName = "register()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4DCD091B-D96C-4345-BB3F-08E5266ADAFA - 756f015fb215c56c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for TravelMatchesFeature.TravelMatchFormViewModel.register() async -&gt; Swift.Bool"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/TravelMatchesFeature/ViewModel/TravelMatchFormViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "376">
-               </Location>
-               <Location
-                  uuid = "4DCD091B-D96C-4345-BB3F-08E5266ADAFA - 7e2ff18707392773"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for TravelMatchesFeature.TravelMatchFormViewModel.register() async -&gt; Swift.Bool"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/TravelMatchesFeature/ViewModel/TravelMatchFormViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "412">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -178,68 +114,6 @@
             endingLineNumber = "49"
             landmarkName = "retrieveTravels()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EFEFA8D8-8F2E-412E-916D-0DD4C90B9CEB - 3e2f5dfee25e9913"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TravelMatchesFeature.TravelMatchesViewModel.retrieveTravels() async -&gt; ()"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/TravelMatchesFeature/ViewModel/TravelMatchesViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "348">
-               </Location>
-               <Location
-                  uuid = "EFEFA8D8-8F2E-412E-916D-0DD4C90B9CEB - a2108a85a4b6d917"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for TravelMatchesFeature.TravelMatchesViewModel.retrieveTravels() async -&gt; ()"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/TravelMatchesFeature/ViewModel/TravelMatchesViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "EFEFA8D8-8F2E-412E-916D-0DD4C90B9CEB - 1e9f2d8e348bd511"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for TravelMatchesFeature.TravelMatchesViewModel.retrieveTravels() async -&gt; ()"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/TravelMatchesFeature/ViewModel/TravelMatchesViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "92">
-               </Location>
-               <Location
-                  uuid = "EFEFA8D8-8F2E-412E-916D-0DD4C90B9CEB - 6ed7c4459d9e7710"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for TravelMatchesFeature.TravelMatchesViewModel.retrieveTravels() async -&gt; ()"
-                  moduleName = "Urban Paris"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yassinelmouden/Documents/MyApp/UrbanParis/UrbanParisPackage/Sources/TravelMatchesFeature/ViewModel/TravelMatchesViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

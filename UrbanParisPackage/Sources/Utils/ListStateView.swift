@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct ListStateView<IdleView: View, LoadingView: View, LoadedView: View, EmptyView: View, T: Equatable>: View {
+public struct ListStateView<IdleView: View, LoadingView: View, LoadedView: View, EmptyView: View, T: Equatable&Sendable>: View {
     let stateView: StateView<T>
 
     let idleView: () -> IdleView

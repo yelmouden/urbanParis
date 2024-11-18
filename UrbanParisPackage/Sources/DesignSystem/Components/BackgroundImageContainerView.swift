@@ -105,7 +105,9 @@ public struct BackgroundImageContainerView<Content: View>: View {
                             images = imgs
                         }
                     } catch {
-                        isLoadingImages = false
+                        Task { @MainActor in
+                            isLoadingImages = false
+                        }
                     }
 
                 }

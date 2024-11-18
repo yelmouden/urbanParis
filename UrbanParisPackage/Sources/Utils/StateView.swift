@@ -15,7 +15,7 @@ public enum StateView<T: Equatable>: Equatable, Sendable where T: Sendable {
     case empty
 }
 
-public struct EmptyResource: Equatable {}
+public struct EmptyResource: Equatable, Sendable {}
 
 public extension EmptyResource {
     static let emptyResource = EmptyResource()

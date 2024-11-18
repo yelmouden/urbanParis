@@ -14,7 +14,7 @@ public enum DatabaseClientError: Error {
     case valueNotFound
 }
 
-final public class Database {
+final public class Database: Sendable {
     public let client: SupabaseClient
 
     public static let shared = Database()

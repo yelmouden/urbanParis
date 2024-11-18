@@ -73,7 +73,7 @@ let package = Package(
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0"),
         .package(url: "https://github.com/johnpatrickmorgan/FlowStacks", branch: "main"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", branch: "main"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.5.2"),
         .package(url: "https://github.com/EmergeTools/Pow", from: Version(1, 0, 0)),
         .package(url: "https://github.com/CSolanaM/SkeletonUI", branch: "master"),
         .package(url: "https://github.com/supabase-community/supabase-swift.git", branch: "main"),

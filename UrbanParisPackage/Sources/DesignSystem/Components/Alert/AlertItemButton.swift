@@ -6,21 +6,20 @@
 //
 
 import Foundation
-import SharedResources
 import SwiftUI
 
-public struct AlertItemButton {
+public struct AlertItemButton: Sendable {
     let title: String
-    let action: (() -> Void)?
-    let asyncAction: (() async -> Bool)?
-    let onDismiss: (() -> Void)?
+    let action: (@Sendable () -> Void)?
+    let asyncAction: (@Sendable () async -> Bool)?
+    let onDismiss: (@Sendable () -> Void)?
     let isDestructive: Bool
 
     public init(
         title: String,
-        action: (() -> Void)? = nil,
-        asyncAction: (() async -> Bool)? = nil,
-        onDismiss: (() -> Void)? = nil,
+        action: (@Sendable () -> Void)? = nil,
+        asyncAction: (@Sendable () async -> Bool)? = nil,
+        onDismiss: (@Sendable () -> Void)? = nil,
         isDestructive: Bool
     ) {
         self.title = title

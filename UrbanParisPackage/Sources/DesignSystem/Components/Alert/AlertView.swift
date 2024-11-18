@@ -9,6 +9,7 @@ import Pow
 import SwiftUI
 import Utils
 
+@MainActor
 public struct FWAlertView: View {
 
     let title: LocalizedStringResource

@@ -14,6 +14,7 @@ public enum PopupType {
     case view(AnyView)
 }
 
+@MainActor
 final public class PopupManager {
     public static let shared = PopupManager()
     
