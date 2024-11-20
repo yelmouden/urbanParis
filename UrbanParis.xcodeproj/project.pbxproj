@@ -35,6 +35,9 @@
 		DC6FD5FC2C60FF4400536C19 /* MatosFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC6FD5FB2C60FF4400536C19 /* MatosFeature */; };
 		DC760BE22C4B222C0008990B /* UrbanParisPackage in Resources */ = {isa = PBXBuildFile; fileRef = DC760BE12C4B222C0008990B /* UrbanParisPackage */; };
 		DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7914FB2C4EB012005A3244 /* ProfileFeature */; };
+		DC7AD3272CED16A400E2D8C5 /* AdminMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD3262CED16A400E2D8C5 /* AdminMenuView.swift */; };
+		DC7AD3292CED17EE00E2D8C5 /* MenuAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */; };
+		DC7AD32B2CED1D1100E2D8C5 /* MembersFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7AD32A2CED1D1100E2D8C5 /* MembersFeature */; };
 		DC7F514C2C52ABA600C6D4BE /* CotisationsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */; };
 		DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8975B2C4EDECE00788FC6 /* HomeView.swift */; };
 		DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB21A332C552CA900B0D58B /* HomeViewModel.swift */; };
@@ -65,6 +68,8 @@
 		DC6FD5BC2C5AAFC100536C19 /* UserLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLockedView.swift; sourceTree = "<group>"; };
 		DC6FD5C32C5AB26100536C19 /* apoula.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = apoula.pdf; sourceTree = "<group>"; };
 		DC760BE12C4B222C0008990B /* UrbanParisPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UrbanParisPackage; sourceTree = "<group>"; };
+		DC7AD3262CED16A400E2D8C5 /* AdminMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMenuView.swift; sourceTree = "<group>"; };
+		DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAdminCoordinator.swift; sourceTree = "<group>"; };
 		DCA8975B2C4EDECE00788FC6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DCB21A332C552CA900B0D58B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urban Paris.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +97,7 @@
 				DC6FD5FC2C60FF4400536C19 /* MatosFeature in Frameworks */,
 				DC6FD5BB2C5AA8D400536C19 /* AuthenticationManager in Frameworks */,
 				DCB623642C56E62000EA13F7 /* DeepLinkManager in Frameworks */,
+				DC7AD32B2CED1D1100E2D8C5 /* MembersFeature in Frameworks */,
 				DC61D1EE2C50248F0047136F /* AnimateText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,9 +121,11 @@
 		DC0015E32C4FD3F400416056 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */,
 				DC5413192C53041400BF0010 /* MenuView.swift */,
 				DC0015E92C4FD42500416056 /* SmokeManView.swift */,
 				DC0015E42C4FD3FB00416056 /* Resources */,
+				DC7AD3262CED16A400E2D8C5 /* AdminMenuView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -257,6 +265,7 @@
 				DCB623632C56E62000EA13F7 /* DeepLinkManager */,
 				DC6FD5BA2C5AA8D400536C19 /* AuthenticationManager */,
 				DC6FD5FB2C60FF4400536C19 /* MatosFeature */,
+				DC7AD32A2CED1D1100E2D8C5 /* MembersFeature */,
 			);
 			productName = UrbanParis;
 			productReference = DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */;
@@ -329,6 +338,8 @@
 			files = (
 				DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */,
 				DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */,
+				DC7AD3292CED17EE00E2D8C5 /* MenuAdminCoordinator.swift in Sources */,
+				DC7AD3272CED16A400E2D8C5 /* AdminMenuView.swift in Sources */,
 				DC54131A2C53041400BF0010 /* MenuView.swift in Sources */,
 				DC6FD5BD2C5AAFC100536C19 /* UserLockedView.swift in Sources */,
 				DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */,
@@ -957,6 +968,10 @@
 		DC7914FB2C4EB012005A3244 /* ProfileFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProfileFeature;
+		};
+		DC7AD32A2CED1D1100E2D8C5 /* MembersFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MembersFeature;
 		};
 		DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */ = {
 			isa = XCSwiftPackageProductDependency;

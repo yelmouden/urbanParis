@@ -45,6 +45,9 @@ struct HomeView : View {
                 } else if index == 6 {
                     SettingsCoordinator(showMenu: $show)
                         .transition(.opacity)
+                } else if index == 7 {
+                    MenuAdminCoordinator(showMenu: $show)
+                        .transition(.opacity)
                 }
             }
             .cornerRadius(self.show ? 8 : 0)

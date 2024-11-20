@@ -17,10 +17,13 @@ final class MenuViewModel {
 
     var nickname: String = ""
 
+    var shouldDisplayAdminEnty: Bool = false
+
     init() {
         ProfileUpdateNotifier.shared.publisher
             .sink { [weak self] profile in
                 self?.nickname = profile?.nickname ?? ""
+                self?.shouldDisplayAdminEnty = profile?.isAdmin ?? false
             }
             .store(in: &cancellables)
     }

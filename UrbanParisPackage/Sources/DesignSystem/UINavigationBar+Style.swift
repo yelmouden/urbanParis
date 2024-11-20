@@ -25,6 +25,9 @@ public extension UINavigationBar {
             NSAttributedString.Key.font: FontFamily.Dreamlands.regular.font(size: 35)
         ]
 
-        //UINavigationBar.appearance().standardAppearance = appearance
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = DSColors.white.color
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = DSColors.black.color
+
+        UISearchBar.appearance().tintColor = DSColors.red.color
     }
 }

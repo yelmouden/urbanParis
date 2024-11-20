@@ -10,7 +10,7 @@ import Foundation
 import Supabase
 import UIKit
 
-public struct Profile: Codable {
+public struct Profile: Codable, Equatable, Sendable, Identifiable {
     public let id: Int?
     public var firstname: String
     public var lastname: String

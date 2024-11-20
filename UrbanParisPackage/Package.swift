@@ -67,6 +67,10 @@ let package = Package(
         .library(
             name: "MatosFeature",
             targets: ["MatosFeature"]
+        ),
+        .library(
+            name: "MembersFeature",
+            targets: ["MembersFeature"]
         )
     ],
     dependencies: [
@@ -272,6 +276,18 @@ let package = Package(
             ],
             resources: [
                 .process("Resources")
+            ]
+        ),
+        .target(
+            name: "MembersFeature",
+            dependencies: [
+                .product(name: "FlowStacks", package: "FlowStacks"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "SDWebImageSwiftUI", package: "SDWebImageSwiftUI"),
+                "ProfileManager",
+                "DesignSystem",
+                "SharedResources",
+                "SharedRepository"
             ]
         )
     ]

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum AboType: String, Codable {
+public enum AboType: String, Codable, Equatable {
     case aboPSG
     case aboCUP
     case none
