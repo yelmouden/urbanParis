@@ -30,8 +30,8 @@
             filePath = "UrbanParisPackage/Sources/SharedRepository/Cotisations/CotisationsRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "liveValue"
             landmarkType = "24">
          </BreakpointContent>
@@ -129,6 +129,38 @@
             startingLineNumber = "84"
             endingLineNumber = "84"
             landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "211D410D-F475-4138-8D23-AA752E69E685"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UrbanParisPackage/Sources/CotisationsFeature/ViewModels/CotisationsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "retrieveCotisations(isFromResfresh:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6DB59EAC-C13C-49CB-AFE3-7CCB460A5570"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UrbanParis/Views/Menu/MenuAdmin/CotisationsMembers/Repository/CotisationsMembersRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "liveValue"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>

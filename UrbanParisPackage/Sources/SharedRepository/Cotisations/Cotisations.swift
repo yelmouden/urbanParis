@@ -7,10 +7,18 @@
 
 import Foundation
 
-public struct Cotisation: Equatable, Identifiable, Decodable {
+public struct Cotisation: Equatable, Identifiable, Codable {
     public let id: Int
     public let month: Int
     public let amount: Float
+    public let id_profile: Int
+
+    public init(id: Int, month: Int, amount: Float, id_profile: Int) {
+        self.id = id
+        self.month = month
+        self.amount = amount
+        self.id_profile = id_profile
+    }
 }
 
 public extension Cotisation {

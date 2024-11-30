@@ -12,11 +12,14 @@ import SwiftUI
 import Utils
 
 public struct ListMembersView: View {
+    @EnvironmentObject var navigator: FlowNavigator<MenuAdminScreen>
 
     @State var viewModel: ListMembersViewModel = .init()
     @State var searchText: String = ""
 
     @State var task: Task<Void, Never>?
+
+    @State var hasMadeRequest: Bool = false
 
     public init() {}
 
@@ -50,7 +53,7 @@ public struct ListMembersView: View {
                                         Section(header: sectionHeader(section.key)) {
                                             ForEach(section.profiles) { member in
                                                 Button(action: {
-
+                                                    navigator.push(.memberDetails(.init(profile: member)))
                                                 }) {
                                                     VStack {
                                                         HStack {
@@ -63,6 +66,22 @@ public struct ListMembersView: View {
 
                                                             Spacer()
 
+                                                            if member.isAdmin {
+                                                                Image(systemName: "star.fill")
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .foregroundStyle(DSColors.or.swiftUIColor)
+                                                                    .frame(width: 20, height: 20)
+                                                            }
+
+                                                            if member.isLocked {
+                                                                Image(systemName: "lock.fill")
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .foregroundStyle(DSColors.red.swiftUIColor)
+                                                                    .frame(width: 20, height: 20)
+                                                            }
+
                                                             Image(systemName: "chevron.right")
                                                                 .resizable()
                                                                 .scaledToFit()
@@ -70,6 +89,7 @@ public struct ListMembersView: View {
                                                                 .frame(width: 20, height: 20)
                                                         }
                                                     }
+                                                    .opacity(member.isLocked ? 0.3 : 1)
                                                 }
                                                 .padding(.bottom, Margins.medium)
                                             }
@@ -109,10 +129,17 @@ public struct ListMembersView: View {
                 .paddingBottomScreen()
                 .animation(.default, value: viewModel.state)
                 .task {
+                    if !hasMadeRequest {
+                        hasMadeRequest = true
+                    }
+
                     await viewModel.retrieveMembers()
                 }
                 .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
                 .navigationTitle("Liste des membres")
+                .addBackButton {
+                    navigator.pop()
+                }
             }
         }
 

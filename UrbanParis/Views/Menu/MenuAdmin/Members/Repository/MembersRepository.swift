@@ -17,6 +17,8 @@ import Utils
 @DependencyClient
 public struct MembersRepository: Sendable {
     public var retrieveMembers: @Sendable() async throws -> [Profile]
+    public var udpateMember: @Sendable(Profile) async throws -> Void
+    public var delete: @Sendable(Profile) async throws -> Void
 }
 
 extension MembersRepository: DependencyKey {
@@ -30,6 +32,25 @@ extension MembersRepository: DependencyKey {
                 .value
 
             return profiles
+        } udpateMember: { profile in
+            guard let id = profile.id else {
+                throw DatabaseClientError.notFoundId
+            }
+            
+            try await Database.shared.client.from(Database.Table.profiles.rawValue)
+               .update(profile)
+               .eq("id", value: profile.id)
+               .execute()
+        } delete: { profile in
+            guard let id = profile.id else {
+                throw DatabaseClientError.notFoundId
+            }
+
+            try await Database.shared.client
+                .from(Database.Table.profiles.rawValue)
+                .delete()
+                .eq("id", value: profile.id)
+                .execute()
         }
     }
 }

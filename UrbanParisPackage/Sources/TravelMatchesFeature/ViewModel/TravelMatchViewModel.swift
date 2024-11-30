@@ -5,8 +5,10 @@
 //  Created by Yassin El Mouden on 26/07/2024.
 //
 
+import Combine
 import Foundation
 import Dependencies
+import ProfileManager
 import SharedRepository
 import Utils
 
@@ -44,6 +46,10 @@ final class TravelMatchViewModel: Equatable {
 
     var onSubscribeSucceeded: (() -> Void) = {}
 
+    var idProfile: Int?
+    var cancellables = Set<AnyCancellable>()
+
+
     var isPast: Bool {
         let currentDate = Date.currentDate
 
@@ -56,9 +62,19 @@ final class TravelMatchViewModel: Equatable {
         (travel.googleDoc != nil && travel.googleDoc?.isEmpty == false) || (travel.telegram != nil && travel.telegram?.isEmpty == false)
     }
 
+    @MainActor
     init(travel: Travel, idSeason: Int) {
         self.travel = travel
         self.idSeason = idSeason
+        
+        ProfileUpdateNotifier.shared.publisher
+            .prefix(1)
+            .sink { [weak self] profile in
+                self?.idProfile = profile?.id
+            }
+            .store(in: &cancellables)
+
+
 
         onSubscribeSucceeded = { [weak self]  in
             self?.travel.hasSubscribed = true
@@ -82,6 +98,7 @@ final class TravelMatchViewModel: Equatable {
     nonisolated func checkIsUpToDateContribution() async {
         do {
             await MainActor.run { [self] in
+
                 state = .loading
             }
 
@@ -103,8 +120,8 @@ final class TravelMatchViewModel: Equatable {
 
             let isUpToDateCotisationPayment: Bool
 
-            if let date  {
-                isUpToDateCotisationPayment = try await cotisationsRepository.isUpToDate(date: date)
+            if let date, let idProfile  {
+                isUpToDateCotisationPayment = try await cotisationsRepository.isUpToDate(idProfile: idProfile, date: date)
             } else {
                 throw TravelMatchViewModelError.missingDate
             }

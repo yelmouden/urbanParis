@@ -41,7 +41,7 @@ struct AdminMenuView: View {
                 }
 
                 Button(action: {
-
+                    navigator.push(.membersCotisation(.init()))
                 }) {
                     HStack {
                         Text("Gestion des cotisations")

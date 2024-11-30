@@ -17,10 +17,23 @@
 		DC0015FA2C50118F00416056 /* nonUrban.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DC4E658A2C49BC8F00B08F1A /* nonUrban.xcconfig */; };
 		DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0015FC2C5021B100416056 /* AppViewModel.swift */; };
 		DC025F002C4972310050B457 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = DC025EFF2C4972310050B457 /* DesignSystem */; };
+		DC0461DA2CF8FD5D00C4F344 /* CotisationsMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0461D92CF8FD5D00C4F344 /* CotisationsMembersView.swift */; };
+		DC0461DC2CF8FD7D00C4F344 /* CotisationsMembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0461DB2CF8FD7D00C4F344 /* CotisationsMembersViewModel.swift */; };
+		DC0461DE2CF8FDA500C4F344 /* CotisationsMembersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0461DD2CF8FDA500C4F344 /* CotisationsMembersRepository.swift */; };
+		DC04624E2CFA533B00C4F344 /* CotisationsMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04624D2CFA533B00C4F344 /* CotisationsMember.swift */; };
+		DC0462502CFA5CE700C4F344 /* CotisationsMemberDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04624F2CFA5CE700C4F344 /* CotisationsMemberDetails.swift */; };
+		DC0462522CFA5D3B00C4F344 /* CotisationsMemberDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0462512CFA5D3B00C4F344 /* CotisationsMemberDetailsViewModel.swift */; };
 		DC12B89C2C50627100F3FF93 /* PDFFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC12B89B2C50627100F3FF93 /* PDFFeature */; };
 		DC12B8A02C506B4500F3FF93 /* fumiRedAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = DC12B89F2C506B4500F3FF93 /* fumiRedAnimation.json */; };
 		DC12B8A22C513DFC00F3FF93 /* ProfileManager in Frameworks */ = {isa = PBXBuildFile; productRef = DC12B8A12C513DFC00F3FF93 /* ProfileManager */; };
 		DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15EE5B2C514E0500BD4D4B /* MenuViewModel.swift */; };
+		DC1B80A82CF1088B00FA9997 /* MembersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A12CF1088B00FA9997 /* MembersRepository.swift */; };
+		DC1B80A92CF1088B00FA9997 /* MemberDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A62CF1088B00FA9997 /* MemberDetails.swift */; };
+		DC1B80AA2CF1088B00FA9997 /* ListMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A52CF1088B00FA9997 /* ListMembersView.swift */; };
+		DC1B80AB2CF1088B00FA9997 /* ListMembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A32CF1088B00FA9997 /* ListMembersViewModel.swift */; };
+		DC1B80AD2CF1111F00FA9997 /* MemberDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80AC2CF1111F00FA9997 /* MemberDetailsViewModel.swift */; };
+		DC1B80B02CF11A6200FA9997 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = DC1B80AF2CF11A6200FA9997 /* Dependencies */; };
+		DC1B80B22CF11A6200FA9997 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = DC1B80B12CF11A6200FA9997 /* DependenciesMacros */; };
 		DC4E65802C49834300B08F1A /* LaunchScreenUrban.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4E657F2C49834300B08F1A /* LaunchScreenUrban.storyboard */; };
 		DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */ = {isa = PBXBuildFile; productRef = DC4E65812C49839E00B08F1A /* SharedResources */; };
 		DC4E65922C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */; };
@@ -37,7 +50,6 @@
 		DC7914FC2C4EB012005A3244 /* ProfileFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7914FB2C4EB012005A3244 /* ProfileFeature */; };
 		DC7AD3272CED16A400E2D8C5 /* AdminMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD3262CED16A400E2D8C5 /* AdminMenuView.swift */; };
 		DC7AD3292CED17EE00E2D8C5 /* MenuAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */; };
-		DC7AD32B2CED1D1100E2D8C5 /* MembersFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7AD32A2CED1D1100E2D8C5 /* MembersFeature */; };
 		DC7F514C2C52ABA600C6D4BE /* CotisationsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */; };
 		DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8975B2C4EDECE00788FC6 /* HomeView.swift */; };
 		DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB21A332C552CA900B0D58B /* HomeViewModel.swift */; };
@@ -55,8 +67,19 @@
 		DC0015F02C50070800416056 /* urban-debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "urban-debug.xcconfig"; sourceTree = "<group>"; };
 		DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "nonUrban-debug.xcconfig"; sourceTree = "<group>"; };
 		DC0015FC2C5021B100416056 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		DC0461D92CF8FD5D00C4F344 /* CotisationsMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMembersView.swift; sourceTree = "<group>"; };
+		DC0461DB2CF8FD7D00C4F344 /* CotisationsMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMembersViewModel.swift; sourceTree = "<group>"; };
+		DC0461DD2CF8FDA500C4F344 /* CotisationsMembersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMembersRepository.swift; sourceTree = "<group>"; };
+		DC04624D2CFA533B00C4F344 /* CotisationsMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMember.swift; sourceTree = "<group>"; };
+		DC04624F2CFA5CE700C4F344 /* CotisationsMemberDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMemberDetails.swift; sourceTree = "<group>"; };
+		DC0462512CFA5D3B00C4F344 /* CotisationsMemberDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMemberDetailsViewModel.swift; sourceTree = "<group>"; };
 		DC12B89F2C506B4500F3FF93 /* fumiRedAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fumiRedAnimation.json; sourceTree = "<group>"; };
 		DC15EE5B2C514E0500BD4D4B /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		DC1B80A12CF1088B00FA9997 /* MembersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersRepository.swift; sourceTree = "<group>"; };
+		DC1B80A32CF1088B00FA9997 /* ListMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMembersViewModel.swift; sourceTree = "<group>"; };
+		DC1B80A52CF1088B00FA9997 /* ListMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMembersView.swift; sourceTree = "<group>"; };
+		DC1B80A62CF1088B00FA9997 /* MemberDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetails.swift; sourceTree = "<group>"; };
+		DC1B80AC2CF1111F00FA9997 /* MemberDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailsViewModel.swift; sourceTree = "<group>"; };
 		DC4E657F2C49834300B08F1A /* LaunchScreenUrban.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenUrban.storyboard; sourceTree = "<group>"; };
 		DC4E65882C49BC7800B08F1A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		DC4E65892C49BC8200B08F1A /* urban.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = urban.xcconfig; sourceTree = "<group>"; };
@@ -84,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1B80B02CF11A6200FA9997 /* Dependencies in Frameworks */,
 				DCD8AEB12C4962480070B0D1 /* LoginFeature in Frameworks */,
 				DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */,
 				DC54131C2C53E93600BF0010 /* TravelMatchesFeature in Frameworks */,
@@ -97,7 +121,7 @@
 				DC6FD5FC2C60FF4400536C19 /* MatosFeature in Frameworks */,
 				DC6FD5BB2C5AA8D400536C19 /* AuthenticationManager in Frameworks */,
 				DCB623642C56E62000EA13F7 /* DeepLinkManager in Frameworks */,
-				DC7AD32B2CED1D1100E2D8C5 /* MembersFeature in Frameworks */,
+				DC1B80B22CF11A6200FA9997 /* DependenciesMacros in Frameworks */,
 				DC61D1EE2C50248F0047136F /* AnimateText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,7 +145,7 @@
 		DC0015E32C4FD3F400416056 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */,
+				DC1B809F2CF1084800FA9997 /* MenuAdmin */,
 				DC5413192C53041400BF0010 /* MenuView.swift */,
 				DC0015E92C4FD42500416056 /* SmokeManView.swift */,
 				DC0015E42C4FD3FB00416056 /* Resources */,
@@ -149,12 +173,95 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		DC0461D52CF8FCDB00C4F344 /* CotisationsMembers */ = {
+			isa = PBXGroup;
+			children = (
+				DC0461D82CF8FD0300C4F344 /* Repository */,
+				DC0461D72CF8FCF600C4F344 /* ViewModels */,
+				DC0461D62CF8FCF000C4F344 /* Views */,
+			);
+			path = CotisationsMembers;
+			sourceTree = "<group>";
+		};
+		DC0461D62CF8FCF000C4F344 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC0461D92CF8FD5D00C4F344 /* CotisationsMembersView.swift */,
+				DC04624F2CFA5CE700C4F344 /* CotisationsMemberDetails.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC0461D72CF8FCF600C4F344 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC0461DB2CF8FD7D00C4F344 /* CotisationsMembersViewModel.swift */,
+				DC04624D2CFA533B00C4F344 /* CotisationsMember.swift */,
+				DC0462512CFA5D3B00C4F344 /* CotisationsMemberDetailsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC0461D82CF8FD0300C4F344 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				DC0461DD2CF8FDA500C4F344 /* CotisationsMembersRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		DC15EE5D2C514E0E00BD4D4B /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				DC15EE5B2C514E0500BD4D4B /* MenuViewModel.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		DC1B809F2CF1084800FA9997 /* MenuAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				DC0461D52CF8FCDB00C4F344 /* CotisationsMembers */,
+				DC1B80A02CF1085400FA9997 /* Members */,
+				DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */,
+			);
+			path = MenuAdmin;
+			sourceTree = "<group>";
+		};
+		DC1B80A02CF1085400FA9997 /* Members */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B80A22CF1088B00FA9997 /* Repository */,
+				DC1B80A42CF1088B00FA9997 /* ViewModels */,
+				DC1B80A72CF1088B00FA9997 /* Views */,
+			);
+			path = Members;
+			sourceTree = "<group>";
+		};
+		DC1B80A22CF1088B00FA9997 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B80A12CF1088B00FA9997 /* MembersRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		DC1B80A42CF1088B00FA9997 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B80A32CF1088B00FA9997 /* ListMembersViewModel.swift */,
+				DC1B80AC2CF1111F00FA9997 /* MemberDetailsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC1B80A72CF1088B00FA9997 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B80A52CF1088B00FA9997 /* ListMembersView.swift */,
+				DC1B80A62CF1088B00FA9997 /* MemberDetails.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DC4E65872C49BC4500B08F1A /* Configurations */ = {
@@ -265,7 +372,8 @@
 				DCB623632C56E62000EA13F7 /* DeepLinkManager */,
 				DC6FD5BA2C5AA8D400536C19 /* AuthenticationManager */,
 				DC6FD5FB2C60FF4400536C19 /* MatosFeature */,
-				DC7AD32A2CED1D1100E2D8C5 /* MembersFeature */,
+				DC1B80AF2CF11A6200FA9997 /* Dependencies */,
+				DC1B80B12CF11A6200FA9997 /* DependenciesMacros */,
 			);
 			productName = UrbanParis;
 			productReference = DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */;
@@ -298,6 +406,7 @@
 			packageReferences = (
 				DC0015EB2C4FD55200416056 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				DC61D1EC2C50248F0047136F /* XCRemoteSwiftPackageReference "AnimateText" */,
+				DC1B80AE2CF11A6200FA9997 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 			);
 			productRefGroup = DCD8AE9C2C47E91C0070B0D1 /* Products */;
 			projectDirPath = "";
@@ -336,6 +445,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC04624E2CFA533B00C4F344 /* CotisationsMember.swift in Sources */,
+				DC1B80A82CF1088B00FA9997 /* MembersRepository.swift in Sources */,
+				DC1B80A92CF1088B00FA9997 /* MemberDetails.swift in Sources */,
+				DC0462502CFA5CE700C4F344 /* CotisationsMemberDetails.swift in Sources */,
+				DC1B80AA2CF1088B00FA9997 /* ListMembersView.swift in Sources */,
+				DC0462522CFA5D3B00C4F344 /* CotisationsMemberDetailsViewModel.swift in Sources */,
+				DC1B80AB2CF1088B00FA9997 /* ListMembersViewModel.swift in Sources */,
 				DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */,
 				DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */,
 				DC7AD3292CED17EE00E2D8C5 /* MenuAdminCoordinator.swift in Sources */,
@@ -345,8 +461,12 @@
 				DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */,
 				DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */,
 				DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */,
+				DC0461DE2CF8FDA500C4F344 /* CotisationsMembersRepository.swift in Sources */,
+				DC0461DA2CF8FD5D00C4F344 /* CotisationsMembersView.swift in Sources */,
+				DC1B80AD2CF1111F00FA9997 /* MemberDetailsViewModel.swift in Sources */,
 				DC61D1EB2C5023C40047136F /* SplashscreenView.swift in Sources */,
 				DCD8AEAE2C49610B0070B0D1 /* AppView.swift in Sources */,
+				DC0461DC2CF8FD7D00C4F344 /* CotisationsMembersViewModel.swift in Sources */,
 				DC0015EA2C4FD42500416056 /* SmokeManView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -912,6 +1032,14 @@
 				minimumVersion = 4.5.0;
 			};
 		};
+		DC1B80AE2CF11A6200FA9997 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-dependencies";
+			requirement = {
+				kind = exactVersion;
+				version = 1.5.2;
+			};
+		};
 		DC61D1EC2C50248F0047136F /* XCRemoteSwiftPackageReference "AnimateText" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jasudev/AnimateText";
@@ -939,6 +1067,16 @@
 		DC12B8A12C513DFC00F3FF93 /* ProfileManager */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProfileManager;
+		};
+		DC1B80AF2CF11A6200FA9997 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC1B80AE2CF11A6200FA9997 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
+		};
+		DC1B80B12CF11A6200FA9997 /* DependenciesMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC1B80AE2CF11A6200FA9997 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = DependenciesMacros;
 		};
 		DC4E65812C49839E00B08F1A /* SharedResources */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -968,10 +1106,6 @@
 		DC7914FB2C4EB012005A3244 /* ProfileFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ProfileFeature;
-		};
-		DC7AD32A2CED1D1100E2D8C5 /* MembersFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MembersFeature;
 		};
 		DC7F514B2C52ABA600C6D4BE /* CotisationsFeature */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -19,44 +19,34 @@ enum CotisationsRepositoryError: Error {
 
 @DependencyClient
 public struct CotisationsRepository: Sendable {
-    public var retrieveCotisations: @Sendable() async throws -> [Cotisation]
-    public var isUpToDate: @Sendable(_ date: String) async throws -> Bool
+    public var retrieveCotisations: @Sendable(_ idProfile: Int) async throws -> [Cotisation]
+    public var isUpToDate: @Sendable(_ idProfile: Int, _ date: String) async throws -> Bool
 }
 
 extension CotisationsRepository: DependencyKey {
 
-    static var cotisations: [Cotisation] {
-        get async throws {
-            guard let id = Database.shared.client.auth.currentUser?.id else {
-                throw DatabaseClientError.notFoundId
-            }
+    static func getCotisations(idProfile: Int) async throws -> [Cotisation] {
+        let cotisations: [Cotisation] = try await Database.shared.client
+            .from(Database.Table.cotisations.rawValue)
+            .select()
+            .eq("id_profile", value: idProfile)
+            .execute()
+            .value
 
-            let cotisations: [Cotisation] = try await Database.shared.client
-                .from(Database.Table.cotisations.rawValue)
-                .select()
-                .eq("idUser", value: id)
-                .execute()
-                .value
-
-            return cotisations.sorted { (a, b) -> Bool in
-                    let adjustedMonthA = (a.month + 4) % 12
-                    let adjustedMonthB = (b.month + 4) % 12
-                    return adjustedMonthA < adjustedMonthB
-            }
-
-            return cotisations
+        return cotisations.sorted { (a, b) -> Bool in
+                let adjustedMonthA = (a.month + 4) % 12
+                let adjustedMonthB = (b.month + 4) % 12
+                return adjustedMonthA < adjustedMonthB
         }
+
+        return cotisations
     }
 
     public static var liveValue: CotisationsRepository {
-        .init(retrieveCotisations: {
-            return try await cotisations
-        }, isUpToDate: { dateString in
-            guard let id = Database.shared.client.auth.currentUser?.id else {
-                throw DatabaseClientError.notFoundId
-            }
-
-            async let cotisationsResult: [Cotisation] = await cotisations
+        .init(retrieveCotisations: { idProfile in
+            return try await CotisationsRepository.getCotisations(idProfile: idProfile)
+        }, isUpToDate: { idProfile, dateString in
+            async let cotisationsResult: [Cotisation] = await CotisationsRepository.getCotisations(idProfile: idProfile)
 
             /*let apiKey: String = ConfigurationReader.value(for: "TIMEZONE_DB_API_KEY")
             let urlString = "http://api.timezonedb.com/v2.1/get-time-zone?key=\(apiKey)&format=json&by=zone&zone=Europe/Paris"

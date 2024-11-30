@@ -145,7 +145,7 @@ struct MenuView: View {
                                     Text("Admin")
                                         .foregroundStyle(DSColors.white.swiftUIColor)
                                         .font(DSFont.grafTitle3)
-                                        .opacity(index == 6 ?  1 : 0.3)
+                                        .opacity(index == 7 ?  1 : 0.3)
                                 }
                                 .buttonStyle(.plain)
                             }

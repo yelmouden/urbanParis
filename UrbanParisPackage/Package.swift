@@ -68,10 +68,6 @@ let package = Package(
             name: "MatosFeature",
             targets: ["MatosFeature"]
         ),
-        .library(
-            name: "MembersFeature",
-            targets: ["MembersFeature"]
-        )
     ],
     dependencies: [
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
@@ -276,18 +272,6 @@ let package = Package(
             ],
             resources: [
                 .process("Resources")
-            ]
-        ),
-        .target(
-            name: "MembersFeature",
-            dependencies: [
-                .product(name: "FlowStacks", package: "FlowStacks"),
-                .product(name: "Dependencies", package: "swift-dependencies"),
-                .product(name: "SDWebImageSwiftUI", package: "SDWebImageSwiftUI"),
-                "ProfileManager",
-                "DesignSystem",
-                "SharedResources",
-                "SharedRepository"
             ]
         )
     ]

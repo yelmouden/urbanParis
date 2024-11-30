@@ -29,5 +29,8 @@ public extension UINavigationBar {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = DSColors.black.color
 
         UISearchBar.appearance().tintColor = DSColors.red.color
+
+        appearance.shadowImage = UIImage()
+        appearance.setBackgroundImage(UIImage(), for: .default)
     }
 }

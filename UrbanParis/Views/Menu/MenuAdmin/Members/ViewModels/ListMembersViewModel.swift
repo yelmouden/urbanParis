@@ -13,7 +13,7 @@ import Utils
 
 struct ProfileGroup: Equatable {
     let key: String
-    let profiles: [Profile]
+    var profiles: [Profile]
 }
 
 @MainActor
@@ -70,5 +70,16 @@ final class ListMembersViewModel {
 
             state = .loaded(filtered)
         }
+    }
+
+    func updateProfile(_ profile: Profile) {
+
+        // Mettre à jour le profil dans les sections
+        for i in 0..<self.sections.count {
+            if let index = self.sections[i].profiles.firstIndex(where: { $0.id == profile.id }) {
+                self.sections[i].profiles[index] = profile
+            }
+        }
+
     }
 }
