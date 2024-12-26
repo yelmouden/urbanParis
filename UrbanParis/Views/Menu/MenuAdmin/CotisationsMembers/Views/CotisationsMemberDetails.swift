@@ -60,7 +60,6 @@ struct CotisationsMemberDetails: View {
                                         var value = newValue
                                         value.formattedDecimalText()
                                         cotisation.amountText = value
-                                        //viewModel.amount = value.valueAmount
                                     }
 
                             }

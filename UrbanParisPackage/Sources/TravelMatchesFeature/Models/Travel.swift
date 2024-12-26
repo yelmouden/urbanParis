@@ -9,20 +9,20 @@ import Foundation
 
 public struct Travel: Identifiable, Equatable, Codable {
     public let id: Int
-    let date: String?
-    let appointmentTime: String?
-    let departureTime: String?
-    let timeMatch: String?
-    let price: Float?
-    let descriptionTravel: String?
-    let descriptionBar: String?
-    let report: String?
-    let googleDoc: String?
-    let telegram: String?
-    let priceMatch: Float?
-    let team: Team
-    let pool: Pool?
-    var hasSubscribed: Bool = false
+    public let date: String?
+    public let appointmentTime: String?
+    public let departureTime: String?
+    public let timeMatch: String?
+    public let price: Float?
+    public let descriptionTravel: String?
+    public let descriptionBar: String?
+    public let report: String?
+    public let googleDoc: String?
+    public let telegram: String?
+    public let priceMatch: Float?
+    public let team: Team
+    public let pool: Pool?
+    public var hasSubscribed: Bool = false
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

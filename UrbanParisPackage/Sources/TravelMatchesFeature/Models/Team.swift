@@ -9,10 +9,10 @@ import Database
 import Foundation
 import UIKit
 
-struct Team: Identifiable, Equatable, Codable {
-    let id: Int
-    let name: String
-    let logo: String?
+public struct Team: Identifiable, Equatable, Codable {
+    public let id: Int
+    public let name: String
+    public let logo: String?
 }
 
 extension Team {

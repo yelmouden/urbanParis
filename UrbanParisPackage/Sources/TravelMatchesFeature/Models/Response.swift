@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Response: Equatable, Codable {
-    let idProposal: Int
-    let idProfile: Int
-    let idPool: Int
+public struct Response: Equatable, Codable {
+    public let idProposal: Int
+    public let idProfile: Int
+    public let idPool: Int
 }
 

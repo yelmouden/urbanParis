@@ -16,25 +16,10 @@ struct MyTravelView: View {
 
     var body: some View {
         HStack {
-            if let url {
-                WebImage(url: url) { image in
-                    image
-                        .resizable()
-                        .frame(width: 34, height: 34)
-                        .scaledToFit()
-                } placeholder: {
-                    Assets.fanion.swiftUIImage
-                        .resizable()
-                        .frame(width: 34, height: 34)
-                }
+            Assets.fanion.swiftUIImage
+                .resizable()
+                .frame(width: 34, height: 34)
                 .padding([.leading, .trailing], Margins.small)
-
-            } else {
-                Assets.fanion.swiftUIImage
-                    .resizable()
-                    .frame(width: 34, height: 34)
-                    .padding([.leading, .trailing], Margins.small)
-            }
 
             Text(travel.team.name)
                 .foregroundStyle(DSColors.white.swiftUIColor)

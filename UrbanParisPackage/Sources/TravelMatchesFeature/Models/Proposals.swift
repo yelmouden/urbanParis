@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Proposal: Identifiable, Equatable, Codable {
-    let id: Int
-    let title: String
+public struct Proposal: Identifiable, Equatable, Codable {
+    public let id: Int
+    public let title: String
 }

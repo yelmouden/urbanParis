@@ -38,4 +38,12 @@ public extension Date {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.date(from: date)
     }
+
+    static func timeFromString(_ date: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "fr_FR")
+        dateFormatter.timeZone = TimeZone(identifier: "Europe/Paris")
+        dateFormatter.dateFormat = "HH:mm:ss"
+        return dateFormatter.date(from: date)
+    }
 }

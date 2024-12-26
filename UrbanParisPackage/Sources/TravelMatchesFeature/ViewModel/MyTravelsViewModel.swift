@@ -5,11 +5,14 @@
 //  Created by Yassin El Mouden on 30/07/2024.
 //
 
+import Combine
 import Foundation
 import Dependencies
+import ProfileManager
 import Observation
 import Utils
 
+@MainActor
 @Observable
 final class MyTravelsViewModel {
     @ObservationIgnored
@@ -22,6 +25,20 @@ final class MyTravelsViewModel {
     var stateSeasonsView: StateView<[Season]> = .loading
 
     var showError = false
+
+    var cancellables = Set<AnyCancellable>()
+
+    var idProfile: Int?
+
+    init() {
+        ProfileUpdateNotifier.shared.publisher
+            .prefix(1)
+            .sink { [weak self] profile in
+                self?.idProfile = profile?.id
+            }
+            .store(in: &cancellables)
+
+    }
 
     func retrieveSeasons() async {
         do {
@@ -40,9 +57,9 @@ final class MyTravelsViewModel {
 
     func retrieveMyTravels() async {
         do {
-            guard let selectedSeason else { return }
+            guard let selectedSeason, let idProfile else { return }
 
-            let items = try await repository.retrieveMyTravels(selectedSeason.id)
+            let items = try await repository.retrieveMyTravels(selectedSeason.id, idProfile)
 
             self.stateTravels = items.isEmpty ? .empty : .loaded(items)
 

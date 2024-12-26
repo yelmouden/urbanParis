@@ -37,6 +37,16 @@
 		DC4E65802C49834300B08F1A /* LaunchScreenUrban.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4E657F2C49834300B08F1A /* LaunchScreenUrban.storyboard */; };
 		DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */ = {isa = PBXBuildFile; productRef = DC4E65812C49839E00B08F1A /* SharedResources */; };
 		DC4E65922C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */; };
+		DC50E1FB2D1D9A2A0055A99E /* SeasonsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E1FA2D1D9A2A0055A99E /* SeasonsListView.swift */; };
+		DC50E1FF2D1D9A5F0055A99E /* SeasonsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E1FE2D1D9A5F0055A99E /* SeasonsListViewModel.swift */; };
+		DC50E2012D1DA27F0055A99E /* TravelsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2002D1DA27F0055A99E /* TravelsListViewModel.swift */; };
+		DC50E2032D1DA31E0055A99E /* TravelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2022D1DA31E0055A99E /* TravelsListView.swift */; };
+		DC50E2052D1DA88A0055A99E /* TravelDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2042D1DA88A0055A99E /* TravelDetailsView.swift */; };
+		DC50E2072D1DA8DB0055A99E /* TravelDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2062D1DA8DB0055A99E /* TravelDetailsViewModel.swift */; };
+		DC50E2092D1DC53F0055A99E /* MembersTravelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */; };
+		DC50E20B2D1DC5600055A99E /* MembersTravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */; };
+		DC50E20D2D1DD8E10055A99E /* MemberTravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20C2D1DD8E10055A99E /* MemberTravelViewModel.swift */; };
+		DC50E20F2D1DDA4A0055A99E /* MemberTravelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20E2D1DDA4A0055A99E /* MemberTravelView.swift */; };
 		DC54131A2C53041400BF0010 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5413192C53041400BF0010 /* MenuView.swift */; };
 		DC54131C2C53E93600BF0010 /* TravelMatchesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC54131B2C53E93600BF0010 /* TravelMatchesFeature */; };
 		DC61D1EB2C5023C40047136F /* SplashscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC61D1EA2C5023C40047136F /* SplashscreenView.swift */; };
@@ -86,6 +96,16 @@
 		DC4E658A2C49BC8F00B08F1A /* nonUrban.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = nonUrban.xcconfig; sourceTree = "<group>"; };
 		DC4E65902C49C6B500B08F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DC4E65912C49C9A500B08F1A /* LaunchScreenNonUrban.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenNonUrban.storyboard; sourceTree = "<group>"; };
+		DC50E1FA2D1D9A2A0055A99E /* SeasonsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsListView.swift; sourceTree = "<group>"; };
+		DC50E1FE2D1D9A5F0055A99E /* SeasonsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsListViewModel.swift; sourceTree = "<group>"; };
+		DC50E2002D1DA27F0055A99E /* TravelsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelsListViewModel.swift; sourceTree = "<group>"; };
+		DC50E2022D1DA31E0055A99E /* TravelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelsListView.swift; sourceTree = "<group>"; };
+		DC50E2042D1DA88A0055A99E /* TravelDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDetailsView.swift; sourceTree = "<group>"; };
+		DC50E2062D1DA8DB0055A99E /* TravelDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDetailsViewModel.swift; sourceTree = "<group>"; };
+		DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersTravelView.swift; sourceTree = "<group>"; };
+		DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersTravelViewModel.swift; sourceTree = "<group>"; };
+		DC50E20C2D1DD8E10055A99E /* MemberTravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTravelViewModel.swift; sourceTree = "<group>"; };
+		DC50E20E2D1DDA4A0055A99E /* MemberTravelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTravelView.swift; sourceTree = "<group>"; };
 		DC5413192C53041400BF0010 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		DC61D1EA2C5023C40047136F /* SplashscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenView.swift; sourceTree = "<group>"; };
 		DC6FD5BC2C5AAFC100536C19 /* UserLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLockedView.swift; sourceTree = "<group>"; };
@@ -221,6 +241,7 @@
 		DC1B809F2CF1084800FA9997 /* MenuAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				DC50E1F92D1D9A0E0055A99E /* Travels */,
 				DC0461D52CF8FCDB00C4F344 /* CotisationsMembers */,
 				DC1B80A02CF1085400FA9997 /* Members */,
 				DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */,
@@ -274,6 +295,39 @@
 				DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */,
 			);
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		DC50E1F92D1D9A0E0055A99E /* Travels */ = {
+			isa = PBXGroup;
+			children = (
+				DC50E1FD2D1D9A400055A99E /* ViewModels */,
+				DC50E1FC2D1D9A3A0055A99E /* Views */,
+			);
+			path = Travels;
+			sourceTree = "<group>";
+		};
+		DC50E1FC2D1D9A3A0055A99E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC50E2022D1DA31E0055A99E /* TravelsListView.swift */,
+				DC50E1FA2D1D9A2A0055A99E /* SeasonsListView.swift */,
+				DC50E2042D1DA88A0055A99E /* TravelDetailsView.swift */,
+				DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */,
+				DC50E20E2D1DDA4A0055A99E /* MemberTravelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC50E1FD2D1D9A400055A99E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC50E1FE2D1D9A5F0055A99E /* SeasonsListViewModel.swift */,
+				DC50E2002D1DA27F0055A99E /* TravelsListViewModel.swift */,
+				DC50E2062D1DA8DB0055A99E /* TravelDetailsViewModel.swift */,
+				DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */,
+				DC50E20C2D1DD8E10055A99E /* MemberTravelViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		DC6FD5BE2C5AB0C000536C19 /* Resources */ = {
@@ -445,19 +499,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC50E2092D1DC53F0055A99E /* MembersTravelView.swift in Sources */,
 				DC04624E2CFA533B00C4F344 /* CotisationsMember.swift in Sources */,
 				DC1B80A82CF1088B00FA9997 /* MembersRepository.swift in Sources */,
 				DC1B80A92CF1088B00FA9997 /* MemberDetails.swift in Sources */,
 				DC0462502CFA5CE700C4F344 /* CotisationsMemberDetails.swift in Sources */,
 				DC1B80AA2CF1088B00FA9997 /* ListMembersView.swift in Sources */,
 				DC0462522CFA5D3B00C4F344 /* CotisationsMemberDetailsViewModel.swift in Sources */,
+				DC50E2012D1DA27F0055A99E /* TravelsListViewModel.swift in Sources */,
+				DC50E20D2D1DD8E10055A99E /* MemberTravelViewModel.swift in Sources */,
 				DC1B80AB2CF1088B00FA9997 /* ListMembersViewModel.swift in Sources */,
 				DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */,
+				DC50E1FF2D1D9A5F0055A99E /* SeasonsListViewModel.swift in Sources */,
 				DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */,
+				DC50E1FB2D1D9A2A0055A99E /* SeasonsListView.swift in Sources */,
 				DC7AD3292CED17EE00E2D8C5 /* MenuAdminCoordinator.swift in Sources */,
 				DC7AD3272CED16A400E2D8C5 /* AdminMenuView.swift in Sources */,
 				DC54131A2C53041400BF0010 /* MenuView.swift in Sources */,
 				DC6FD5BD2C5AAFC100536C19 /* UserLockedView.swift in Sources */,
+				DC50E20B2D1DC5600055A99E /* MembersTravelViewModel.swift in Sources */,
+				DC50E2032D1DA31E0055A99E /* TravelsListView.swift in Sources */,
+				DC50E20F2D1DDA4A0055A99E /* MemberTravelView.swift in Sources */,
+				DC50E2052D1DA88A0055A99E /* TravelDetailsView.swift in Sources */,
+				DC50E2072D1DA8DB0055A99E /* TravelDetailsViewModel.swift in Sources */,
 				DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */,
 				DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */,
 				DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */,

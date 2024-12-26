@@ -7,9 +7,9 @@
 
 import DesignSystem
 import FlowStacks
-import MembersFeature
 import ProfileManager
 import SwiftUI
+import TravelMatchesFeature
 import Utils
 
 enum MenuAdminScreen: Equatable, Hashable {
@@ -17,6 +17,11 @@ enum MenuAdminScreen: Equatable, Hashable {
     case memberDetails(MemberDetailsViewModel)
     case membersCotisation(CotisationsMembersViewModel)
     case memberDetailCotisation(CotisationsMember)
+    case seasonsList
+    case travels(idSeason: Int)
+    case editTravel(idSeason: Int, travel: Travel)
+    case showMembersTravel(idTravel: Int, idSeason: Int)
+
 
     public static func == (lhs: MenuAdminScreen, rhs: MenuAdminScreen) -> Bool {
         switch (lhs, rhs) {
@@ -24,6 +29,10 @@ enum MenuAdminScreen: Equatable, Hashable {
         case (.memberDetails, .memberDetails): return true
         case (.membersCotisation, .membersCotisation): return true
         case (.memberDetailCotisation, .memberDetailCotisation): return true
+        case (.seasonsList, .seasonsList): return true
+        case (.travels, .travels): return true
+        case (.editTravel, .editTravel): return true
+        case (.showMembersTravel, .showMembersTravel): return true
         default: return false
         }
     }
@@ -34,6 +43,10 @@ enum MenuAdminScreen: Equatable, Hashable {
         case .memberDetails: hasher.combine("memberDetails")
         case .membersCotisation: hasher.combine("membersCotisation")
         case .memberDetailCotisation: hasher.combine("memberDetailCotisation")
+        case .seasonsList: hasher.combine("seasonsList")
+        case .travels: hasher.combine("travels")
+        case .editTravel: hasher.combine("editTravel")
+        case .showMembersTravel: hasher.combine("showMembersTravel")
         }
     }
 }
@@ -62,6 +75,14 @@ public struct MenuAdminCoordinator: View {
                         CotisationsMembersView()
                     case .memberDetailCotisation(let cotisationsMember):
                         CotisationsMemberDetails(viewModel: .init(cotisationsMember: cotisationsMember))
+                    case .seasonsList:
+                        SeasonsListView()
+                    case .travels(let idSeason):
+                        TravelsListView(idSeason: idSeason)
+                    case .editTravel(let idSeason, let travel):
+                        EditTravelMatchView(idSeason: idSeason, travel: travel)
+                    case .showMembersTravel(let idTravel, let idSeason):
+                        MembersTravelView(idTravel: idTravel, idSeason: idSeason)
                     }
 
                 }

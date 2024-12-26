@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Pool: Equatable, Codable {
-    let id: Int
-    let title: String
-    let limitDate: Date?
-    let proposals: [Proposal]
-    var responses: [Response]
-    let isMultipleChoices: Bool
-    let isActive: Bool
+public struct Pool: Equatable, Codable {
+    public let id: Int
+    public let title: String
+    public let limitDate: Date?
+    public let proposals: [Proposal]
+    public var responses: [Response]
+    public let isMultipleChoices: Bool
+    public let isActive: Bool
 
 
     enum CodingKeys: CodingKey {
@@ -27,7 +27,7 @@ struct Pool: Equatable, Codable {
         case isActive
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer<Pool.CodingKeys> = try decoder.container(keyedBy: Pool.CodingKeys.self)
         
         self.id = try container.decode(Int.self, forKey: Pool.CodingKeys.id)
@@ -48,7 +48,7 @@ struct Pool: Equatable, Codable {
         }
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container: KeyedEncodingContainer<Pool.CodingKeys> = encoder.container(keyedBy: Pool.CodingKeys.self)
         
         try container.encode(self.id, forKey: Pool.CodingKeys.id)

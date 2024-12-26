@@ -59,6 +59,7 @@ struct AdminMenuView: View {
                 }
 
                 Button(action: {
+                    navigator.push(.seasonsList)
 
                 }) {
                     HStack {
@@ -75,25 +76,6 @@ struct AdminMenuView: View {
                             .frame(width: 20, height: 20)
                     }
                 }
-
-                Button(action: {
-
-                }) {
-                    HStack {
-                        Text("Gestion du matos")
-                            .foregroundStyle(DSColors.white.swiftUIColor)
-                            .font(DSFont.robotoTitle3)
-
-                        Spacer()
-
-                        Image(systemName: "chevron.right")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundStyle(DSColors.red.swiftUIColor)
-                            .frame(width: 20, height: 20)
-                    }
-                }
-
                 Spacer()
             }
             .padding(.top, Margins.extraLarge)

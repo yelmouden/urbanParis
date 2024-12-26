@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Season: Identifiable, Equatable, Codable {
-    let id: Int
-    let title: String
+public struct Season: Identifiable, Equatable, Codable {
+    public let id: Int
+    public let title: String
 }
