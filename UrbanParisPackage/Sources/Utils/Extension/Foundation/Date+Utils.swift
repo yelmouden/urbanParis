@@ -46,4 +46,11 @@ public extension Date {
         dateFormatter.dateFormat = "HH:mm:ss"
         return dateFormatter.date(from: date)
     }
+
+    func timeString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        formatter.timeZone = TimeZone(identifier: "Europe/Paris")
+        return formatter.string(from: self)
+    }
 }

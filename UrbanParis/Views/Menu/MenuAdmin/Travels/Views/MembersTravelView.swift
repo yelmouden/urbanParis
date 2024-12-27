@@ -41,11 +41,30 @@ struct MembersTravelView: View {
                         FWScrollView {
                             LazyVStack {
                                 ForEach(viewModels) { viewModel in
-                                    MemberTravelView(viewModel: viewModel)
+                                    MemberTravelCellView(viewModel: viewModel)
                                         .padding(.bottom, Margins.medium)
                                 }
                             }
-                    }
+                        }
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button(action: {
+                                    navigator.presentSheet(
+                                        .members { profile in
+                                            Task {
+                                                await viewModel.addMemberToTravel(profile: profile)
+                                            }
+                                        },
+                                        withNavigation: true)
+                                }) {
+                                    Image(systemName: "plus.circle.fill")
+                                        .resizable()
+                                        .foregroundStyle(DSColors.red.swiftUIColor)
+                                        .frame(width: 30, height: 30)
+                                }
+                            }
+
+                        }
                     }
                 default:
                     EmptyView()
@@ -55,17 +74,7 @@ struct MembersTravelView: View {
             .addBackButton {
                 navigator.pop()
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        //isEditing = true
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(DSColors.red.swiftUIColor)
-                    }
-                }
 
-            }
             .navigationTitle("Membres inscrits")
             .task {
                 await viewModel.retrieveMembersTravel()

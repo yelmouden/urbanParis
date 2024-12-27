@@ -36,4 +36,14 @@ final class TravelsListViewModel {
         }
     }
 
+    func deleteSeason() async -> Bool {
+        do {
+            try await travelMatchesRepository.deleteSeason(idSeason: idSeason)
+            return true
+        } catch {
+            print("error ", error)
+            return false
+        }
+    }
+
 }

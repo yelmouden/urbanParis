@@ -7,6 +7,7 @@
 
 import DesignSystem
 import FlowStacks
+import ProfileManager
 import SharedResources
 import SwiftUI
 import Utils
@@ -21,7 +22,11 @@ public struct ListMembersView: View {
 
     @State var hasMadeRequest: Bool = false
 
-    public init() {}
+    let selectedProfile: ((Profile) -> Void)?
+
+    public init(selectedProfile: ((Profile) -> Void)? = nil) {
+        self.selectedProfile = selectedProfile
+    }
 
     public var body: some View {
         BackgroundImageContainerView(
@@ -53,7 +58,12 @@ public struct ListMembersView: View {
                                         Section(header: sectionHeader(section.key)) {
                                             ForEach(section.profiles) { member in
                                                 Button(action: {
-                                                    navigator.push(.memberDetails(.init(profile: member)))
+                                                    if let selectedProfile, !member.isLocked {
+                                                        selectedProfile(member)
+                                                        navigator.pop()
+                                                    } else if selectedProfile == nil {
+                                                        navigator.push(.memberDetails(.init(profile: member)))
+                                                    }
                                                 }) {
                                                     VStack {
                                                         HStack {
@@ -82,11 +92,14 @@ public struct ListMembersView: View {
                                                                     .frame(width: 20, height: 20)
                                                             }
 
-                                                            Image(systemName: "chevron.right")
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .foregroundStyle(DSColors.red.swiftUIColor)
-                                                                .frame(width: 20, height: 20)
+                                                            if selectedProfile == nil {
+                                                                Image(systemName: "chevron.right")
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .foregroundStyle(DSColors.red.swiftUIColor)
+                                                                    .frame(width: 20, height: 20)
+                                                            }
+
                                                         }
                                                     }
                                                     .opacity(member.isLocked ? 0.3 : 1)
@@ -137,7 +150,7 @@ public struct ListMembersView: View {
                 }
                 .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
                 .navigationTitle("Liste des membres")
-                .addBackButton {
+                .addBackButton(isPresented: selectedProfile != nil) {
                     navigator.pop()
                 }
             }

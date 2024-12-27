@@ -21,9 +21,10 @@ public struct FWTextEditor: View {
             if text.isEmpty {
                 VStack {
                     Text(placeholder)
+                        .foregroundStyle(DSColors.white.swiftUIColor)
                         .padding(.top, 10)
                         .padding(.leading, 6)
-                        .opacity(0.6)
+                        .opacity(0.4)
                     Spacer()
                 }
             }

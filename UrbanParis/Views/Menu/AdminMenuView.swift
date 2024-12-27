@@ -23,7 +23,7 @@ struct AdminMenuView: View {
         {
             VStack(alignment: .leading, spacing: Margins.extraLarge) {
                 Button(action: {
-                    navigator.push(.members)
+                    navigator.push(.members())
                 }) {
                     HStack {
                         Text("Gestion des membres")

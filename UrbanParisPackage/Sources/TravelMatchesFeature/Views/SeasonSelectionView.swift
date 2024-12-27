@@ -16,7 +16,7 @@ struct SeasonSelectionView: View {
 
     var body: some View {
         VStack {
-            Text("Séléctionne une saison")
+            Text("Selectionne une saison")
                 .foregroundStyle(DSColors.white.swiftUIColor)
                 .font(DSFont.grafTitle3)
 

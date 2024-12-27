@@ -13,6 +13,7 @@ struct SeasonsListView: View {
     @EnvironmentObject var navigator: FlowNavigator<MenuAdminScreen>
 
     @State var viewModel = SeasonsListViewModel()
+    @State var taskAddSeason: Task<Void, Never>?
 
     var body: some View {
         BackgroundImageContainerView(
@@ -24,6 +25,7 @@ struct SeasonsListView: View {
             VStack {
                 switch viewModel.state {
                 case .loaded(let seasons):
+
                     FWScrollView {
                         LazyVStack {
                             ForEach(seasons) { season in
@@ -51,12 +53,31 @@ struct SeasonsListView: View {
                             }
                         }
                     }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: {
+                                PopupManager.shared.showPopup(item: .view(AnyView(AddSeasonInfoInputView(
+                                    tapAdd: { season in
+                                        taskAddSeason = Task {
+                                            await viewModel.addSeason(season)
+                                        }
+                                    })
+                                )))
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(DSColors.red.swiftUIColor)
+                            }
+                        }
+
+                    }
                 default:
                     EmptyView()
                 }
 
             }
+            .animation(.default, value: viewModel.state)
             .addBackButton {
+                taskAddSeason?.cancel()
                 navigator.pop()
             }
             .navigationTitle("Saisons")

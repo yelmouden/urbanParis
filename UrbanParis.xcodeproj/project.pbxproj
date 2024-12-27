@@ -46,7 +46,13 @@
 		DC50E2092D1DC53F0055A99E /* MembersTravelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */; };
 		DC50E20B2D1DC5600055A99E /* MembersTravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */; };
 		DC50E20D2D1DD8E10055A99E /* MemberTravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20C2D1DD8E10055A99E /* MemberTravelViewModel.swift */; };
-		DC50E20F2D1DDA4A0055A99E /* MemberTravelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20E2D1DDA4A0055A99E /* MemberTravelView.swift */; };
+		DC50E20F2D1DDA4A0055A99E /* MemberTravelCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20E2D1DDA4A0055A99E /* MemberTravelCellView.swift */; };
+		DC50E2112D1EBC740055A99E /* AddSeasonInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2102D1EBC740055A99E /* AddSeasonInfoInputView.swift */; };
+		DC50E2132D1F079A0055A99E /* TeamsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2122D1F079A0055A99E /* TeamsListView.swift */; };
+		DC50E2152D1F07EC0055A99E /* TeamsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2142D1F07EC0055A99E /* TeamsListViewModel.swift */; };
+		DC50E2172D1F0DE80055A99E /* TeamCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2162D1F0DE80055A99E /* TeamCellViewModel.swift */; };
+		DC50E2192D1F0F1E0055A99E /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2182D1F0F1E0055A99E /* TeamCellView.swift */; };
+		DC50E21B2D1F15E90055A99E /* AddTeamInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E21A2D1F15E90055A99E /* AddTeamInfoInputView.swift */; };
 		DC54131A2C53041400BF0010 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5413192C53041400BF0010 /* MenuView.swift */; };
 		DC54131C2C53E93600BF0010 /* TravelMatchesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC54131B2C53E93600BF0010 /* TravelMatchesFeature */; };
 		DC61D1EB2C5023C40047136F /* SplashscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC61D1EA2C5023C40047136F /* SplashscreenView.swift */; };
@@ -105,7 +111,13 @@
 		DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersTravelView.swift; sourceTree = "<group>"; };
 		DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersTravelViewModel.swift; sourceTree = "<group>"; };
 		DC50E20C2D1DD8E10055A99E /* MemberTravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTravelViewModel.swift; sourceTree = "<group>"; };
-		DC50E20E2D1DDA4A0055A99E /* MemberTravelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTravelView.swift; sourceTree = "<group>"; };
+		DC50E20E2D1DDA4A0055A99E /* MemberTravelCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTravelCellView.swift; sourceTree = "<group>"; };
+		DC50E2102D1EBC740055A99E /* AddSeasonInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSeasonInfoInputView.swift; sourceTree = "<group>"; };
+		DC50E2122D1F079A0055A99E /* TeamsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsListView.swift; sourceTree = "<group>"; };
+		DC50E2142D1F07EC0055A99E /* TeamsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsListViewModel.swift; sourceTree = "<group>"; };
+		DC50E2162D1F0DE80055A99E /* TeamCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCellViewModel.swift; sourceTree = "<group>"; };
+		DC50E2182D1F0F1E0055A99E /* TeamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
+		DC50E21A2D1F15E90055A99E /* AddTeamInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeamInfoInputView.swift; sourceTree = "<group>"; };
 		DC5413192C53041400BF0010 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		DC61D1EA2C5023C40047136F /* SplashscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashscreenView.swift; sourceTree = "<group>"; };
 		DC6FD5BC2C5AAFC100536C19 /* UserLockedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLockedView.swift; sourceTree = "<group>"; };
@@ -309,11 +321,15 @@
 		DC50E1FC2D1D9A3A0055A99E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DC50E21A2D1F15E90055A99E /* AddTeamInfoInputView.swift */,
+				DC50E2182D1F0F1E0055A99E /* TeamCellView.swift */,
+				DC50E2102D1EBC740055A99E /* AddSeasonInfoInputView.swift */,
 				DC50E2022D1DA31E0055A99E /* TravelsListView.swift */,
 				DC50E1FA2D1D9A2A0055A99E /* SeasonsListView.swift */,
 				DC50E2042D1DA88A0055A99E /* TravelDetailsView.swift */,
 				DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */,
-				DC50E20E2D1DDA4A0055A99E /* MemberTravelView.swift */,
+				DC50E20E2D1DDA4A0055A99E /* MemberTravelCellView.swift */,
+				DC50E2122D1F079A0055A99E /* TeamsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +342,8 @@
 				DC50E2062D1DA8DB0055A99E /* TravelDetailsViewModel.swift */,
 				DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */,
 				DC50E20C2D1DD8E10055A99E /* MemberTravelViewModel.swift */,
+				DC50E2142D1F07EC0055A99E /* TeamsListViewModel.swift */,
+				DC50E2162D1F0DE80055A99E /* TeamCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -500,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC50E2092D1DC53F0055A99E /* MembersTravelView.swift in Sources */,
+				DC50E2152D1F07EC0055A99E /* TeamsListViewModel.swift in Sources */,
 				DC04624E2CFA533B00C4F344 /* CotisationsMember.swift in Sources */,
 				DC1B80A82CF1088B00FA9997 /* MembersRepository.swift in Sources */,
 				DC1B80A92CF1088B00FA9997 /* MemberDetails.swift in Sources */,
@@ -513,22 +532,27 @@
 				DC50E1FF2D1D9A5F0055A99E /* SeasonsListViewModel.swift in Sources */,
 				DCB21A342C552CA900B0D58B /* HomeViewModel.swift in Sources */,
 				DC50E1FB2D1D9A2A0055A99E /* SeasonsListView.swift in Sources */,
+				DC50E2132D1F079A0055A99E /* TeamsListView.swift in Sources */,
 				DC7AD3292CED17EE00E2D8C5 /* MenuAdminCoordinator.swift in Sources */,
 				DC7AD3272CED16A400E2D8C5 /* AdminMenuView.swift in Sources */,
+				DC50E2192D1F0F1E0055A99E /* TeamCellView.swift in Sources */,
 				DC54131A2C53041400BF0010 /* MenuView.swift in Sources */,
 				DC6FD5BD2C5AAFC100536C19 /* UserLockedView.swift in Sources */,
+				DC50E2172D1F0DE80055A99E /* TeamCellViewModel.swift in Sources */,
 				DC50E20B2D1DC5600055A99E /* MembersTravelViewModel.swift in Sources */,
 				DC50E2032D1DA31E0055A99E /* TravelsListView.swift in Sources */,
-				DC50E20F2D1DDA4A0055A99E /* MemberTravelView.swift in Sources */,
+				DC50E20F2D1DDA4A0055A99E /* MemberTravelCellView.swift in Sources */,
 				DC50E2052D1DA88A0055A99E /* TravelDetailsView.swift in Sources */,
 				DC50E2072D1DA8DB0055A99E /* TravelDetailsViewModel.swift in Sources */,
 				DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */,
 				DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */,
 				DCD8AE9F2C47E91C0070B0D1 /* UrbanParisApp.swift in Sources */,
 				DC0461DE2CF8FDA500C4F344 /* CotisationsMembersRepository.swift in Sources */,
+				DC50E2112D1EBC740055A99E /* AddSeasonInfoInputView.swift in Sources */,
 				DC0461DA2CF8FD5D00C4F344 /* CotisationsMembersView.swift in Sources */,
 				DC1B80AD2CF1111F00FA9997 /* MemberDetailsViewModel.swift in Sources */,
 				DC61D1EB2C5023C40047136F /* SplashscreenView.swift in Sources */,
+				DC50E21B2D1F15E90055A99E /* AddTeamInfoInputView.swift in Sources */,
 				DCD8AEAE2C49610B0070B0D1 /* AppView.swift in Sources */,
 				DC0461DC2CF8FD7D00C4F344 /* CotisationsMembersViewModel.swift in Sources */,
 				DC0015EA2C4FD42500416056 /* SmokeManView.swift in Sources */,

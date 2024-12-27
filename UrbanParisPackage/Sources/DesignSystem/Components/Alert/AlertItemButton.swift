@@ -12,14 +12,14 @@ public struct AlertItemButton: Sendable {
     let title: String
     let action: (@Sendable () -> Void)?
     let asyncAction: (@Sendable () async -> Bool)?
-    let onDismiss: (@Sendable () -> Void)?
+    let onDismiss: (@Sendable @MainActor () -> Void)?
     let isDestructive: Bool
 
     public init(
         title: String,
         action: (@Sendable () -> Void)? = nil,
         asyncAction: (@Sendable () async -> Bool)? = nil,
-        onDismiss: (@Sendable () -> Void)? = nil,
+        onDismiss: (@Sendable @MainActor () -> Void)? = nil,
         isDestructive: Bool
     ) {
         self.title = title

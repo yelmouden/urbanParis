@@ -27,7 +27,7 @@ struct TravelMatchView: View {
             VStack {
                 FWScrollView {
                     VStack {
-                        Text(travelVM.travel.team.name)
+                        Text(travelVM.travel.team?.name ?? "Equipe non définie")
                             .font(DSFont.robotoTitle3)
                             .foregroundStyle(DSColors.white.swiftUIColor)
                             .padding(.bottom, travelVM.travel.date == nil && travelVM.travel.timeMatch == nil ? Margins.large : Margins.medium)
@@ -45,9 +45,6 @@ struct TravelMatchView: View {
                                 .padding(.bottom, Margins.large)
                         } else {
                             getTravelInfo()
-                                .padding(.bottom, Margins.large)
-
-                            getBarInfo()
                                 .padding(.bottom, Margins.large)
                         }
 
@@ -150,9 +147,6 @@ struct TravelMatchView: View {
                     .frame(width: 64, height: 64)
             }
 
-        }
-        .task {
-            self.url = await travelVM.travel.team.retrieveURLIcon()
         }
         .task(id: travelVM) {
             await travelVM.checkAlreadySubscribe()
@@ -299,7 +293,7 @@ struct TravelMatchView: View {
         }
     }
 
-    func getBarInfo() -> some View {
+    /*func getBarInfo() -> some View {
         VStack {
             HStack {
                 Text("Infos Buvette")
@@ -323,7 +317,7 @@ struct TravelMatchView: View {
                 PoolView(pool: pool)
             }
         }
-    }
+    }*/
 
     func getReport() -> some View {
         VStack {

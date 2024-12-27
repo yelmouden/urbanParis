@@ -14,7 +14,12 @@ struct EditTravelMatchView: View {
     @State var viewModel: EditTravelMatchViewModel
     @EnvironmentObject var navigator: FlowNavigator<MenuAdminScreen>
 
-    init(idSeason: Int, travel: Travel) {
+    let isCreation: Bool
+    let didUpdate: (() -> Void)?
+
+    init(idSeason: Int, travel: Travel?, isCreation: Bool, didUpdate: (() -> Void)? = nil) {
+        self.isCreation = isCreation
+        self.didUpdate = didUpdate
         _viewModel = .init(initialValue: EditTravelMatchViewModel(idSeason: idSeason, travel: travel))
     }
 
@@ -45,55 +50,74 @@ struct EditTravelMatchView: View {
 
                 Spacer()
 
-                FWButton(title: "Sauvegarder") {
-
+                FWButton(
+                    title: "Sauvegarder",
+                    state: viewModel.stateSave.toFWButtonState()
+                ) {
+                    Task {
+                        if await viewModel.saveTravel() {
+                            didUpdate?()
+                            navigator.pop()
+                        }
+                    }
                 }
+                .enabled(viewModel.team != nil)
                 .fwButtonStyle(.primary)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(
-                        action: {
-                            navigator.push(
-                                MenuAdminScreen.showMembersTravel(
-                                    idTravel: viewModel.idTravel,
-                                    idSeason: viewModel.idSeason
+                    if let idTravel = viewModel.idTravel {
+                        Button(
+                            action: {
+                                navigator.push(
+                                    MenuAdminScreen.showMembersTravel(
+                                        idTravel: idTravel,
+                                        idSeason: viewModel.idSeason
+                                    )
                                 )
-                            )
-                    }) {
-                        Image(systemName: "person.3.fill")
-                            .foregroundColor(DSColors.red.swiftUIColor)
+                        }) {
+                            Image(systemName: "person.3.fill")
+                                .foregroundColor(DSColors.red.swiftUIColor)
+                        }
                     }
+
                 }
 
             }
-            .addBackButton {
+            .addBackButton(isPresented: isCreation) {
                 navigator.pop()
             }
         }
-        .navigationTitle("Edition")
+        .navigationTitle(isCreation ? "Nouveau deplacement" :"Edition")
     }
 
     var teamView: some View {
-        HStack {
-            Text("Equipe: ")
-                .foregroundStyle(DSColors.white.swiftUIColor)
-                .font(DSFont.robotoBody)
-                .padding(.trailing, Margins.mediumSmall)
+        Button {
 
-            Spacer()
+            navigator.presentSheet(.teams(currentTeam: viewModel.team, selectedTeam: { [viewModel] in
+                viewModel.team = $0
+            }), withNavigation: true)
+        } label: {
+            HStack {
+                Text("Equipe: ")
+                    .foregroundStyle(DSColors.white.swiftUIColor)
+                    .font(DSFont.robotoBody)
+                    .padding(.trailing, Margins.mediumSmall)
 
-            Text(viewModel.teamName)
-                .foregroundStyle(DSColors.white.swiftUIColor)
-                .font(DSFont.robotoTitle3)
-                .padding(.trailing, Margins.mediumSmall)
+                Spacer()
+
+                Text(viewModel.teamName)
+                    .foregroundStyle(DSColors.white.swiftUIColor)
+                    .font(DSFont.robotoTitle3)
+                    .padding(.trailing, Margins.mediumSmall)
 
 
-            Image(systemName: "chevron.right")
-                .resizable()
-                .scaledToFit()
-                .foregroundStyle(DSColors.red.swiftUIColor)
-                .frame(width: 20, height: 20)
+                Image(systemName: "chevron.right")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(DSColors.red.swiftUIColor)
+                    .frame(width: 20, height: 20)
+            }
         }
     }
 
@@ -252,7 +276,7 @@ struct EditTravelMatchView: View {
                 Spacer()
             }
 
-            FWTextEditor(placeholder: "Saissir le texte", text: $viewModel.descriptionMatch)
+            FWTextEditor(placeholder: "Saisir le texte", text: $viewModel.descriptionMatch)
 
         }
     }
@@ -260,7 +284,7 @@ struct EditTravelMatchView: View {
     var googleLinkView: some View {
         FWTextField(
             title: "Lien google doc",
-            placeholder: "saissir le lien google",
+            placeholder: "saisir le lien google",
             text: $viewModel.googleDoc
         )
         .autocorrectionDisabled()
@@ -270,7 +294,7 @@ struct EditTravelMatchView: View {
     var telegramLinkView: some View {
         FWTextField(
             title: "Lien groupe Telegram",
-            placeholder: "saissir le lien du groupe Télégram",
+            placeholder: "saisir le lien du groupe Télégram",
             text: $viewModel.telegram
         )
         .autocorrectionDisabled()
@@ -288,7 +312,7 @@ struct EditTravelMatchView: View {
                 Spacer()
             }
 
-            FWTextEditor(placeholder: "Saissir le CR", text: $viewModel.reportMatch)
+            FWTextEditor(placeholder: "Saisir le CR", text: $viewModel.reportMatch)
 
         }
     }

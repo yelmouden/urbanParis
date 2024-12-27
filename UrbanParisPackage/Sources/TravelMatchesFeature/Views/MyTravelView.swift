@@ -21,7 +21,7 @@ struct MyTravelView: View {
                 .frame(width: 34, height: 34)
                 .padding([.leading, .trailing], Margins.small)
 
-            Text(travel.team.name)
+            Text(travel.team?.name ?? "Pas d'équipe de renseigné")
                 .foregroundStyle(DSColors.white.swiftUIColor)
                 .font(DSFont.robotoBodyBold)
 
@@ -32,10 +32,6 @@ struct MyTravelView: View {
                     .foregroundStyle(DSColors.white.swiftUIColor)
                     .font(DSFont.robotoBody)
             }
-
-        }
-        .task {
-            self.url = await travel.team.retrieveURLIcon()
         }
     }
 }

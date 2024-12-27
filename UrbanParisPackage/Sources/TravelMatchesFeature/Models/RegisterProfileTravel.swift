@@ -18,5 +18,3 @@ public struct RegisterProfile: Codable, Equatable {
     public let firstname: String
     public let lastname: String
 }
-
-

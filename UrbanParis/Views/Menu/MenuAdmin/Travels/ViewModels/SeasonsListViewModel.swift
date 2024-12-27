@@ -24,10 +24,37 @@ final class SeasonsListViewModel {
     func retrieveSeasons() async {
         do {
             let seasons = try await travelMatchesRepository.retrieveSeasons()
+
+            try Task.checkCancellation()
+
             state = .loaded(seasons)
         } catch {
-
+            print("error ", error)
         }
+    }
+
+    func addSeason(_ season: String) async {
+        do {
+            switch state {
+            case .loaded(let seasons):
+                if seasons.map(\.title).contains(season) {
+                    return
+                }
+            default:
+                break
+            }
+
+
+            let addSeasonRequest = AddSeasonRequest(title: season)
+            try await travelMatchesRepository.addSeason(addSeasonRequest)
+
+            try Task.checkCancellation()
+
+            await retrieveSeasons()
+        } catch {
+            print("error ", error)
+        }
+
     }
 
 }

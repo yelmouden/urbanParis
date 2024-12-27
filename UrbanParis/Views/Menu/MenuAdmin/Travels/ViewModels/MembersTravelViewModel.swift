@@ -8,6 +8,7 @@
 import Dependencies
 import DependenciesMacros
 import Foundation
+import ProfileManager
 import Observation
 import TravelMatchesFeature
 import Utils
@@ -39,6 +40,19 @@ final class MembersTravelViewModel {
             state = .loaded(registeredMembers.map { MemberTravelViewModel(registerProfileTravel: $0) })
         } catch {
             print("error ", error)
+        }
+    }
+
+    func addMemberToTravel(profile: Profile) async {
+        do {
+            if let idProfile = profile.id {
+                let addRegisterProfileTravelRequest = AddRegisterProfileTravelRequest(idTravel: idTravel, idSeason: idSeason, idProfile: idProfile)
+
+                try await travelMatchesRepository.addProfileToTravel(addRegisterProfileTravelRequest)
+                await retrieveMembersTravel()
+            }
+        } catch {
+
         }
     }
 

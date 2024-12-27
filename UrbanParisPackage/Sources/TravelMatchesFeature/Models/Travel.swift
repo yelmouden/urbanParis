@@ -20,7 +20,7 @@ public struct Travel: Identifiable, Equatable, Codable {
     public let googleDoc: String?
     public let telegram: String?
     public let priceMatch: Float?
-    public let team: Team
+    public let team: Team?
     public let pool: Pool?
     public var hasSubscribed: Bool = false
 
@@ -35,7 +35,7 @@ public struct Travel: Identifiable, Equatable, Codable {
         descriptionTravel = try container.decodeIfPresent(String.self, forKey: .descriptionTravel)
         descriptionBar = try container.decodeIfPresent(String.self, forKey: .descriptionBar)
         report = try container.decodeIfPresent(String.self, forKey: .report)
-        team = try container.decode(Team.self, forKey: .team)
+        team = try container.decodeIfPresent(Team.self, forKey: .team)
         googleDoc = try container.decodeIfPresent(String.self, forKey: .googleDoc)
         telegram = try container.decodeIfPresent(String.self, forKey: .telegram)
         priceMatch = try container.decodeIfPresent(Float.self, forKey: .priceMatch)

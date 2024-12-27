@@ -29,38 +29,79 @@ struct TravelsListView: View {
             VStack {
                 switch viewModel.state {
                 case .loaded(let travels):
-                    FWScrollView {
-                        LazyVStack {
-                            ForEach(travels) { travel in
-                                Button(action: {
-                                    navigator.push(.editTravel(idSeason: viewModel.idSeason, travel: travel))
-                                }) {
-                                    HStack {
-                                        if let date = travel.date {
-                                            Text(date)
+                    VStack {
+                        FWScrollView {
+                            LazyVStack {
+                                ForEach(travels) { travel in
+                                    Button(action: {
+                                        navigator.push(.editTravel(idSeason: viewModel.idSeason, travel: travel, isCreation: false))
+                                    }) {
+                                        HStack {
+                                            if let date = travel.date {
+                                                Text(date)
+                                                    .foregroundStyle(DSColors.white.swiftUIColor)
+                                                    .font(DSFont.robotoBodyBold)
+                                                    .padding(.trailing, Margins.mediumSmall)
+                                            }
+
+                                            Text(travel.team?.name ?? "Equipe non définie")
                                                 .foregroundStyle(DSColors.white.swiftUIColor)
-                                                .font(DSFont.robotoBodyBold)
+                                                .font(DSFont.robotoTitle3)
                                                 .padding(.trailing, Margins.mediumSmall)
+
+                                            Spacer()
+
+                                            Image(systemName: "chevron.right")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .foregroundStyle(DSColors.red.swiftUIColor)
+                                                .frame(width: 20, height: 20)
                                         }
-
-                                        Text(travel.team.name)
-                                            .foregroundStyle(DSColors.white.swiftUIColor)
-                                            .font(DSFont.robotoTitle3)
-                                            .padding(.trailing, Margins.mediumSmall)
-
-                                        Spacer()
-
-                                        Image(systemName: "chevron.right")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .foregroundStyle(DSColors.red.swiftUIColor)
-                                            .frame(width: 20, height: 20)
+                                        .buttonStyle(.plain)
                                     }
-                                    .buttonStyle(.plain)
+                                    .padding(.top, Margins.medium)
                                 }
-                                .padding(.top, Margins.medium)
                             }
                         }
+
+                        FWButton(title: "Supprimer la saison") {
+                            PopupManager.shared.showPopup(item: .alert( .init(
+                                title: "Confirmation",
+                                description: "Es-tu sûr de vouloir supprimer la saison ?\n\nTu risques de perdre tous les matchs de la saison",
+                                primaryButtonItem: .init(
+                                    title: "Valider",
+                                    asyncAction: {
+                                        await viewModel.deleteSeason()
+                                    },
+                                    onDismiss: { [navigator] in
+                                        navigator.pop()
+                                    },
+                                    isDestructive: true
+                                ),
+                                secondaryButtonItem: .cancel
+                                )
+                            ))
+                        }
+                        .fwButtonStyle(.primary)
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(
+                                action: {
+                                    navigator.presentSheet(
+                                        .editTravel(idSeason: viewModel.idSeason, travel: nil, isCreation: true) { [viewModel] in
+                                            Task {
+                                                await viewModel.retrieveTravels()
+                                            }
+                                        },
+                                        withNavigation: true
+                                    )
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(DSColors.red.swiftUIColor)
+                            }
+                        }
+
                     }
                 default:
                     EmptyView()
@@ -69,17 +110,6 @@ struct TravelsListView: View {
             }
             .addBackButton {
                 navigator.pop()
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        //isEditing = true
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(DSColors.red.swiftUIColor)
-                    }
-                }
-
             }
             .navigationTitle("Matches")
             .task {
