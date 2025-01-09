@@ -7,6 +7,7 @@
 
 import DesignSystem
 import FlowStacks
+import SharedResources
 import SwiftUI
 import TravelMatchesFeature
 
@@ -89,6 +90,7 @@ struct EditTravelMatchView: View {
             }
         }
         .navigationTitle(isCreation ? "Nouveau deplacement" :"Edition")
+        .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
     }
 
     var teamView: some View {

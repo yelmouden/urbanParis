@@ -104,7 +104,7 @@ final class TravelMatchViewModel: Equatable {
 
             // verification si le paiement du matos est à jour
 
-            let isUpToDateMatosPayment = try await matosRepository.isUpToDate()
+            /*let isUpToDateMatosPayment = try await matosRepository.isUpToDate()
 
             try Task.checkCancellation()
             guard isUpToDateMatosPayment else {
@@ -114,7 +114,7 @@ final class TravelMatchViewModel: Equatable {
                 }
 
                 return
-            }
+            }*/
             
             let date = travel.date
 

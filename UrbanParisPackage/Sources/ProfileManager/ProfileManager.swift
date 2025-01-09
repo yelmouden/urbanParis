@@ -36,7 +36,7 @@ public class ProfileUpdateNotifier {
 public struct ProfileManager: Sendable {
 
     public var createProfile: (_ profile: Profile, _ profileImageData: Data?) async throws -> Void
-    public var retrieveProfile: () async throws -> Void
+    public var retrieveProfile: (_ event: AuthChangeEvent) async throws -> Void
     public var updateProfile: (_ profile: Profile, _ profileImageData: Data?) async throws -> Void
 
 }
@@ -48,7 +48,7 @@ extension ProfileManager: DependencyKey {
         return .init(
             createProfile: { profile, data in
                 let createdProfile: Profile = try await Database.shared.client.from(Database.Table.profiles.rawValue)
-                   .upsert(profile)
+                   .insert(profile)
                    .select()
                    .single()
                    .execute()
@@ -63,7 +63,7 @@ extension ProfileManager: DependencyKey {
                 await ProfileUpdateNotifier.shared.send(profile: createdProfile)
 
             },
-            retrieveProfile: {
+            retrieveProfile: { event in
                 guard let id = Database.shared.client.auth.currentUser?.id else {
                     throw DatabaseClientError.notFoundId
                 }
@@ -74,6 +74,10 @@ extension ProfileManager: DependencyKey {
                     .limit(1)
                     .execute()
                     .value
+
+                if profiles.count == 0 && event == .initialSession {
+                    throw DatabaseClientError.valueNotFound
+                }
 
                 await ProfileUpdateNotifier.shared.send(profile: profiles.first)
 

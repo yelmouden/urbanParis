@@ -41,15 +41,7 @@ public struct ListMembersView: View {
                         stateView: viewModel.state,
                         idleView: { EmptyView() },
                         loadingView: {
-                            VStack {
-                                ForEach(0..<15, id: \.self) { _ in
-                                    SkeletonLoadingView(height: 20)
-                                        .padding(.bottom, Margins.medium)
-                                }
-
-                            }
-                            .padding(.top, Margins.medium)
-
+                            LoadingView()
                         },
                         loadedView: { sections in
                             //ScrollView {
@@ -63,6 +55,7 @@ public struct ListMembersView: View {
                                                         navigator.pop()
                                                     } else if selectedProfile == nil {
                                                         navigator.push(.memberDetails(.init(profile: member)))
+                                                        searchText = ""
                                                     }
                                                 }) {
                                                     VStack {
@@ -111,7 +104,6 @@ public struct ListMembersView: View {
                                 }
                                 .padding(.top, Margins.mediumSmall)
                                 .searchable(text: $searchText, prompt: "Rechercher un membre")
-                                .accentColor(DSColors.white.swiftUIColor)
                                 .onChange(of: searchText) { _, newValue in
                                     task?.cancel()
 
@@ -142,20 +134,16 @@ public struct ListMembersView: View {
                 .paddingBottomScreen()
                 .animation(.default, value: viewModel.state)
                 .task {
-                    if !hasMadeRequest {
-                        hasMadeRequest = true
-                    }
-
                     await viewModel.retrieveMembers()
                 }
                 .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
                 .navigationTitle("Liste des membres")
                 .addBackButton(isPresented: selectedProfile != nil) {
+                    task?.cancel()
                     navigator.pop()
                 }
             }
         }
-
     }
 
     func sectionHeader(_ title: String) -> some View {

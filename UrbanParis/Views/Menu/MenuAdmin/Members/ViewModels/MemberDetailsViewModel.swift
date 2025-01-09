@@ -114,8 +114,7 @@ class MemberDetailsViewModel {
             try Task.checkCancellation()
 
         } catch {
-
-            if error is CancellationError {
+            if !(error is CancellationError) {
                 hasError = true
                 errorText = SharedResources.commonErrorText
             }

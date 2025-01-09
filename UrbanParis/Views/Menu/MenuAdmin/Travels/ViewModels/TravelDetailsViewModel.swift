@@ -20,6 +20,7 @@ final class EditTravelMatchViewModel {
     var travelMatchesRepository
 
     var stateSave: StateView<EmptyResource> = .idle
+    var showError = false
 
     private let travel: Travel?
     var team: Team?
@@ -134,8 +135,10 @@ final class EditTravelMatchViewModel {
             return true
 
         } catch {
-            print("error ", error)
-            stateSave = .idle
+            if !(error is CancellationError) {
+                showError = true
+                stateSave = .idle
+            }
             return false
         }
 

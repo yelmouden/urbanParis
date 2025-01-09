@@ -85,9 +85,8 @@ let package = Package(
         .package(url: "https://github.com/JWAutumn/ACarousel", branch: "main"),
         .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", branch: "master"),
         .package(url: "https://github.com/TimOliver/TOCropViewController", branch: "main"),
-        .package(url: "https://github.com/scinfu/SwiftSoup", branch: "master")
-
-
+        .package(url: "https://github.com/scinfu/SwiftSoup", branch: "master"),
+        .package(url: "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators", branch: "main"),
     ],
     targets: [
         .target(
@@ -180,6 +179,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Pow", package: "Pow"),
                 .product(name: "SkeletonUI", package: "SkeletonUI"),
+                .product(name: "SwiftfulLoadingIndicators", package: "SwiftfulLoadingIndicators"),
                 "Utils"
             ],
             resources: [.process("Fonts")],

@@ -49,7 +49,6 @@ final class MemberTravelViewModel: Identifiable, Equatable {
 
             stateView = .idle
         } catch {
-            print("error ", error)
             stateView = .idle
         }
 

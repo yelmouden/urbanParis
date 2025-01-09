@@ -29,6 +29,8 @@ final class ListMembersViewModel {
 
     func retrieveMembers() async {
         do {
+            state = .loading
+
             let members = try await repository.retrieveMembers()
             let sections = groupProfilesByFirstLetter(members)
 

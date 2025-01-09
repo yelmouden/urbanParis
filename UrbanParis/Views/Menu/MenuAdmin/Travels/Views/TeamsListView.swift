@@ -7,6 +7,7 @@
 
 import DesignSystem
 import FlowStacks
+import SharedResources
 import TravelMatchesFeature
 import SwiftUI
 
@@ -33,6 +34,8 @@ struct TeamsListView: View {
         {
             VStack {
                 switch viewModel.state {
+                case .loading:
+                    LoadingView()
                 case .loaded(let teamViewModels):
                     VStack {
                         FWScrollView {
@@ -86,6 +89,7 @@ struct TeamsListView: View {
             .task {
                 await viewModel.retrieveTeams()
             }
+            .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
 
         }
     }

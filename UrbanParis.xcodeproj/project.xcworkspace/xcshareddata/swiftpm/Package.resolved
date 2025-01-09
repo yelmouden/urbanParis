@@ -1,5 +1,4 @@
 {
-  "originHash" : "099575a078904764553110e9ac6aac66203cab29dc8ee220e78f918647cae938",
   "pins" : [
     {
       "identity" : "acarousel",
@@ -200,6 +199,15 @@
       }
     },
     {
+      "identity" : "swiftfulloadingindicators",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators",
+      "state" : {
+        "branch" : "main",
+        "revision" : "eae1c40bb29234f0a8f6614af1a80550994fc6b9"
+      }
+    },
+    {
       "identity" : "swiftgenplugin",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftGen/SwiftGenPlugin",
@@ -245,5 +253,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

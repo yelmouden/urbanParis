@@ -8,12 +8,15 @@
 
 import DesignSystem
 import FlowStacks
+import SharedResources
 import SwiftUI
 
 struct TravelsListView: View {
     @EnvironmentObject var navigator: FlowNavigator<MenuAdminScreen>
 
     @State var viewModel: TravelsListViewModel
+
+    @State var task: Task<Void, Never>?
 
     init(idSeason: Int) {
         _viewModel = State(initialValue: .init(idSeason: idSeason))
@@ -28,6 +31,8 @@ struct TravelsListView: View {
         {
             VStack {
                 switch viewModel.state {
+                case .loading:
+                    LoadingView()
                 case .loaded(let travels):
                     VStack {
                         FWScrollView {
@@ -90,7 +95,7 @@ struct TravelsListView: View {
                                 action: {
                                     navigator.presentSheet(
                                         .editTravel(idSeason: viewModel.idSeason, travel: nil, isCreation: true) { [viewModel] in
-                                            Task {
+                                            task = Task {
                                                 await viewModel.retrieveTravels()
                                             }
                                         },
@@ -110,11 +115,13 @@ struct TravelsListView: View {
             }
             .addBackButton {
                 navigator.pop()
+                task?.cancel()
             }
             .navigationTitle("Matches")
             .task {
                 await viewModel.retrieveTravels()
             }
+            .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
 
         }
     }

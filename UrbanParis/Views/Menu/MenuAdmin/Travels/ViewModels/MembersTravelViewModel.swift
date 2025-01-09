@@ -21,6 +21,7 @@ final class MembersTravelViewModel {
     var travelMatchesRepository
 
     var state: StateView<[MemberTravelViewModel]> = .loading
+    var showError = false
 
     private let idTravel: Int
     private let idSeason: Int
@@ -31,7 +32,10 @@ final class MembersTravelViewModel {
     }
 
     func retrieveMembersTravel() async {
+        state = .loading
+        
         do {
+
             let registeredMembers = try await travelMatchesRepository.retrieveRegisteredMembers(
                 idTravel: idTravel,
                 idSeason: idSeason
@@ -39,12 +43,17 @@ final class MembersTravelViewModel {
 
             state = .loaded(registeredMembers.map { MemberTravelViewModel(registerProfileTravel: $0) })
         } catch {
-            print("error ", error)
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 
     func addMemberToTravel(profile: Profile) async {
         do {
+            state = .loading
+
             if let idProfile = profile.id {
                 let addRegisterProfileTravelRequest = AddRegisterProfileTravelRequest(idTravel: idTravel, idSeason: idSeason, idProfile: idProfile)
 
@@ -52,7 +61,10 @@ final class MembersTravelViewModel {
                 await retrieveMembersTravel()
             }
         } catch {
-
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 

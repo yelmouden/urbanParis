@@ -36,15 +36,7 @@ public struct CotisationsMembersView: View {
                         stateView: viewModel.state,
                         idleView: { EmptyView() },
                         loadingView: {
-                            VStack {
-                                ForEach(0..<15, id: \.self) { _ in
-                                    SkeletonLoadingView(height: 20)
-                                        .padding(.bottom, Margins.medium)
-                                }
-
-                            }
-                            .padding(.top, Margins.medium)
-
+                            LoadingView()
                         },
                         loadedView: { sections in
                             //ScrollView {
@@ -54,6 +46,7 @@ public struct CotisationsMembersView: View {
                                             ForEach(section.profiles) { member in
                                                 Button(action: {
                                                     navigator.push(.memberDetailCotisation(member))
+                                                    searchText = ""
                                                 }) {
                                                     VStack {
                                                         HStack {
@@ -119,10 +112,6 @@ public struct CotisationsMembersView: View {
                 .paddingBottomScreen()
                 .animation(.default, value: viewModel.state)
                 .task {
-                    if !hasMadeRequest {
-                        hasMadeRequest = true
-                    }
-
                     await viewModel.retrieveMembers()
                 }
                 .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)

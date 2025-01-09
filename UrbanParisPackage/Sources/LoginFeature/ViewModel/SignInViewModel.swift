@@ -39,7 +39,7 @@ public final class SignInViewModel {
                 state = .idle
 
                 switch authError {
-                case .api(let error) where error.error == "invalid_grant":
+                case .api(let error) where error.code == 400:
                     errorText = "email ou mot de passe incorrect"
                 default:
                     errorText = SharedResources.commonErrorText

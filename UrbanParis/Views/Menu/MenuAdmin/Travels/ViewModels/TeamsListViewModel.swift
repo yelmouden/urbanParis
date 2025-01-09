@@ -19,30 +19,45 @@ final class TeamsListViewModel {
     var travelMatchesRepository
 
     var state: StateView<[TeamCellViewModel]> = .loading
+    var showError = false
 
     func retrieveTeams() async {
         do {
+            state = .loading
+
             let teamViewModels = try await travelMatchesRepository.retrieveTeams()
                 .map { TeamCellViewModel(team: $0) }
             state = .loaded(teamViewModels)
         } catch {
-            print("error ", error)
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 
     func addTeam(name: String) async {
         do {
-            let team =  try await travelMatchesRepository.addTeam(addTeamRequest: AddTeamRequest(name: name))
-
+            let previousTeams: [TeamCellViewModel]
+            
             switch state {
                 case .loaded(let teamViewModels):
-                state = .loaded(teamViewModels + [TeamCellViewModel(team: team)])
+                previousTeams = teamViewModels
             default:
-                break
+                return
             }
 
+            state = .loading
+
+            let team =  try await travelMatchesRepository.addTeam(addTeamRequest: AddTeamRequest(name: name))
+
+            state = .loaded(previousTeams + [TeamCellViewModel(team: team)])
+
         } catch {
-            print("error ", error)
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 

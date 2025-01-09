@@ -16,6 +16,8 @@ final class TeamCellViewModel: Identifiable, Equatable {
 
     var stateView: StateView<EmptyResource> = .idle
 
+    var showError = false
+
     let team: Team
 
     init(team: Team) {
@@ -36,8 +38,9 @@ final class TeamCellViewModel: Identifiable, Equatable {
 
             stateView = .idle
         } catch {
-            print("error ", error)
-            stateView = .idle
+            if !(error is CancellationError) {
+                stateView = .idle
+            }
         }
 
     }

@@ -80,7 +80,7 @@ struct MenuView: View {
                             }
                             .buttonStyle(.plain)
 
-                            Button {
+                            /*Button {
                                 index = 2
                                 showMenu = false
                             } label: {
@@ -89,7 +89,7 @@ struct MenuView: View {
                                     .font(DSFont.grafTitle3)
                                     .opacity(index == 2 ?  1 : 0.3)
                             }
-                            .buttonStyle(.plain)
+                            .buttonStyle(.plain)*/
 
                             Button {
                                 index = 3

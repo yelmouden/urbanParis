@@ -7,6 +7,7 @@
 
 import DesignSystem
 import FlowStacks
+import SharedResources
 import SwiftUI
 
 struct MembersTravelView: View {
@@ -26,6 +27,8 @@ struct MembersTravelView: View {
         {
             VStack {
                 switch viewModel.state {
+                case .loading:
+                    LoadingView()
                 case .loaded(let viewModels):
                     VStack {
                         HStack {
@@ -79,6 +82,7 @@ struct MembersTravelView: View {
             .task {
                 await viewModel.retrieveMembersTravel()
             }
+            .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
 
         }
     }

@@ -106,10 +106,10 @@ class AppViewModel {
             } else {
                 // Get preferred currency and signature
                 do {
-                    try await profileManager.retrieveProfile()
+                    try await profileManager.retrieveProfile(event)
                     sessionStateChangeSubject.send(.signedIn)
                 } catch {
-                    print("error ", error)
+                    try? await Database.shared.client.auth.signOut()
                 }
 
             }

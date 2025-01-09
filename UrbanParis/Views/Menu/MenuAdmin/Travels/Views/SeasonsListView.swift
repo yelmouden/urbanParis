@@ -7,6 +7,7 @@
 
 import DesignSystem
 import FlowStacks
+import SharedResources
 import SwiftUI
 
 struct SeasonsListView: View {
@@ -24,8 +25,9 @@ struct SeasonsListView: View {
         {
             VStack {
                 switch viewModel.state {
+                case .loading:
+                    LoadingView()
                 case .loaded(let seasons):
-
                     FWScrollView {
                         LazyVStack {
                             ForEach(seasons) { season in
@@ -70,6 +72,14 @@ struct SeasonsListView: View {
                         }
 
                     }
+                case .empty:
+                    ZStack {
+                        Spacer().containerRelativeFrame([.vertical])
+                        Text("Pas de saisons pour le moment")
+                            .foregroundStyle(DSColors.white.swiftUIColor)
+                            .font(DSFont.robotoTitle)
+                            .multilineTextAlignment(.center)
+                    }
                 default:
                     EmptyView()
                 }
@@ -84,7 +94,7 @@ struct SeasonsListView: View {
             .task {
                 await viewModel.retrieveSeasons()
             }
-
+            .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
         }
     }
 }

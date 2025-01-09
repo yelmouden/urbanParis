@@ -21,20 +21,30 @@ final class SeasonsListViewModel {
 
     var state: StateView<[Season]> = .loading
 
+    var showError = false
+
     func retrieveSeasons() async {
         do {
+
+            state = .loading
+
             let seasons = try await travelMatchesRepository.retrieveSeasons()
 
             try Task.checkCancellation()
 
             state = .loaded(seasons)
         } catch {
-            print("error ", error)
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 
     func addSeason(_ season: String) async {
         do {
+            state = .loading
+
             switch state {
             case .loaded(let seasons):
                 if seasons.map(\.title).contains(season) {
@@ -52,7 +62,10 @@ final class SeasonsListViewModel {
 
             await retrieveSeasons()
         } catch {
-            print("error ", error)
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
 
     }

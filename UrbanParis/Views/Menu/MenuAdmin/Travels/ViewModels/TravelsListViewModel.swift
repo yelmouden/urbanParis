@@ -21,6 +21,8 @@ final class TravelsListViewModel {
 
     var state: StateView<[Travel]> = .loading
 
+    var showError = false
+
     let idSeason: Int
 
     init(idSeason: Int) {
@@ -29,10 +31,14 @@ final class TravelsListViewModel {
 
     func retrieveTravels() async {
         do {
+            state = .loading
             let travels = try await travelMatchesRepository.retrieveTravels(idSeason: idSeason)
             state = .loaded(travels)
         } catch {
-            print("error ", error)
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
         }
     }
 
@@ -41,7 +47,10 @@ final class TravelsListViewModel {
             try await travelMatchesRepository.deleteSeason(idSeason: idSeason)
             return true
         } catch {
-            print("error ", error)
+            if !(error is CancellationError) {
+                showError = true
+                state = .idle
+            }
             return false
         }
     }
