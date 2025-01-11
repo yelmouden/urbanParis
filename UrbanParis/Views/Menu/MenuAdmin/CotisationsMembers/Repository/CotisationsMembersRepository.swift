@@ -26,7 +26,6 @@ extension CotisationsMembersRepository: DependencyKey {
             let cotisationsMembers: [CotisationsMember] = try await Database.shared.client
                 .from(Database.Table.profiles.rawValue)
                 .select("id, firstname, lastname, cotisations(*)")
-                .eq("cotisations.id_profile", value: 102)
                 .execute()
                 .value
 

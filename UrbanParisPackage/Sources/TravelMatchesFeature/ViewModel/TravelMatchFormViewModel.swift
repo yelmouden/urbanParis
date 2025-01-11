@@ -65,7 +65,14 @@ final class TravelMatchFormViewModel {
         do {
             state = .loading
 
-            try await repository.subscribeToTravel(travel.id, idSeason)
+            guard let profileId = profile.id else {
+                showError = true
+                errorText = "Impossible de sauvegarder l'inscription"
+                return false
+            }
+
+
+            try await repository.subscribeToTravel(travel.id, idSeason, profileId)
 
             try Task.checkCancellation()
 

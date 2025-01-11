@@ -26,7 +26,7 @@ enum TravelMatchesRepositoryError: Error {
 public struct TravelMatchesRepository: Sendable {
     public var retrieveSeasons: @Sendable() async throws -> [Season]
     public var retrieveTravels: @Sendable(_ idSeason: Int) async throws -> [Travel]
-    var subscribeToTravel: @Sendable(_ idTravel: Int, _ idSeason: Int) async throws -> Void
+    var subscribeToTravel: @Sendable(_ idTravel: Int, _ idSeason: Int, _ idProfile: Int) async throws -> Void
     var checkAlreadySubscribe: @Sendable(_ idTravel: Int, _ idSeason: Int) async throws -> Bool
     var retrieveMyTravels: @Sendable(_ idSeason: Int, _ idProfile: Int) async throws -> [Travel]
     var saveResponses: @Sendable(_ responses: [Response]) async throws -> Void
@@ -64,8 +64,8 @@ extension TravelMatchesRepository: DependencyKey {
 
             return travels
         },
-        subscribeToTravel: { idTravel, idSeason in
-            let travelUser = TravelUser(idTravel: idTravel, idSeason: idSeason)
+        subscribeToTravel: { idTravel, idSeason, idProfile in
+            let travelUser = TravelUser(idTravel: idTravel, idSeason: idSeason, idProfile: idProfile)
 
             try await Database.shared.client
                 .from(Database.Table.travels_users.rawValue)

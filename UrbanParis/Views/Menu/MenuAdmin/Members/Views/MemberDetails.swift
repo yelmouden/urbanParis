@@ -162,20 +162,9 @@ public struct MemberDetails: View {
 
                         .fwButtonStyle(.primary)
                         .addSensoryFeedback()
-
-                        FWButton(
-                            title: "Supprimer l'utilisateur",
-                            state: .idle,
-                            action: {
-                                lockUnlockTask?.cancel()
-                                adminTask?.cancel()
-                                showAlertDelete = true
-                            })
-
-                        .fwButtonStyle(.primary)
-                        .addSensoryFeedback()
                     }
                     .padding(.top, Margins.large)
+
                 }
             }
             .padding(.top, Margins.large)

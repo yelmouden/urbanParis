@@ -156,6 +156,7 @@ struct EditTravelMatchView: View {
                 Text("date:")
 
             }
+            .environment(\.timeZone, TimeZone(identifier: "Europe/Paris")!)
             .labelsHidden()
             .colorMultiply(DSColors.white.swiftUIColor)
             .environment(\.colorScheme, .dark)
@@ -176,6 +177,7 @@ struct EditTravelMatchView: View {
                 Text("date:")
 
             }
+            .environment(\.timeZone, TimeZone(identifier: "Europe/Paris")!)
             .labelsHidden()
             .colorMultiply(DSColors.white.swiftUIColor)
             .environment(\.colorScheme, .dark)
@@ -196,6 +198,7 @@ struct EditTravelMatchView: View {
                 Text("date:")
 
             }
+            .environment(\.timeZone, TimeZone(identifier: "Europe/Paris")!)
             .labelsHidden()
             .colorMultiply(DSColors.white.swiftUIColor)
             .environment(\.colorScheme, .dark)

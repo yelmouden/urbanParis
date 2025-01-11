@@ -53,4 +53,9 @@ public extension Date {
         formatter.timeZone = TimeZone(identifier: "Europe/Paris")
         return formatter.string(from: self)
     }
+
+    func convertToTimeZone(_ timeZone: TimeZone) -> Date {
+        let secondsFromGMT = timeZone.secondsFromGMT(for: self)
+        return self.addingTimeInterval(TimeInterval(secondsFromGMT))
+    }
 }

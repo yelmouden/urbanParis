@@ -10,4 +10,5 @@ import Foundation
 struct TravelUser: Codable {
     let idTravel: Int
     let idSeason: Int
+    let idProfile: Int
 }

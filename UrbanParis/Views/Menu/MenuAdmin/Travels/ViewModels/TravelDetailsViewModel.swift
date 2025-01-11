@@ -114,7 +114,7 @@ final class EditTravelMatchViewModel {
             stateSave = .loading
 
             let request = UpdateTravelRequest(
-                date: date,
+                date: date.convertToTimeZone(TimeZone(identifier: "Europe/Paris")!),
                 idTeam: idTeam,
                 appointmentTime: appointmentTime.timeString(),
                 departureTime: departureTime.timeString(),
