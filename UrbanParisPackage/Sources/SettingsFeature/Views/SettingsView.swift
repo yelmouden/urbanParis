@@ -89,7 +89,7 @@ struct SettingsView: View {
                         }
                         .addSensoryFeedback()
 
-                        HStack(spacing: Margins.medium) {
+                        /*HStack(spacing: Margins.medium) {
                             Assets.delete.swiftUIImage
                                 .resizable()
                                 .foregroundStyle(DSColors.red.swiftUIColor)
@@ -114,6 +114,7 @@ struct SettingsView: View {
                             ))
                         }
                         .addSensoryFeedback()
+                         */
                     }
                 }
                 .listSectionSpacing(0)

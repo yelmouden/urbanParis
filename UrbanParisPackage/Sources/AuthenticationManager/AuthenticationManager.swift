@@ -49,8 +49,6 @@ extension AuthenticationManager: DependencyKey {
                     throw AuthenticationError.userIDNotFound
                 }
 
-                try await Database.shared.client.rpc("delete_user", params: ["user_id": id])
-                    .execute()
                 try await Database.shared.client.auth.signOut()
             },
             sendEmailResetPassword: { email in
