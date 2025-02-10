@@ -21,7 +21,6 @@ struct AddTeamInfoInputView: View {
                 isFocus: _focused,
                 text: $team
             )
-            .keyboardType(.numberPad)
             .padding(.bottom, Margins.large)
             FWButton(title: "Valider") {
                 PopupManager.shared.dismiss()

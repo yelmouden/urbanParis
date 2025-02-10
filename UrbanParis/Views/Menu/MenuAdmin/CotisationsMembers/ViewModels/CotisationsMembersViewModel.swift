@@ -32,8 +32,6 @@ final class CotisationsMembersViewModel {
         do {
             let members = try await repository.retrieveCotisationsForMembers()
 
-            print("members ", members)
-
             let sections = groupProfilesByFirstLetter(members)
 
             try Task.checkCancellation()

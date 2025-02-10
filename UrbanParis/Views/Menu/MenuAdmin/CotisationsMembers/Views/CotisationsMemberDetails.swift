@@ -38,7 +38,7 @@ struct CotisationsMemberDetails: View {
                     .padding(.bottom, Margins.mediumSmall)
 
                 FWScrollView {
-                    LazyVStack {
+                    VStack {
                         ForEach($viewModel.cotisations, id: \.month) { $cotisation in
                             HStack {
                                 Text("Mois de \(cotisation.month)")
@@ -61,7 +61,6 @@ struct CotisationsMemberDetails: View {
                                         value.formattedDecimalText()
                                         cotisation.amountText = value
                                     }
-
                             }
                             .padding(.bottom, Margins.medium)
                         }
