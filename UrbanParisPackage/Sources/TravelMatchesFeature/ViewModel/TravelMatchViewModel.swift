@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import Dependencies
+import Logger
 import ProfileManager
 import SharedRepository
 import Utils
@@ -85,13 +86,20 @@ final class TravelMatchViewModel: Equatable {
         guard isActive, !isPast else {
             return
         }
+
         do {
-            travel.hasSubscribed = try await travelsRepository.checkAlreadySubscribe(travel.id, idSeason)
+            guard let idProfile else {
+                throw NSError(domain: "Le profile id n'est pas renseigné pour checker si le user est déjà inscrit au déplacement", code: 1)
+            }
+
+            travel.hasSubscribed = try await travelsRepository.checkAlreadySubscribe(travel.id, idSeason, idProfile)
             canAccessListing = travel.hasSubscribed
             state = .idle
         } catch {
             travel.hasSubscribed = false
             state = .idle
+
+            AppLogger.error(error.decodedOrLocalizedDescription)
         }
     }
 
@@ -102,20 +110,6 @@ final class TravelMatchViewModel: Equatable {
                 state = .loading
             }
 
-            // verification si le paiement du matos est à jour
-
-            /*let isUpToDateMatosPayment = try await matosRepository.isUpToDate()
-
-            try Task.checkCancellation()
-            guard isUpToDateMatosPayment else {
-                await MainActor.run { [self] in
-                    showAlertMatos = true
-                    state = .idle
-                }
-
-                return
-            }*/
-            
             let date = travel.date
 
             let isUpToDateCotisationPayment: Bool
@@ -145,6 +139,8 @@ final class TravelMatchViewModel: Equatable {
                     showError = true
                     state = .idle
                 }
+
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }

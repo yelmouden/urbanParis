@@ -18,6 +18,7 @@ struct SettingsView: View {
 
     @Bindable var viewModel: SettingsViewModel
     @State var showAlertLogout = false
+    @State private var showLogExporter = false
 
     var body: some View {
         BackgroundImageContainerView(nameImages: ["tenduEcharpe"], bundle: .module) {
@@ -89,38 +90,41 @@ struct SettingsView: View {
                         }
                         .addSensoryFeedback()
 
-                        /*HStack(spacing: Margins.medium) {
-                            Assets.delete.swiftUIImage
+                    }
+
+                    Section {
+                        itemMenu(title: "Logs", isSection: true)
+                            .applyRowStyle()
+
+                        HStack(spacing: Margins.medium) {
+                            Image(systemName: "square.and.arrow.down.fill")
                                 .resizable()
                                 .foregroundStyle(DSColors.red.swiftUIColor)
                                 .frame(width: 20, height: 20)
-                            itemMenu(title: "Supprimer mon compte")
+                            itemMenu(title: "Télécharger les logs")
                             Spacer()
                         }
-                        .buttonStyle(PlainButtonStyle())
                         .contentShape(Rectangle())
                         .applyRowStyle()
                         .onTapGesture {
-                            PopupManager.shared.showPopup(item: .alert( .init(
-                                title: "Confirmation",
-                                description: "Es-tu sûr de vouloir supprimer ton compte ?",
-                                primaryButtonItem: .init(
-                                    title: "Valider",
-                                    asyncAction: { await viewModel.deleteAccount() },
-                                    isDestructive: true
-                                ),
-                                secondaryButtonItem: .cancel
-                                )
-                            ))
+                            showLogExporter = true
                         }
                         .addSensoryFeedback()
-                         */
                     }
                 }
                 .listSectionSpacing(0)
                 .listStyle(.plain)
 
             }
+        }
+        .sheet(isPresented: $showLogExporter) {
+            if let logsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("debug.log") {
+                    LogShareView(fileURL: logsURL)
+                } else {
+                    Text("Aucun fichier de log trouvé")
+                        .foregroundStyle(DSColors.white.swiftUIColor)
+                        .font(DSFont.robotoBodyBold)
+                }
         }
         .navigationTitle("Parametres")
         .showBanner($viewModel.hasError, text: viewModel.errorText, type: .error)
@@ -140,7 +144,7 @@ struct SettingsView: View {
         SwiftyEmail.shared.sendEmail(
             subject: "Signaler un bug",
             body: "\n\n\n\nversion number: \(Bundle.main.versionNumber)\nbuild number: \(Bundle.main.versionNumber)\n device model: \(Device.current)",
-            recipient: "up.supabase@gmail.com",
+            recipient: "urbanapp2017@gmail.com",
             completion: { _ in
             }
         )
@@ -151,9 +155,25 @@ struct SettingsView: View {
         SwiftyEmail.shared.sendEmail(
             subject: String(localized: "Idée d'amélioration"),
             body: "",
-            recipient: "up.supabase@gmail.com",
+            recipient: "urbanapp2017@gmail.com",
             completion: { _ in
             }
         )
     }
+}
+
+
+import SwiftUI
+import UIKit
+
+struct LogExportView: UIViewControllerRepresentable {
+    let fileURL: URL
+
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forExporting: [fileURL])
+        picker.shouldShowFileExtensions = true
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
 }

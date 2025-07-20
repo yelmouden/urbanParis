@@ -36,9 +36,6 @@ public struct GoogleFormView: UIViewRepresentable {
 
 
                     self.parent.formSubmitted = true
-
-                    print("Form submission detected!")
-                    // Update the binding to inform SwiftUI of the form submission
                 }
             }
             decisionHandler(.allow)

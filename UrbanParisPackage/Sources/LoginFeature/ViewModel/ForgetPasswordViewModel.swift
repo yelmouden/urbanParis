@@ -6,9 +6,9 @@
 //
 
 import AuthenticationManager
-//import DeepLinkManager
 import Foundation
 import Dependencies
+import Logger
 import Observation
 import SharedResources
 //import TrackingManager
@@ -54,6 +54,7 @@ public final class ForgetPasswordViewModel {
                 state = .idle
                 showError = true
                 errorText = SharedResources.commonErrorText
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }

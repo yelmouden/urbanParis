@@ -6,6 +6,7 @@
 //
 
 import DesignSystem
+import Logger
 import SwiftUI
 import UIKit
 
@@ -17,6 +18,8 @@ struct UrbanParisApp: App {
     init() {
         FontFamily.registerAllCustomFonts()
         UINavigationBar.setupStyle()
+
+        AppLogger.configure()
     }
 
     var body: some Scene {

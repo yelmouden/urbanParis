@@ -7,6 +7,7 @@
 
 import Foundation
 import Dependencies
+import Logger
 import Utils
 
 @Observable
@@ -39,6 +40,7 @@ final class TravelMatchesViewModel {
         } catch {
             if !(error is CancellationError) {
                 showError = true
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }
@@ -81,6 +83,7 @@ final class TravelMatchesViewModel {
         } catch {
             if !(error is CancellationError) {
                 showError = true
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }

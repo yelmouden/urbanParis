@@ -48,38 +48,6 @@ extension CotisationsRepository: DependencyKey {
         }, isUpToDate: { idProfile, dateString in
             async let cotisationsResult: [Cotisation] = await CotisationsRepository.getCotisations(idProfile: idProfile)
 
-            /*let apiKey: String = ConfigurationReader.value(for: "TIMEZONE_DB_API_KEY")
-            let urlString = "http://api.timezonedb.com/v2.1/get-time-zone?key=\(apiKey)&format=json&by=zone&zone=Europe/Paris"
-
-            guard let url = URL(string: urlString) else {
-                throw CotisationsRepositoryError.urlMalFormatted
-            }
-
-            let configuration = URLSessionConfiguration.default
-            configuration.timeoutIntervalForRequest = 5
-            configuration.timeoutIntervalForResource = 5
-
-            let session = URLSession(configuration: configuration)
-            async let dataRequest = try await session.data(for: .init(url: url)).0
-
-            let date: Date
-
-            do {
-                let data = try await dataRequest
-
-                if let json = try JSONSerialization .jsonObject(with: data, options: []) as? [String: Any],
-                   let timestamp = json["timestamp"] as? TimeInterval {
-                    let dateFormatter = ISO8601DateFormatter()
-
-                    date =  Date(timeIntervalSince1970: timestamp)
-
-                } else {
-                    date = Date()
-                }
-            } catch {
-                date = Date()
-            }*/
-
             guard let date = Date.fromString(dateString) else {
                 throw CotisationsRepositoryError.errorDate
             }
@@ -97,23 +65,27 @@ extension CotisationsRepository: DependencyKey {
             // si jour > 15 du mois, on prend en compte le mois en cours
 
             if var index = cotisations.firstIndex(where: { $0.month == month }) {
-                // on ignore la cotisation pour le mois d'août
-                if index == 0 {
-                    return true
-                }
 
-                var totalAmount: Float = 0
 
                 if day < 15 {
                     index -= 1
                 }
 
+                // on ignore la cotisation pour le mois d'août
+                if index == 0 {
+                    return true
+                }
+
+                // Nombre de mois à comptabiliser pour le montant total déjà payé à vérifier
+                let nbMonth = index + 1
+
+                var totalAmount: Float = 0
                 while index >= 0 {
                     totalAmount += cotisations[index].amount
                     index -= 1
                 }
 
-                return totalAmount == 0
+                return (Float(totalAmount)) >= Float(((nbMonth) * 15))
             } else {
                 let totalAmount: Float = cotisations.reduce(0) { partialResult, cotisation in
                     var total = partialResult
@@ -122,7 +94,7 @@ extension CotisationsRepository: DependencyKey {
                     return total
                 }
 
-                return totalAmount == 0
+                return totalAmount >= 150
             }
         })
     }

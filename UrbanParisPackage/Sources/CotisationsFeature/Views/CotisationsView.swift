@@ -52,7 +52,7 @@ struct CotisationsView: View {
                         loadedView: { cotisations in
                             //ScrollView {
                             VStack {
-                                Text("Montant total restant")
+                                Text("Montant total payé")
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                                     .font(DSFont.robotoTitle)
                                     .padding(.top, Margins.large)
@@ -74,7 +74,7 @@ struct CotisationsView: View {
                                 LazyVStack {
                                     ForEach(cotisations) { cotisation in
                                         HStack {
-                                            Text("Reste à payer mois de \(cotisation.titleMonth)")
+                                            Text("cotisation du mois de \(cotisation.titleMonth)")
                                                 .foregroundStyle(DSColors.white.swiftUIColor)
                                                 .font(DSFont.robotoBody)
 

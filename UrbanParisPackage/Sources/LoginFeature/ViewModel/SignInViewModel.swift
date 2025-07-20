@@ -8,9 +8,9 @@
 import AuthenticationManager
 import Foundation
 import Dependencies
+import Logger
 import SharedResources
 import Supabase
-//import TrackingManager
 import Utils
 
 @Observable
@@ -44,11 +44,16 @@ public final class SignInViewModel {
                 default:
                     errorText = SharedResources.commonErrorText
                 }
+
+                AppLogger.error(authError.decodedOrLocalizedDescription)
+
             } else if !(error is CancellationError) {
                 showError = true
                 state = .idle
 
                 errorText = SharedResources.commonErrorText
+
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }

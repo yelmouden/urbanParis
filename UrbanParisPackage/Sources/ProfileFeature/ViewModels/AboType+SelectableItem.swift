@@ -8,6 +8,7 @@
 import Foundation
 import DesignSystem
 import ProfileManager
+import SharedModels
 
 extension AboType: SelectableItem {
     public var title: String {

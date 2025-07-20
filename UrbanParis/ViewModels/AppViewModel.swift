@@ -10,7 +10,10 @@ import Database
 import DeepLinkManager
 import Dependencies
 import Foundation
+import Logger
 import ProfileManager
+import SharedModels
+import SharedRepository
 import Observation
 import UserNotifications
 
@@ -31,7 +34,7 @@ enum SessionState: Equatable {
 @MainActor
 class AppViewModel {
     @ObservationIgnored
-    @Dependency(\.profileManager) var profileManager
+    @Dependency(\.profileRepository) var profileRepository
 
     @ObservationIgnored
     @Dependency(\.deepLinkManager) var deepLinkManager
@@ -104,16 +107,25 @@ class AppViewModel {
                 sessionStateChangeSubject.send(.logout)
                 ProfileUpdateNotifier.shared.send(profile: nil)
             } else {
-                // Get preferred currency and signature
                 do {
-                    try await profileManager.retrieveProfile(event)
+                    guard let id = Database.shared.client.auth.currentUser?.id else {
+                        throw DatabaseClientError.valueNotFound
+                    }
+
+                    let profile = try await profileRepository.retrieveProfile(id)
+
+                    if profile == nil && event == .initialSession {
+                        throw DatabaseClientError.valueNotFound
+                    }
+
+                    await ProfileUpdateNotifier.shared.send(profile: profile)
+
                     sessionStateChangeSubject.send(.signedIn)
                 } catch {
+                    AppLogger.error(error.decodedOrLocalizedDescription)
                     try? await Database.shared.client.auth.signOut()
                 }
-
             }
-
         }
     }
 
@@ -128,9 +140,7 @@ class AppViewModel {
                     try await authenticationManager.retrieveSession(code: resetPasswordDeepLink.code)
                     deeplinkSubject.send(resetPasswordDeepLink)
                 } catch {
-#if DEBUG
-                    print("error ", error)
-#endif
+                    AppLogger.error(error.decodedOrLocalizedDescription)
                 }
             }
 

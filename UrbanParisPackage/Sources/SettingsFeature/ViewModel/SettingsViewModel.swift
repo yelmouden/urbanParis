@@ -8,6 +8,7 @@
 import AuthenticationManager
 import Dependencies
 import Foundation
+import Logger
 import SharedResources
 import Utils
 
@@ -31,6 +32,8 @@ final class SettingsViewModel {
             if !(error is CancellationError) {
                 hasError = true
                 errorText = SharedResources.commonErrorText
+
+                AppLogger.error(error.localizedDescription)
             }
 
             return false
@@ -46,6 +49,8 @@ final class SettingsViewModel {
             if !(error is CancellationError) {
                 hasError = true
                 errorText = SharedResources.commonErrorText
+
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
 
             return false

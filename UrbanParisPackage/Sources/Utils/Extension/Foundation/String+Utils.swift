@@ -92,3 +92,10 @@ public extension String {
     }
 
 }
+
+public extension String {
+    var fixedHash: Int {
+        let unicodeScalars = self.unicodeScalars.map { Int32($0.value) }
+        return Int(unicodeScalars.reduce(0) { (($0 << 5) &- $0) &+ $1 })
+    }
+}

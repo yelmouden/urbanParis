@@ -54,7 +54,19 @@ struct MenuView: View {
                         .frame(width: 50)
                         .frame(height: 4)
                         .overlay(.white)
-                        .padding(.bottom, Margins.extraLarge)
+                        .padding(.bottom,  menuViewModel.status == nil ? Margins.extraLarge : Margins.small)
+
+                    if let status = menuViewModel.status {
+                        Text(status)
+                            .foregroundStyle(DSColors.white.swiftUIColor)
+                            .font(DSFont.grafTitle3)
+
+                        Divider()
+                            .frame(width: 50)
+                            .frame(height: 4)
+                            .overlay(.white)
+                            .padding(.bottom, Margins.extraLarge)
+                    }
 
                     ScrollView {
                         VStack(alignment: .leading, spacing: Margins.medium) {

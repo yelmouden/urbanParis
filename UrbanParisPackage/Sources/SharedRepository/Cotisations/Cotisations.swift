@@ -41,7 +41,7 @@ public extension Cotisation {
     }
 
     var isPaid: Bool {
-        amount == 0
+        amount == 15
     }
 }
 

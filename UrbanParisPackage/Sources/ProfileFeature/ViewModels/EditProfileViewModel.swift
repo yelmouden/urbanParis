@@ -8,7 +8,10 @@
 import Combine
 import Foundation
 import Dependencies
+import Logger
 import ProfileManager
+import SharedModels
+import SharedRepository
 import SharedResources
 import Supabase
 import Observation
@@ -20,10 +23,10 @@ import Utils
 public class EditProfileViewModel {
 
     @ObservationIgnored
-    @Dependency(\.profileManager) var profileManager
+    @Dependency(\.profileRepository)
+    var profileRepository
 
     var stateURLImageProfile: StateView<URL?> = .idle
-    var profile: Profile!
 
     var cancellables = Set<AnyCancellable>()
 
@@ -35,38 +38,50 @@ public class EditProfileViewModel {
 
     var selectedImage: UIImage?
 
+    var firstname: String = ""
+    var lastname: String = ""
+    var nickname: String = ""
+    var year: Int = Date.currentYear
+    var typeAbo: AboType?
+    var status: String = ""
+
+    let aboTypes = [AboType.aboPSG, .aboCUP, .none ]
+
+    private var profile: Profile?
+
     init() {
         ProfileUpdateNotifier.shared.publisher
             .prefix(1)
             .sink { [weak self] profile in
                 self?._isCreation = profile == nil
                 self?._stateURLImageProfile = profile == nil ? .loaded(nil) : .loading
-                self?._profile = profile ?? Profile()
+
+                self?.profile = profile
+
+                if let profile {
+                    self?.firstname = profile.firstname
+                    self?.lastname = profile.lastname
+                    self?.nickname = profile.nickname
+                    self?.year = profile.year
+                    self?.typeAbo = profile.typeAbo
+                    self?.status = profile.status?.title ?? "Non défini"
+                }
             }
             .store(in: &cancellables)
-
 
     }
     
 
     var isFieldsAllValid: Bool {
-        if isCreation {
-            return !profile.firstname.isEmpty &&
-            !profile.lastname.isEmpty &&
-            !profile.nickname.isEmpty &&
-            profile.typeAbo != nil &&
-            selectedImage != nil
-        } else {
-            return !profile.firstname.isEmpty &&
-            !profile.lastname.isEmpty &&
-            !profile.nickname.isEmpty &&
-            profile.typeAbo != nil
-        }
-
+        return !firstname.isEmpty &&
+        !lastname.isEmpty &&
+        !nickname.isEmpty &&
+        typeAbo != nil &&
+        ((isCreation && selectedImage != nil) || !isCreation)
     }
 
     func retrieveURLProfileImage() async {
-        stateURLImageProfile = .loaded(await profile.urlDownloadPhoto())
+        stateURLImageProfile = .loaded(await profile?.urlDownloadPhoto())
     }
 
     func saveProfile() async -> Bool {
@@ -76,9 +91,57 @@ public class EditProfileViewModel {
             let data = selectedImage?.pngData()
 
             if isCreation {
-                try await profileManager.createProfile(profile, data)
+                let createProfileRequest = CreateProfileRequest(
+                    firstname: firstname,
+                    lastname: lastname,
+                    nickname: nickname,
+                    year: year,
+                    typeAbo: typeAbo ?? .none
+                )
+
+                let profile = try await profileRepository.createMyProfile(createProfileRequest, data)
+
+                ProfileUpdateNotifier.shared.send(profile: profile)
             } else {
-                try await profileManager.updateProfile(profile, data)
+                var updateProfileRequest = UpdateProfileRequest()
+
+                if firstname != profile?.firstname {
+                    updateProfileRequest.firstname = firstname
+                }
+
+                if lastname != profile?.lastname {
+                    updateProfileRequest.lastname = lastname
+                }
+
+                if nickname != profile?.nickname {
+                    updateProfileRequest.nickname = nickname
+                }
+
+                if year != profile?.year {
+                    updateProfileRequest.year = year
+                }
+
+                if typeAbo != profile?.typeAbo {
+                    updateProfileRequest.typeAbo = typeAbo
+                }
+
+                guard let id = profile?.id else {
+                    throw NSError(
+                        domain: "User Id not found for updating profile",
+                        code: 0,
+                        userInfo: nil
+                    )
+                }
+
+                let profile = try await profileRepository.updateProfile(
+                    id,
+                    updateProfileRequest,
+                    selectedImage?.pngData()
+                )
+
+                if let profile {
+                    ProfileUpdateNotifier.shared.send(profile: profile)
+                }
             }
             
             try Task.checkCancellation()
@@ -105,7 +168,7 @@ public class EditProfileViewModel {
                     errorText = SharedResources.commonErrorText
                 }
 
-                print("error ", error)
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
 
             return false

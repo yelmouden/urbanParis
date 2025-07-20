@@ -7,6 +7,7 @@
 
 import Foundation
 import Dependencies
+import Logger
 import Observation
 import SharedRepository
 import Utils
@@ -30,6 +31,7 @@ final class MatosListViewModel {
         } catch {
             if !(error is CancellationError) {
                 showError = true
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }

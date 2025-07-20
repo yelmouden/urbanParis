@@ -10,10 +10,8 @@
 		DC0015E72C4FD41100416056 /* fumiBlueAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = DC0015E52C4FD41100416056 /* fumiBlueAnimation.json */; };
 		DC0015EA2C4FD42500416056 /* SmokeManView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0015E92C4FD42500416056 /* SmokeManView.swift */; };
 		DC0015ED2C4FD55200416056 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = DC0015EC2C4FD55200416056 /* Lottie */; };
-		DC0015F22C50071E00416056 /* nonUrban-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */; };
 		DC0015F72C50118800416056 /* Common.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DC4E65882C49BC7800B08F1A /* Common.xcconfig */; };
 		DC0015F82C50118A00416056 /* urban.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DC4E65892C49BC8200B08F1A /* urban.xcconfig */; };
-		DC0015F92C50118D00416056 /* urban-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DC0015F02C50070800416056 /* urban-debug.xcconfig */; };
 		DC0015FA2C50118F00416056 /* nonUrban.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DC4E658A2C49BC8F00B08F1A /* nonUrban.xcconfig */; };
 		DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0015FC2C5021B100416056 /* AppViewModel.swift */; };
 		DC025F002C4972310050B457 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = DC025EFF2C4972310050B457 /* DesignSystem */; };
@@ -28,7 +26,7 @@
 		DC12B8A22C513DFC00F3FF93 /* ProfileManager in Frameworks */ = {isa = PBXBuildFile; productRef = DC12B8A12C513DFC00F3FF93 /* ProfileManager */; };
 		DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC15EE5B2C514E0500BD4D4B /* MenuViewModel.swift */; };
 		DC1B80A82CF1088B00FA9997 /* MembersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A12CF1088B00FA9997 /* MembersRepository.swift */; };
-		DC1B80A92CF1088B00FA9997 /* MemberDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A62CF1088B00FA9997 /* MemberDetails.swift */; };
+		DC1B80A92CF1088B00FA9997 /* MemberDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A62CF1088B00FA9997 /* MemberDetailsView.swift */; };
 		DC1B80AA2CF1088B00FA9997 /* ListMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A52CF1088B00FA9997 /* ListMembersView.swift */; };
 		DC1B80AB2CF1088B00FA9997 /* ListMembersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80A32CF1088B00FA9997 /* ListMembersViewModel.swift */; };
 		DC1B80AD2CF1111F00FA9997 /* MemberDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B80AC2CF1111F00FA9997 /* MemberDetailsViewModel.swift */; };
@@ -55,6 +53,7 @@
 		DC50E21B2D1F15E90055A99E /* AddTeamInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E21A2D1F15E90055A99E /* AddTeamInfoInputView.swift */; };
 		DC54131A2C53041400BF0010 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5413192C53041400BF0010 /* MenuView.swift */; };
 		DC54131C2C53E93600BF0010 /* TravelMatchesFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC54131B2C53E93600BF0010 /* TravelMatchesFeature */; };
+		DC5492D82E2D8D1500F1E648 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = DC5492D72E2D8D1500F1E648 /* Logger */; };
 		DC61D1EB2C5023C40047136F /* SplashscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC61D1EA2C5023C40047136F /* SplashscreenView.swift */; };
 		DC61D1EE2C50248F0047136F /* AnimateText in Frameworks */ = {isa = PBXBuildFile; productRef = DC61D1ED2C50248F0047136F /* AnimateText */; };
 		DC61D1F02C50583D0047136F /* SettingsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DC61D1EF2C50583D0047136F /* SettingsFeature */; };
@@ -75,13 +74,14 @@
 		DCD8AEA62C47E91E0070B0D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD8AEA52C47E91E0070B0D1 /* Preview Assets.xcassets */; };
 		DCD8AEAE2C49610B0070B0D1 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD8AEAD2C49610B0070B0D1 /* AppView.swift */; };
 		DCD8AEB12C4962480070B0D1 /* LoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = DCD8AEB02C4962480070B0D1 /* LoginFeature */; };
+		DCE7ED002E29663B0000DC40 /* ProfileEditionStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE7ECFF2E29663B0000DC40 /* ProfileEditionStatusViewModel.swift */; };
+		DCE7ED022E2966AB0000DC40 /* ProfileEditionStatusViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE7ED012E2966AB0000DC40 /* ProfileEditionStatusViewData.swift */; };
+		DCE7ED042E296A500000DC40 /* ProfileEditionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE7ED032E296A500000DC40 /* ProfileEditionStatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DC0015E52C4FD41100416056 /* fumiBlueAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fumiBlueAnimation.json; sourceTree = "<group>"; };
 		DC0015E92C4FD42500416056 /* SmokeManView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmokeManView.swift; sourceTree = "<group>"; };
-		DC0015F02C50070800416056 /* urban-debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "urban-debug.xcconfig"; sourceTree = "<group>"; };
-		DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "nonUrban-debug.xcconfig"; sourceTree = "<group>"; };
 		DC0015FC2C5021B100416056 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		DC0461D92CF8FD5D00C4F344 /* CotisationsMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMembersView.swift; sourceTree = "<group>"; };
 		DC0461DB2CF8FD7D00C4F344 /* CotisationsMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotisationsMembersViewModel.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		DC1B80A12CF1088B00FA9997 /* MembersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersRepository.swift; sourceTree = "<group>"; };
 		DC1B80A32CF1088B00FA9997 /* ListMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMembersViewModel.swift; sourceTree = "<group>"; };
 		DC1B80A52CF1088B00FA9997 /* ListMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMembersView.swift; sourceTree = "<group>"; };
-		DC1B80A62CF1088B00FA9997 /* MemberDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetails.swift; sourceTree = "<group>"; };
+		DC1B80A62CF1088B00FA9997 /* MemberDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailsView.swift; sourceTree = "<group>"; };
 		DC1B80AC2CF1111F00FA9997 /* MemberDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailsViewModel.swift; sourceTree = "<group>"; };
 		DC4E657F2C49834300B08F1A /* LaunchScreenUrban.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenUrban.storyboard; sourceTree = "<group>"; };
 		DC4E65882C49BC7800B08F1A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
@@ -132,6 +132,9 @@
 		DCD8AEA22C47E91E0070B0D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCD8AEA52C47E91E0070B0D1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DCD8AEAD2C49610B0070B0D1 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		DCE7ECFF2E29663B0000DC40 /* ProfileEditionStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditionStatusViewModel.swift; sourceTree = "<group>"; };
+		DCE7ED012E2966AB0000DC40 /* ProfileEditionStatusViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditionStatusViewData.swift; sourceTree = "<group>"; };
+		DCE7ED032E296A500000DC40 /* ProfileEditionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditionStatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC5492D82E2D8D1500F1E648 /* Logger in Frameworks */,
 				DC1B80B02CF11A6200FA9997 /* Dependencies in Frameworks */,
 				DCD8AEB12C4962480070B0D1 /* LoginFeature in Frameworks */,
 				DC4E65822C49839E00B08F1A /* SharedResources in Frameworks */,
@@ -164,6 +168,7 @@
 		DC0015E22C4FD3E000416056 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DC1B809F2CF1084800FA9997 /* Admin */,
 				DC0015E32C4FD3F400416056 /* Menu */,
 				DCA8975B2C4EDECE00788FC6 /* HomeView.swift */,
 				DCD8AE9E2C47E91C0070B0D1 /* UrbanParisApp.swift */,
@@ -177,7 +182,6 @@
 		DC0015E32C4FD3F400416056 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				DC1B809F2CF1084800FA9997 /* MenuAdmin */,
 				DC5413192C53041400BF0010 /* MenuView.swift */,
 				DC0015E92C4FD42500416056 /* SmokeManView.swift */,
 				DC0015E42C4FD3FB00416056 /* Resources */,
@@ -250,7 +254,7 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
-		DC1B809F2CF1084800FA9997 /* MenuAdmin */ = {
+		DC1B809F2CF1084800FA9997 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
 				DC50E1F92D1D9A0E0055A99E /* Travels */,
@@ -258,7 +262,7 @@
 				DC1B80A02CF1085400FA9997 /* Members */,
 				DC7AD3282CED17EE00E2D8C5 /* MenuAdminCoordinator.swift */,
 			);
-			path = MenuAdmin;
+			path = Admin;
 			sourceTree = "<group>";
 		};
 		DC1B80A02CF1085400FA9997 /* Members */ = {
@@ -284,6 +288,8 @@
 			children = (
 				DC1B80A32CF1088B00FA9997 /* ListMembersViewModel.swift */,
 				DC1B80AC2CF1111F00FA9997 /* MemberDetailsViewModel.swift */,
+				DCE7ECFF2E29663B0000DC40 /* ProfileEditionStatusViewModel.swift */,
+				DCE7ED012E2966AB0000DC40 /* ProfileEditionStatusViewData.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -292,7 +298,8 @@
 			isa = PBXGroup;
 			children = (
 				DC1B80A52CF1088B00FA9997 /* ListMembersView.swift */,
-				DC1B80A62CF1088B00FA9997 /* MemberDetails.swift */,
+				DC1B80A62CF1088B00FA9997 /* MemberDetailsView.swift */,
+				DCE7ED032E296A500000DC40 /* ProfileEditionStatusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,9 +309,7 @@
 			children = (
 				DC4E65882C49BC7800B08F1A /* Common.xcconfig */,
 				DC4E65892C49BC8200B08F1A /* urban.xcconfig */,
-				DC0015F02C50070800416056 /* urban-debug.xcconfig */,
 				DC4E658A2C49BC8F00B08F1A /* nonUrban.xcconfig */,
-				DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				DC6FD5FB2C60FF4400536C19 /* MatosFeature */,
 				DC1B80AF2CF11A6200FA9997 /* Dependencies */,
 				DC1B80B12CF11A6200FA9997 /* DependenciesMacros */,
+				DC5492D72E2D8D1500F1E648 /* Logger */,
 			);
 			productName = UrbanParis;
 			productReference = DCD8AE9B2C47E91C0070B0D1 /* Urban Paris.app */;
@@ -500,9 +506,7 @@
 				DC0015F72C50118800416056 /* Common.xcconfig in Resources */,
 				DCD8AEA62C47E91E0070B0D1 /* Preview Assets.xcassets in Resources */,
 				DC760BE22C4B222C0008990B /* UrbanParisPackage in Resources */,
-				DC0015F22C50071E00416056 /* nonUrban-debug.xcconfig in Resources */,
 				DC6FD5C42C5AB26100536C19 /* apoula.pdf in Resources */,
-				DC0015F92C50118D00416056 /* urban-debug.xcconfig in Resources */,
 				DCD8AEA32C47E91E0070B0D1 /* Assets.xcassets in Resources */,
 				DC0015E72C4FD41100416056 /* fumiBlueAnimation.json in Resources */,
 				DC0015F82C50118A00416056 /* urban.xcconfig in Resources */,
@@ -521,12 +525,14 @@
 				DC50E2152D1F07EC0055A99E /* TeamsListViewModel.swift in Sources */,
 				DC04624E2CFA533B00C4F344 /* CotisationsMember.swift in Sources */,
 				DC1B80A82CF1088B00FA9997 /* MembersRepository.swift in Sources */,
-				DC1B80A92CF1088B00FA9997 /* MemberDetails.swift in Sources */,
+				DC1B80A92CF1088B00FA9997 /* MemberDetailsView.swift in Sources */,
 				DC0462502CFA5CE700C4F344 /* CotisationsMemberDetails.swift in Sources */,
 				DC1B80AA2CF1088B00FA9997 /* ListMembersView.swift in Sources */,
 				DC0462522CFA5D3B00C4F344 /* CotisationsMemberDetailsViewModel.swift in Sources */,
+				DCE7ED022E2966AB0000DC40 /* ProfileEditionStatusViewData.swift in Sources */,
 				DC50E2012D1DA27F0055A99E /* TravelsListViewModel.swift in Sources */,
 				DC50E20D2D1DD8E10055A99E /* MemberTravelViewModel.swift in Sources */,
+				DCE7ED042E296A500000DC40 /* ProfileEditionStatusView.swift in Sources */,
 				DC1B80AB2CF1088B00FA9997 /* ListMembersViewModel.swift in Sources */,
 				DC0015FD2C5021B100416056 /* AppViewModel.swift in Sources */,
 				DC50E1FF2D1D9A5F0055A99E /* SeasonsListViewModel.swift in Sources */,
@@ -536,6 +542,7 @@
 				DC7AD3292CED17EE00E2D8C5 /* MenuAdminCoordinator.swift in Sources */,
 				DC7AD3272CED16A400E2D8C5 /* AdminMenuView.swift in Sources */,
 				DC50E2192D1F0F1E0055A99E /* TeamCellView.swift in Sources */,
+				DCE7ED002E29663B0000DC40 /* ProfileEditionStatusViewModel.swift in Sources */,
 				DC54131A2C53041400BF0010 /* MenuView.swift in Sources */,
 				DC6FD5BD2C5AAFC100536C19 /* UserLockedView.swift in Sources */,
 				DC50E2172D1F0DE80055A99E /* TeamCellViewModel.swift in Sources */,
@@ -632,7 +639,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(AppIcon)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"UrbanParis/Preview Content\"";
@@ -652,10 +659,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.release.urban;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.debug.up;
 				PRODUCT_NAME = "Urban Paris";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile release urban";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile debug urban paris";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -756,10 +763,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.nonUrban;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.debug.up;
 				PRODUCT_NAME = "Urban Paris";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile urban paris";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile debug urban paris";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -770,344 +777,26 @@
 			};
 			name = nonUrban;
 		};
-		DCB9647F2C57F83D0073E92C /* UrbanParisTests */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC0015F02C50070800416056 /* urban-debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = UrbanParisTests;
-		};
-		DCB964802C57F83D0073E92C /* UrbanParisTests */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC0015F02C50070800416056 /* urban-debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(AppIcon)";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_ASSET_PATHS = "\"UrbanParis/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 69XGLNEF48;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UrbanParis/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "L'application a besoin d'accéder à ta caméra afin que tu puisses prendre une photo de profil.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "L'application a besoin d'accèder aux photos pour sauvegarder le screenshot";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenUrban.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.urban;
-				PRODUCT_NAME = "Urban Paris";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile release urban";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = UrbanParisTests;
-		};
-		DCD22FA02C4C0978004A17D6 /* nonUrbanDebug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = nonUrbanDebug;
-		};
-		DCD22FA12C4C0978004A17D6 /* nonUrbanDebug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC0015F12C50071E00416056 /* nonUrban-debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(AppIcon)";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_ASSET_PATHS = "\"UrbanParis/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 69XGLNEF48;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UrbanParis/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "L'application a besoin d'accéder à ta caméra afin que tu puisses prendre une photo de profil.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "L'application a besoin d'accèder aux photos pour sauvegarder le screenshot";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenUrban.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.debug.up;
-				PRODUCT_NAME = "Urban Paris";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile urban paris";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = nonUrbanDebug;
-		};
-		DCD8AEA72C47E91E0070B0D1 /* UrbanDebug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC0015F02C50070800416056 /* urban-debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = UrbanDebug;
-		};
-		DCD8AEAA2C47E91E0070B0D1 /* UrbanDebug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC0015F02C50070800416056 /* urban-debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(AppIcon)";
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_ASSET_PATHS = "\"UrbanParis/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 69XGLNEF48;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UrbanParis/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "L'application a besoin d'accéder à ta caméra afin que tu puisses prendre une photo de profil.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "L'application a besoin d'accèder aux photos pour sauvegarder le screenshot";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenUrban.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.debug.up;
-				PRODUCT_NAME = "Urban Paris";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile urban paris";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = UrbanDebug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		DCD8AE962C47E91C0070B0D1 /* Build configuration list for PBXProject "UrbanParis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DCD8AEA72C47E91E0070B0D1 /* UrbanDebug */,
-				DCB9647F2C57F83D0073E92C /* UrbanParisTests */,
-				DCD22FA02C4C0978004A17D6 /* nonUrbanDebug */,
 				DC4E65832C49BBBB00B08F1A /* urban */,
 				DC4E65852C49BC1C00B08F1A /* nonUrban */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = UrbanParisTests;
+			defaultConfigurationName = urban;
 		};
 		DCD8AEA92C47E91E0070B0D1 /* Build configuration list for PBXNativeTarget "UrbanParis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DCD8AEAA2C47E91E0070B0D1 /* UrbanDebug */,
-				DCB964802C57F83D0073E92C /* UrbanParisTests */,
-				DCD22FA12C4C0978004A17D6 /* nonUrbanDebug */,
 				DC4E65842C49BBBB00B08F1A /* urban */,
 				DC4E65862C49BC1C00B08F1A /* nonUrban */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = UrbanParisTests;
+			defaultConfigurationName = urban;
 		};
 /* End XCConfigurationList section */
 
@@ -1173,6 +862,10 @@
 		DC54131B2C53E93600BF0010 /* TravelMatchesFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TravelMatchesFeature;
+		};
+		DC5492D72E2D8D1500F1E648 /* Logger */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Logger;
 		};
 		DC61D1ED2C50248F0047136F /* AnimateText */ = {
 			isa = XCSwiftPackageProductDependency;

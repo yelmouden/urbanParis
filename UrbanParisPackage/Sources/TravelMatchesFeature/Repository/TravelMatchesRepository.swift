@@ -27,7 +27,7 @@ public struct TravelMatchesRepository: Sendable {
     public var retrieveSeasons: @Sendable() async throws -> [Season]
     public var retrieveTravels: @Sendable(_ idSeason: Int) async throws -> [Travel]
     var subscribeToTravel: @Sendable(_ idTravel: Int, _ idSeason: Int, _ idProfile: Int) async throws -> Void
-    var checkAlreadySubscribe: @Sendable(_ idTravel: Int, _ idSeason: Int) async throws -> Bool
+    var checkAlreadySubscribe: @Sendable(_ idTravel: Int, _ idSeason: Int, _ idProfile: Int) async throws -> Bool
     var retrieveMyTravels: @Sendable(_ idSeason: Int, _ idProfile: Int) async throws -> [Travel]
     var saveResponses: @Sendable(_ responses: [Response]) async throws -> Void
     var deleteResponses: @Sendable(_ idProfile: Int, _ idPool: Int) async throws -> Void
@@ -72,7 +72,7 @@ extension TravelMatchesRepository: DependencyKey {
                 .insert(travelUser)
                 .execute()
         },
-        checkAlreadySubscribe: { idTravel, idSeason in
+        checkAlreadySubscribe: { idTravel, idSeason, idProfile in
             guard let id = Database.shared.client.auth.currentUser?.id else {
                 throw DatabaseClientError.notFoundId
             }
@@ -81,7 +81,7 @@ extension TravelMatchesRepository: DependencyKey {
                 .from(Database.Table.travels_users.rawValue)
                 .select("id", head: true, count: .exact)
                 .eq("idTravel", value: idTravel)
-                .eq("idUser", value: id)
+                .eq("idProfile", value: idProfile)
                 .eq("idSeason", value: idSeason)
                 .execute()
                 .count

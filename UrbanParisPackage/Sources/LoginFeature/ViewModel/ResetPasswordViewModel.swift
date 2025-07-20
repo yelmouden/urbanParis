@@ -8,6 +8,7 @@
 import AuthenticationManager
 import Dependencies
 import Foundation
+import Logger
 import Observation
 import SharedResources
 import Supabase
@@ -50,6 +51,7 @@ public final class ResetPasswordViewModel {
 
                 state = .idle
                 showError = true
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
 
             return false

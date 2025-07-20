@@ -9,6 +9,7 @@ import Combine
 import Dependencies
 import Foundation
 import SharedRepository
+import Logger
 import ProfileManager
 import Observation
 import Utils
@@ -51,7 +52,32 @@ final class CotisationsViewModel {
             if !(error is CancellationError) {
                 showError = true
                 state = .idle
+                AppLogger.error(error.decodedOrLocalizedDescription)
+
+                printLogFileContent()
             }
+        }
+    }
+
+    func printLogFileContent() {
+        let fileManager = FileManager.default
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            print("❌ Impossible d'accéder au dossier Documents")
+            return
+        }
+
+        let logFileURL = documentsDirectory.appendingPathComponent("debug.log")
+
+        guard fileManager.fileExists(atPath: logFileURL.path) else {
+            print("❌ Le fichier debug.log n'existe pas")
+            return
+        }
+
+        do {
+            let logContent = try String(contentsOf: logFileURL, encoding: .utf8)
+            print("📄 Contenu de debug.log :\n\(logContent)")
+        } catch {
+            print("❌ Erreur lors de la lecture du fichier : \(error)")
         }
     }
 }

@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import Dependencies
+import Logger
 import ProfileManager
 import Observation
 import Utils
@@ -51,6 +52,8 @@ final class MyTravelsViewModel {
         } catch {
             if !(error is CancellationError) {
                 showError = true
+                AppLogger.error(error.decodedOrLocalizedDescription)
+
             }
         }
     }
@@ -67,6 +70,7 @@ final class MyTravelsViewModel {
             if !(error is CancellationError) {
                 showError = true
                 stateTravels = .idle
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }

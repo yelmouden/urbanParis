@@ -68,6 +68,14 @@ let package = Package(
             name: "MatosFeature",
             targets: ["MatosFeature"]
         ),
+        .library(
+            name: "SharedModels",
+            targets: ["SharedModels"]
+        ),
+        .library(
+            name: "Logger",
+            targets: ["Logger"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/google/GoogleSignIn-iOS.git", exact: "7.0.0"),
@@ -87,6 +95,7 @@ let package = Package(
         .package(url: "https://github.com/TimOliver/TOCropViewController", branch: "main"),
         .package(url: "https://github.com/scinfu/SwiftSoup", branch: "master"),
         .package(url: "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators", branch: "main"),
+        .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver", exact: "2.1.1"),
     ],
     targets: [
         .target(
@@ -99,7 +108,8 @@ let package = Package(
                 .product(name: "AnimateText", package: "AnimateText"),
                 "DesignSystem",
                 "SharedResources",
-                "AuthenticationManager"
+                "AuthenticationManager",
+                "Logger"
             ],
             resources: [
                 .process("Resources")
@@ -118,7 +128,9 @@ let package = Package(
                 .product(name: "SDWebImageSwiftUI", package: "SDWebImageSwiftUI"),
                 "ProfileManager",
                 "DesignSystem",
-                "SharedResources"
+                "SharedResources",
+                "SharedRepository",
+                "Logger"
             ],
             resources: [
                 .process("Resources")
@@ -136,7 +148,8 @@ let package = Package(
                 "ProfileManager",
                 "DesignSystem",
                 "SharedResources",
-                "SharedRepository"
+                "SharedRepository",
+                "Logger"
             ],
             resources: [
                 .process("Resources")
@@ -154,7 +167,8 @@ let package = Package(
                 "ProfileManager",
                 "DesignSystem",
                 "SharedResources",
-                "SharedRepository"
+                "SharedRepository",
+                "Logger"
             ],
             resources: [
                 .process("Resources")
@@ -169,6 +183,7 @@ let package = Package(
                 .product(name: "FlowStacks", package: "FlowStacks"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 "DesignSystem",
+                "Logger"
             ],
             resources: [
                 .process("Resources")
@@ -228,10 +243,9 @@ let package = Package(
                 .product(name: "SwiftyEmail", package: "SwiftyEmail"),
                 .product(name: "DeviceKit", package: "DeviceKit"),
                 .product(name: "FlowStacks", package: "FlowStacks"),
-
+                "Logger",
                 "AuthenticationManager",
                 "SharedResources",
-                //"ProfileManager",
             ],
             resources: [
                 .process("Resources")
@@ -244,10 +258,10 @@ let package = Package(
             name: "ProfileManager",
             dependencies: [
                 "Database",
-                .product(name: "Dependencies", package: "swift-dependencies"),
-                .product(name: "DependenciesMacros", package: "swift-dependencies"),
+                "SharedModels",
                 .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras"),
                 .product(name: "CombineExt", package: "CombineExt"),
+                "Logger"
             ]
         ),
         .target(
@@ -255,7 +269,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .product(name: "DependenciesMacros", package: "swift-dependencies"),
-                "Database"
+                "Database",
+                "SharedModels"
             ]
         ),
         .target(
@@ -268,11 +283,26 @@ let package = Package(
                 "ProfileManager",
                 "DesignSystem",
                 "SharedResources",
-                "SharedRepository"
+                "SharedRepository",
+                "Logger"
             ],
             resources: [
                 .process("Resources")
             ]
-        )
+        ),
+        .target(
+            name: "SharedModels",
+            dependencies: [
+                "Database"
+            ]
+        ),
+        .target(
+            name: "Logger",
+            dependencies: [
+                .product(name: "SwiftyBeaver", package: "SwiftyBeaver"),
+                .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras"),
+                "Utils"
+            ]
+        ),
     ]
 )

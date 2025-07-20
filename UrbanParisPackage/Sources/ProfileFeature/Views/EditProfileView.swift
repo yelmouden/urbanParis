@@ -145,7 +145,7 @@ public struct EditProfileView: View, KeyboardReadable {
                             FWTextField(
                                 title: "Ton prenom",
                                 placeholder: "Saissi ton prénom",
-                                text: $viewModel.profile.firstname
+                                text: $viewModel.firstname
                             )
                             .keyboardType(.emailAddress)
                             .autocorrectionDisabled()
@@ -158,7 +158,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                                 Spacer()
 
-                                Text(viewModel.profile.firstname)
+                                Text(viewModel.firstname)
                                     .font(DSFont.robotoTitle3)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                             }
@@ -170,7 +170,7 @@ public struct EditProfileView: View, KeyboardReadable {
                             FWTextField(
                                 title: "Ton nom",
                                 placeholder: "Saisis ton nom",
-                                text: $viewModel.profile.lastname
+                                text: $viewModel.lastname
                             )
                             .autocorrectionDisabled()
                         } else {
@@ -181,7 +181,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                                 Spacer()
 
-                                Text(viewModel.profile.lastname)
+                                Text(viewModel.lastname)
                                     .font(DSFont.robotoTitle3)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                             }
@@ -193,7 +193,7 @@ public struct EditProfileView: View, KeyboardReadable {
                             FWTextField(
                                 title: "Ton surnom",
                                 placeholder: "Saisis ton surnom",
-                                text: $viewModel.profile.nickname
+                                text: $viewModel.nickname
                             )
                             .autocorrectionDisabled()
                         } else {
@@ -204,7 +204,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                                 Spacer()
 
-                                Text(viewModel.profile.nickname)
+                                Text(viewModel.nickname)
                                     .font(DSFont.robotoTitle3)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
                             }
@@ -226,8 +226,8 @@ public struct EditProfileView: View, KeyboardReadable {
 
                             HStack {
                                 Button(action: {
-                                    viewModel.profile.year -= 1
-                                    viewModel.profile.year = max(2017, viewModel.profile.year)
+                                    viewModel.year -= 1
+                                    viewModel.year = max(2017, viewModel.year)
                                 }, label: {
                                     Image(systemName: "chevron.left.circle.fill")
                                         .resizable()
@@ -237,12 +237,12 @@ public struct EditProfileView: View, KeyboardReadable {
                                 .padding(.trailing, Margins.extraLarge)
                                 .addSensoryFeedback()
 
-                                Text(verbatim: "\(viewModel.profile.year)")
+                                Text(verbatim: "\(viewModel.year)")
                                     .foregroundStyle(DSColors.white.swiftUIColor)
 
                                 Button(action: {
-                                    viewModel.profile.year += 1
-                                    viewModel.profile.year = min(viewModel.profile.year, Date.currentYear)
+                                    viewModel.year += 1
+                                    viewModel.year = min(viewModel.year, Date.currentYear)
                                 }, label: {
                                     Image(systemName: "chevron.right.circle.fill")
                                         .resizable()
@@ -263,7 +263,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                                 Spacer()
 
-                                Text(verbatim: "\(viewModel.profile.year)")
+                                Text(verbatim: "\(viewModel.year)")
                                     .font(DSFont.robotoTitle3)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
 
@@ -272,7 +272,7 @@ public struct EditProfileView: View, KeyboardReadable {
 
                         if viewModel.isCreation || isEditing {
                             HStack {
-                                SelectableViews(title: "Ton type d'abonnement au Parc", items: [AboType.aboPSG, .aboCUP, .none ], selectedItem: $viewModel.profile.typeAbo)
+                                SelectableViews(title: "Ton type d'abonnement au Parc", items: viewModel.aboTypes, selectedItem: $viewModel.typeAbo)
                                     .padding(.bottom, Margins.extraLarge)
 
                                 Spacer()
@@ -286,7 +286,7 @@ public struct EditProfileView: View, KeyboardReadable {
                                 
                                 Spacer()
 
-                                Text(viewModel.profile.typeAbo?.title ?? "")
+                                Text(viewModel.typeAbo?.title ?? "")
                                     .font(DSFont.robotoTitle3)
                                     .foregroundStyle(DSColors.white.swiftUIColor)
 
@@ -294,6 +294,18 @@ public struct EditProfileView: View, KeyboardReadable {
                         }
 
                         if !viewModel.isCreation && !isEditing {
+                            HStack {
+                                Text("Statut:")
+                                    .font(DSFont.grafHeadline)
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
+
+                                Spacer()
+
+                                Text(viewModel.status)
+                                    .font(DSFont.robotoTitle3)
+                                    .foregroundStyle(DSColors.white.swiftUIColor)
+                            }
+
                             HStack {
                                 Button {
                                     navigator.push(.myTravels(.init(onClose: { [navigator] in

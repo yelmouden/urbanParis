@@ -8,6 +8,7 @@
 import Combine
 import Dependencies
 import Foundation
+import Logger
 import ProfileManager
 import Utils
 
@@ -75,6 +76,7 @@ final class PoolViewModel {
             if !(error is CancellationError) {
                 showError = true
                 state = .idle
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }
@@ -95,6 +97,7 @@ final class PoolViewModel {
             if !(error is CancellationError) {
                 showError = true
                 state = .idle
+                AppLogger.error(error.decodedOrLocalizedDescription)
             }
         }
     }

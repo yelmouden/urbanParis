@@ -10,7 +10,9 @@ import Database
 import DesignSystem
 import Dependencies
 import Foundation
+import Logger
 import ProfileManager
+import SharedModels
 import SharedResources
 import Supabase
 import Utils
@@ -65,14 +67,11 @@ final class TravelMatchFormViewModel {
         do {
             state = .loading
 
-            guard let profileId = profile.id else {
-                showError = true
-                errorText = "Impossible de sauvegarder l'inscription"
-                return false
-            }
-
-
-            try await repository.subscribeToTravel(travel.id, idSeason, profileId)
+            try await repository.subscribeToTravel(
+                travel.id,
+                idSeason,
+                profile.id
+            )
 
             try Task.checkCancellation()
 
@@ -87,6 +86,8 @@ final class TravelMatchFormViewModel {
                 showError = true
 
                 errorText = "Impossible de sauvegarder l'inscription"
+
+                AppLogger.error(error.decodedOrLocalizedDescription)
 
                 return false
             }
