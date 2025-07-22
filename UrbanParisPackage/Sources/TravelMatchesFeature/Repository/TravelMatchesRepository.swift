@@ -73,10 +73,6 @@ extension TravelMatchesRepository: DependencyKey {
                 .execute()
         },
         checkAlreadySubscribe: { idTravel, idSeason, idProfile in
-            guard let id = Database.shared.client.auth.currentUser?.id else {
-                throw DatabaseClientError.notFoundId
-            }
-
             let result: Int? = try await Database.shared.client
                 .from(Database.Table.travels_users.rawValue)
                 .select("id", head: true, count: .exact)

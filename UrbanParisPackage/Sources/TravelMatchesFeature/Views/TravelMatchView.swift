@@ -72,10 +72,7 @@ struct TravelMatchView: View {
 
                                     } else if let googleDoc = travelVM.travel.googleDoc {
                                         FWButton(title: "S'inscrire") {
-                                            if let url = URL(string: googleDoc) {
-
-                                                navigator.presentSheet(.register(travel: travelVM.travel, idSeason: travelVM.idSeason, onSubscribeSucceeded: travelVM.onSubscribeSucceeded), withNavigation: true)
-                                            }
+                                            navigator.presentSheet(.register(travel: travelVM.travel, idSeason: travelVM.idSeason, onSubscribeSucceeded: travelVM.onSubscribeSucceeded), withNavigation: true)
                                         }
                                         .fwButtonStyle(.primary)
 

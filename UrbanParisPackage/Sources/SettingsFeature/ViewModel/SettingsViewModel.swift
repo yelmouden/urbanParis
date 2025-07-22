@@ -39,21 +39,4 @@ final class SettingsViewModel {
             return false
         }
     }
-
-    @MainActor
-    func deleteAccount() async -> Bool {
-        do {
-            try await manager.deleteAccount()
-            return true
-        } catch {
-            if !(error is CancellationError) {
-                hasError = true
-                errorText = SharedResources.commonErrorText
-
-                AppLogger.error(error.decodedOrLocalizedDescription)
-            }
-
-            return false
-        }
-    }
 }
