@@ -134,7 +134,7 @@ public struct MemberDetailsView: View {
                         }
 
                         HStack {
-                            Text("Status:")
+                            Text("Statut:")
                                 .font(DSFont.grafHeadline)
                                 .foregroundStyle(DSColors.white.swiftUIColor)
 

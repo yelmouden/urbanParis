@@ -30,7 +30,8 @@ struct SplashcreenView: View, Animatable {
                         width: ConfigurationReader.isUrbanApp ? 300 : 250,
                         height: ConfigurationReader.isUrbanApp ? 300: 250)
 
-                AnimateText<ATChimeBellEffect>($text, type: .words)
+               Text(text)
+                    .minimumScaleFactor(0.7)
                     .font(DSFont.grafTitle3)
                     .foregroundStyle(ConfigurationReader.isUrbanApp ? DSColors.or.swiftUIColor : DSColors.white.swiftUIColor)
                     .offset(CGSize(width: 0, height: ConfigurationReader.isUrbanApp ? -50 : -15))

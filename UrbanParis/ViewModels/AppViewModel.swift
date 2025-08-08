@@ -108,19 +108,18 @@ class AppViewModel {
                 ProfileUpdateNotifier.shared.send(profile: nil)
             } else {
                 do {
+
                     guard let id = Database.shared.client.auth.currentUser?.id else {
                         throw DatabaseClientError.valueNotFound
                     }
 
-                    let profile = try await profileRepository.retrieveProfile(id)
+                    let user = try await Database.shared.client.auth.user()
 
-                    if profile == nil && event == .initialSession {
-                        throw DatabaseClientError.valueNotFound
-                    }
+                    let profile = try? await profileRepository.retrieveProfile(user.id)
 
-                    await ProfileUpdateNotifier.shared.send(profile: profile)
-
+                    ProfileUpdateNotifier.shared.send(profile: profile)
                     sessionStateChangeSubject.send(.signedIn)
+
                 } catch {
                     AppLogger.error(error.decodedOrLocalizedDescription)
                     try? await Database.shared.client.auth.signOut()

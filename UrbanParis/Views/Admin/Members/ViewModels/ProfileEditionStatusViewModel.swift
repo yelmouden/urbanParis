@@ -5,6 +5,7 @@
 //  Created by Yassin El Mouden on 17/07/2025.
 //
 
+import Combine
 import Dependencies
 import Foundation
 import Logger
@@ -25,12 +26,21 @@ final class ProfileEditionStatusViewModel {
 
     var showError = false
 
+    var canSave: Bool {
+        selectedStatus != profile.status
+    }
+
     private var selectedStatus: Status?
 
     private(set) var viewDatas: [ProfileEditionStatusViewData]
 
     private let profile: Profile
+
+    private var currentUserIdProfile: Int?
+
     private let didUpdateStatus: (Status) -> Void
+
+    private var cancellables = Set<AnyCancellable>()
 
     init(
         profile: Profile,
@@ -47,12 +57,18 @@ final class ProfileEditionStatusViewModel {
                 isSelected: profile.status == $0
             )
         }
+
+        ProfileUpdateNotifier.shared.publisher
+            .sink { [weak self] profile in
+                self?.currentUserIdProfile = profile?.id
+            }
+            .store(in: &cancellables)
     }
 
     func didSelect(index: Int) {
         selectedStatus = Status.allCases[index]
 
-        if let index = viewDatas.firstIndex { $0.isSelected } {
+        if let index = viewDatas.firstIndex(where: { $0.isSelected }) {
             viewDatas[index].isSelected = false
         }
 
@@ -84,8 +100,10 @@ final class ProfileEditionStatusViewModel {
 
                 onSuccess()
 
-                ProfileUpdateNotifier.shared.send(profile: profile)
-
+                if  let profile,
+                    profile.id == self?.currentUserIdProfile {
+                    ProfileUpdateNotifier.shared.send(profile: profile)
+                }
             } catch {
                 self?.showError = true
 

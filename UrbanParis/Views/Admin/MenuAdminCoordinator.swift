@@ -24,7 +24,7 @@ enum MenuAdminScreen: Equatable, Hashable {
     case editTravel(idSeason: Int, travel: Travel?, isCreation: Bool, didUpdate: (() -> Void)? = nil)
     case showMembersTravel(idTravel: Int, idSeason: Int)
     case teams(currentTeam: Team?, selectedTeam: (Team?) -> Void)
-
+    case openWebView(url: URL)
 
     public static func == (lhs: MenuAdminScreen, rhs: MenuAdminScreen) -> Bool {
         switch (lhs, rhs) {
@@ -37,6 +37,7 @@ enum MenuAdminScreen: Equatable, Hashable {
         case (.editTravel, .editTravel): return true
         case (.showMembersTravel, .showMembersTravel): return true
         case (.teams, .teams): return true
+        case (.openWebView, .openWebView): return true
         default: return false
         }
     }
@@ -53,6 +54,7 @@ enum MenuAdminScreen: Equatable, Hashable {
         case .editTravel: hasher.combine("editTravel")
         case .showMembersTravel: hasher.combine("showMembersTravel")
         case .teams: hasher.combine("teams")
+        case .openWebView: hasher.combine("openWebView")
         }
     }
 }
@@ -98,6 +100,8 @@ public struct MenuAdminCoordinator: View {
                         MembersTravelView(idTravel: idTravel, idSeason: idSeason)
                     case .teams(let currentTeam, let selectedTeam):
                         TeamsListView(currentTeam: currentTeam, selectedTeam: selectedTeam)
+                    case .openWebView(let url):
+                        SafariWebView(url: url)
                     }
 
                 }

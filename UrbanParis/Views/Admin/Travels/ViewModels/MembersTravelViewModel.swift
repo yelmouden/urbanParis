@@ -12,6 +12,8 @@ import ProfileManager
 import Logger
 import Observation
 import SharedModels
+import SharedResources
+import Supabase
 import TravelMatchesFeature
 import Utils
 
@@ -24,6 +26,7 @@ final class MembersTravelViewModel {
 
     var state: StateView<[MemberTravelViewModel]> = .loading
     var showError = false
+    var errorText: String = ""
 
     private let idTravel: Int
     private let idSeason: Int
@@ -64,14 +67,22 @@ final class MembersTravelViewModel {
             )
 
             try await travelMatchesRepository.addProfileToTravel(addRegisterProfileTravelRequest)
-            await retrieveMembersTravel()
         } catch {
             if !(error is CancellationError) {
-                showError = true
-                state = .idle
                 AppLogger.error(error.decodedOrLocalizedDescription)
+
+                if let postgrestError = error as? PostgrestError, postgrestError.code == "23505", postgrestError.message.contains("unique_travel_season_profile") {
+                    errorText = "L'utilisateur est déjà enregistré pour ce déplacement"
+                } else {
+                    errorText = SharedResources.commonErrorText
+                }
+
+                showError = true
+                print(error)
             }
         }
+
+        await retrieveMembersTravel()
     }
 
 }

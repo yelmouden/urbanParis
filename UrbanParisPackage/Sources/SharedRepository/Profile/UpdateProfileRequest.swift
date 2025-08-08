@@ -27,7 +27,8 @@ extension UpdateProfileRequest {
         lastname == nil &&
         nickname == nil &&
         year == nil &&
-        typeAbo == nil
+        typeAbo == nil &&
+        status == nil
     }
 }
 

@@ -19,6 +19,7 @@ public struct UpdateTravelRequest: Encodable {
     let report: String?
     let googleDoc: String?
     let telegram: String?
+    let trackingLink: String?
     let idSeason: Int
 
     public init(
@@ -33,6 +34,7 @@ public struct UpdateTravelRequest: Encodable {
         report: String?,
         googleDoc: String?,
         telegram: String?,
+        trackingLink: String?,
         idSeason: Int
     ) {
         self.date = date
@@ -46,6 +48,7 @@ public struct UpdateTravelRequest: Encodable {
         self.idTeam = idTeam
         self.googleDoc = googleDoc
         self.telegram = telegram
+        self.trackingLink = trackingLink
         self.idSeason = idSeason
     }
 }

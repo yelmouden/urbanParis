@@ -57,6 +57,7 @@ struct ProfileEditionStatusView: View {
                             navigator?.dismiss()
                         }
                     })
+                .enabled(viewModel.canSave)
                 //.enabled(email.isValidEmail() && !password.isEmpty)
                 .fwButtonStyle(.primary)
                 .addSensoryFeedback()

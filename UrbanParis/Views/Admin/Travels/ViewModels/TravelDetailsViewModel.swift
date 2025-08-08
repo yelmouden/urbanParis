@@ -37,6 +37,7 @@ final class EditTravelMatchViewModel {
     var priceBus: String
     var priceMatch: String
     var googleDoc: String
+    var trackingLink: String
     var telegram: String
     var descriptionMatch: String
     var reportMatch: String
@@ -99,6 +100,8 @@ final class EditTravelMatchViewModel {
 
         self.telegram = travel?.telegram ?? ""
 
+        self.trackingLink = travel?.trackingLink ?? ""
+
         self.reportMatch = travel?.report ?? ""
 
     }
@@ -126,6 +129,7 @@ final class EditTravelMatchViewModel {
                 report: reportMatch.isEmpty ? nil : reportMatch,
                 googleDoc: googleDoc,
                 telegram: telegram,
+                trackingLink: trackingLink,
                 idSeason: idSeason
             )
 

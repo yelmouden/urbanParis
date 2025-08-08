@@ -39,7 +39,7 @@
 		DC50E1FF2D1D9A5F0055A99E /* SeasonsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E1FE2D1D9A5F0055A99E /* SeasonsListViewModel.swift */; };
 		DC50E2012D1DA27F0055A99E /* TravelsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2002D1DA27F0055A99E /* TravelsListViewModel.swift */; };
 		DC50E2032D1DA31E0055A99E /* TravelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2022D1DA31E0055A99E /* TravelsListView.swift */; };
-		DC50E2052D1DA88A0055A99E /* TravelDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2042D1DA88A0055A99E /* TravelDetailsView.swift */; };
+		DC50E2052D1DA88A0055A99E /* EditTravelMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2042D1DA88A0055A99E /* EditTravelMatchView.swift */; };
 		DC50E2072D1DA8DB0055A99E /* TravelDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2062D1DA8DB0055A99E /* TravelDetailsViewModel.swift */; };
 		DC50E2092D1DC53F0055A99E /* MembersTravelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */; };
 		DC50E20B2D1DC5600055A99E /* MembersTravelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */; };
@@ -106,7 +106,7 @@
 		DC50E1FE2D1D9A5F0055A99E /* SeasonsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsListViewModel.swift; sourceTree = "<group>"; };
 		DC50E2002D1DA27F0055A99E /* TravelsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelsListViewModel.swift; sourceTree = "<group>"; };
 		DC50E2022D1DA31E0055A99E /* TravelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelsListView.swift; sourceTree = "<group>"; };
-		DC50E2042D1DA88A0055A99E /* TravelDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDetailsView.swift; sourceTree = "<group>"; };
+		DC50E2042D1DA88A0055A99E /* EditTravelMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTravelMatchView.swift; sourceTree = "<group>"; };
 		DC50E2062D1DA8DB0055A99E /* TravelDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDetailsViewModel.swift; sourceTree = "<group>"; };
 		DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersTravelView.swift; sourceTree = "<group>"; };
 		DC50E20A2D1DC5600055A99E /* MembersTravelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersTravelViewModel.swift; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 				DC50E2102D1EBC740055A99E /* AddSeasonInfoInputView.swift */,
 				DC50E2022D1DA31E0055A99E /* TravelsListView.swift */,
 				DC50E1FA2D1D9A2A0055A99E /* SeasonsListView.swift */,
-				DC50E2042D1DA88A0055A99E /* TravelDetailsView.swift */,
+				DC50E2042D1DA88A0055A99E /* EditTravelMatchView.swift */,
 				DC50E2082D1DC53F0055A99E /* MembersTravelView.swift */,
 				DC50E20E2D1DDA4A0055A99E /* MemberTravelCellView.swift */,
 				DC50E2122D1F079A0055A99E /* TeamsListView.swift */,
@@ -549,7 +549,7 @@
 				DC50E20B2D1DC5600055A99E /* MembersTravelViewModel.swift in Sources */,
 				DC50E2032D1DA31E0055A99E /* TravelsListView.swift in Sources */,
 				DC50E20F2D1DDA4A0055A99E /* MemberTravelCellView.swift in Sources */,
-				DC50E2052D1DA88A0055A99E /* TravelDetailsView.swift in Sources */,
+				DC50E2052D1DA88A0055A99E /* EditTravelMatchView.swift in Sources */,
 				DC50E2072D1DA8DB0055A99E /* TravelDetailsViewModel.swift in Sources */,
 				DC15EE5C2C514E0500BD4D4B /* MenuViewModel.swift in Sources */,
 				DCA8975C2C4EDECE00788FC6 /* HomeView.swift in Sources */,
@@ -639,7 +639,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(AppIcon)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"UrbanParis/Preview Content\"";
@@ -662,7 +662,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yelmouden.up;
 				PRODUCT_NAME = "Urban Paris";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile debug urban paris";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "provisionning profile urban paris valide release";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

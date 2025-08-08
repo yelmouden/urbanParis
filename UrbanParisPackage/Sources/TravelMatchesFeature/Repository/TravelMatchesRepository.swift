@@ -56,7 +56,7 @@ extension TravelMatchesRepository: DependencyKey {
         retrieveTravels: { idSeason in
             let travels: [Travel] = try await Database.shared.client
                 .from(Database.Table.travels.rawValue)
-                .select("id, date, appointmentTime, departureTime, price, descriptionTravel, descriptionBar, report, priceMatch, timeMatch, googleDoc, telegram, idSeason, team(id, name, logo), pool(id,title, limitDate, isMultipleChoices, isActive, proposals!proposals_idPool_fkey(id, title), responses!responses_idPool_fkey(idProposal, idProfile, idPool))")
+                .select("id, date, appointmentTime, departureTime, price, descriptionTravel, descriptionBar, report, priceMatch, timeMatch, googleDoc, telegram, trackingLink, idSeason, team(id, name, logo), pool(id,title, limitDate, isMultipleChoices, isActive, proposals!proposals_idPool_fkey(id, title), responses!responses_idPool_fkey(idProposal, idProfile, idPool))")
                 .eq("idSeason", value: idSeason)
                 .order("date")
                 .execute()

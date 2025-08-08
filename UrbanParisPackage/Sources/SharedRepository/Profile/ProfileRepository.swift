@@ -9,19 +9,16 @@ import Database
 import Dependencies
 import DependenciesMacros
 import Foundation
-import ProfileManager
 import SharedModels
 import Supabase
 
 @DependencyClient
 public struct ProfileRepository: Sendable {
-
     public var createMyProfile: (_ createProfileRequest: CreateProfileRequest, _ profileImageData: Data?) async throws -> Profile
     public var retrieveProfile: (_ id: UUID) async throws -> Profile?
     public var retrieveProfiles: () async throws -> [Profile]
     public var updateProfile: (_ id: Int, _ updateProfileRequest: UpdateProfileRequest, _ profileImageData: Data?) async throws -> Profile?
     public var deleteProfile: @Sendable(_ id: Int) async throws -> Void
-
 }
 
 extension ProfileRepository: DependencyKey {

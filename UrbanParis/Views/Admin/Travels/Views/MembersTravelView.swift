@@ -40,7 +40,6 @@ struct MembersTravelView: View {
                         }
                         .padding(.vertical, Margins.medium)
 
-
                         FWScrollView {
                             LazyVStack {
                                 ForEach(viewModels) { viewModel in
@@ -82,8 +81,7 @@ struct MembersTravelView: View {
             .task {
                 await viewModel.retrieveMembersTravel()
             }
-            .showBanner($viewModel.showError, text: SharedResources.commonErrorText, type: .error)
-
         }
+        .showBanner($viewModel.showError, text: viewModel.errorText, type: .error)
     }
 }
