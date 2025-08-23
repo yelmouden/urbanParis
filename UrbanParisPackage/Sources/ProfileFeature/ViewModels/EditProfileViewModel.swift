@@ -140,6 +140,7 @@ public class EditProfileViewModel {
                 )
 
                 if let profile {
+                    self.profile = profile
                     ProfileUpdateNotifier.shared.send(profile: profile)
                 }
             }

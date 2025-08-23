@@ -97,7 +97,7 @@ struct EditTravelMatchView: View {
 
             }
             .addBackButton(isPresented: isCreation) {
-                navigator.pop()
+                navigator.dismiss()
             }
         }
         .navigationTitle(isCreation ? "Nouveau deplacement" :"Edition")

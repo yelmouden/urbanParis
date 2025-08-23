@@ -141,7 +141,7 @@ public struct ListMembersView: View {
                 .navigationTitle("Liste des membres")
                 .addBackButton(isPresented: selectedProfile != nil) {
                     task?.cancel()
-                    navigator.pop()
+                    navigator.dismiss()
                 }
             }
         }

@@ -66,16 +66,13 @@ extension ProfileRepository: DependencyKey {
             updateProfile: { id, updateProfileRequest, data in
                 var profile: Profile? = nil
 
-                if !updateProfileRequest.isEmpty {
-                    profile = try await Database.shared.client.from(Database.Table.profiles.rawValue)
-                       .update(updateProfileRequest)
-                       .eq("id", value: id)
-                       .select("*")
-                       .single()
-                       .execute()
-                       .value
-                }
-
+                profile = try await Database.shared.client.from(Database.Table.profiles.rawValue)
+                   .update(updateProfileRequest)
+                   .eq("id", value: id)
+                   .select("*")
+                   .single()
+                   .execute()
+                   .value
 
                 if let data {
                     try await Database.shared.client.storage
